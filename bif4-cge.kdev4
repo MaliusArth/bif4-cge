@@ -1,0 +1,4 @@
+[Project]
+Name=bif4-cge
+Manager=KDevCMakeManager
+VersionControl=kdevgit
