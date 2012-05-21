@@ -31,27 +31,47 @@
 
 #include "window.h"
 
+/**
+ * Creates the window
+ * @param title The window title
+ * @param width The width of the window
+ * @param height The height of the window
+ */
 Window::Window (const char* title, int width, int height){
     // prevent division by 0
     if(height == 0){
-        height = 1;
+        this->height = 1;
+    } else {
+        this->height = height;
     }
+    this->width = width;
     glutInitDisplayMode(GLUT_RGBA | GLUT_DOUBLE | GLUT_ALPHA | GLUT_DEPTH);
-    glutInitWindowSize(width, height);
+    glutInitWindowSize(this->width, this->height);
     glutInitWindowPosition(0, 0);
     this->window = glutCreateWindow(title);
-    // init window
+}
+
+/**
+ * Initializes the window
+ */
+void Window::init(){
     glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
     glClearDepth(1.0);
     glDepthFunc(GL_LESS);
     glEnable(GL_DEPTH_TEST);
     glShadeModel(GL_SMOOTH);
-    this->resize(width, height);
+    this->resize(this->width, this->height);
     glutMainLoop();
 }
 
 
-void Window::resize ( int width, int height ){
+
+/**
+ * Resizes the window to a certain height
+ * @param width The new width
+ * @param height The new height
+ */
+void Window::resize( int width, int height ){
     glViewport(0, 0, width, height);
     glMatrixMode(GL_PROJECTION);
     glLoadIdentity();
@@ -59,13 +79,46 @@ void Window::resize ( int width, int height ){
     glMatrixMode(GL_MODELVIEW);
 }
 
+/**
+ * Displays the window
+ */
 void Window::display(){
-    // TODO
+    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
+    glLoadIdentity();
+    glTranslatef(-1.5f, 0.0f, -6.0f);
+    
+    glBegin(GL_POLYGON);
+    glVertex3f( 0.0f, 1.0f, 0.0f);
+    glVertex3f( 1.0f,-1.0f, 0.0f);
+    glVertex3f(-1.0f,-1.0f, 0.0f);
+    glEnd();
+    
+    glTranslatef(3.0f,0.0f,0.0f);
+    
+    glBegin(GL_QUADS);
+    glVertex3f(-1.0f, 1.0f, 0.0f);
+    glVertex3f( 1.0f, 1.0f, 0.0f);
+    glVertex3f( 1.0f,-1.0f, 0.0f);
+    glVertex3f(-1.0f,-1.0f, 0.0f);
+    glEnd();
+    
+    glutSwapBuffers();
 }
 
-
+/**
+ * Handles input events from the keyboard
+ * @param key The key which was pressed
+ * @param x The x position where the key was pressed
+ * @param y The y position where the key was pressed
+ */
 void Window::keyPressed(unsigned char key, int x, int y){
-    // TODO
+    usleep(100);
+    
+    if(key == 27){
+        glutDestroyWindow(this->window);
+        exit(0);
+    }
 }
 
 Window::~Window(){

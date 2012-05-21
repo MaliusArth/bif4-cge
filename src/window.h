@@ -16,7 +16,6 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-
 #ifndef WINDOW_H
 #define WINDOW_H
 
@@ -25,12 +24,15 @@ class Window {
 public:
     Window(const char* title, int width, int height);
     ~Window();
+    void init();
     void resize ( int width, int height );
     void keyPressed(unsigned char key, int x, int y);
     void display();
 
 private:
     int window;
+    int width;
+    int height;
 };
 
 #endif // WINDOW_H
