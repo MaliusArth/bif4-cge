@@ -31,29 +31,11 @@
 
 #include "window.h"
 
-Window* window;
 
-/**
- * Create wrapper functions for the object
- */
-void display(){
-    window->display();
-}
-void resize(int width, int height){
-    window->resize(width, height);
-}
-void keyPressed(unsigned char key, int x, int y){
-    window->keyPressed(key, x, y);
-}
 
 int main(int argc, char **argv) {
-    // initial opengl code
-    glutInit(&argc, argv);
-    glutDisplayFunc(&display);
-    glutReshapeFunc(&resize);
-    glutKeyboardFunc(&keyPressed);
     // create and launch window
-    window = new Window("WORD GL", 640, 480);
+    Window* window = new Window(&argc, argv, "WORD GL", 640, 480);
     window->init();
     return 0;
 }

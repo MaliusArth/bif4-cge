@@ -1,6 +1,6 @@
 /*
-    WordGL
-    Copyright (C) 2012  Bernhard Posselt <bernhard.posselt@gmx.at>
+    <one line to give the program's name and a brief idea of what it does.>
+    Copyright (C) 2012  <copyright holder> <email>
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -16,27 +16,21 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#ifndef WINDOW_H
-#define WINDOW_H
 
-#include <stdlib.h>
+#include "wrappers.h"
+#include "window.h"
 
-class Window {
+/**
+ * Create wrapper functions for the object
+ */
+void display_wrapper(){
+    Window::getInstance()->display();
+}
 
-public:
-    Window(int* argc, char** argv, const char* title, int width, int height);
-    ~Window();
-    void init();
-    void resize ( int width, int height );
-    void keyPressed(unsigned char key, int x, int y);
-    void display();
-    static Window* getInstance();
+void resize_wrapper(int width, int height){
+    Window::getInstance()->resize(width, height);
+}
 
-private:
-    int window;
-    int width;
-    int height;
-    static Window* windowInstance;
-};
-
-#endif // WINDOW_H
+void keyPressed_wrapper(unsigned char key, int x, int y){
+    Window::getInstance()->keyPressed(key, x, y);
+}

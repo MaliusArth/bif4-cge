@@ -1,4 +1,4 @@
-add_executable(bif4-cge window.cpp main.cpp)
+add_executable(bif4-cge wrappers.cpp window.cpp main.cpp)
 
 # set up libraries to link
 find_package(GLUT)

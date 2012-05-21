@@ -30,6 +30,10 @@
 #include <unistd.h>
 
 #include "window.h"
+#include "wrappers.h"
+
+// initialize static member variable with null
+Window* Window::windowInstance = NULL;
 
 /**
  * Creates the window
@@ -37,7 +41,9 @@
  * @param width The width of the window
  * @param height The height of the window
  */
-Window::Window (const char* title, int width, int height){
+Window::Window (int* argc, char** argv, const char* title, int width, int height){
+    Window::windowInstance = this;
+    
     // prevent division by 0
     if(height == 0){
         this->height = 1;
@@ -45,10 +51,16 @@ Window::Window (const char* title, int width, int height){
         this->height = height;
     }
     this->width = width;
+
+    // initial opengl code
+    glutInit(argc, argv);
     glutInitDisplayMode(GLUT_RGBA | GLUT_DOUBLE | GLUT_ALPHA | GLUT_DEPTH);
     glutInitWindowSize(this->width, this->height);
     glutInitWindowPosition(0, 0);
     this->window = glutCreateWindow(title);
+    glutDisplayFunc(&display_wrapper);
+    glutReshapeFunc(&resize_wrapper);
+    glutKeyboardFunc(&keyPressed_wrapper);
 }
 
 /**
@@ -120,6 +132,11 @@ void Window::keyPressed(unsigned char key, int x, int y){
         exit(0);
     }
 }
+
+Window* Window::getInstance(){
+    return Window::windowInstance;
+}
+
 
 Window::~Window(){
 
