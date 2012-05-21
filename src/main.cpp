@@ -34,7 +34,7 @@
 Window* window;
 
 /**
- * Create wrapper classes for the object
+ * Create wrapper functions for the object
  */
 void display(){
     window->display();

@@ -6,3 +6,6 @@ build
 *kdev4
 *~
 *kate-swp
+CMakeCache.txt
+MakeFile
+cmake_install.cmake
