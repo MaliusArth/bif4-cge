@@ -1,6 +1,10 @@
+cmake_minimum_required(VERSION 2.8)
+
+# project information
 project(bif4-cge)
 
-add_executable(bif4-cge src/main.cpp)
+# environment
+set(CMAKE_CXX_FLAGS "-g -Wall")
 
-
+# add subdirectories
 add_subdirectory(src)
