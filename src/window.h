@@ -23,7 +23,7 @@
 class Window {
 
 public:
-    Window(int* argc, char** argv, const char* title, int width, int height);
+    Window(const char* title, int width, int height);
     ~Window();
     void resize ( int width, int height );
     void keyPressed(unsigned char key, int x, int y);

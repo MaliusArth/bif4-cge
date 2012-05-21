@@ -48,8 +48,11 @@ void keyPressed(unsigned char key, int x, int y){
 
 
 int main(int argc, char **argv) {
+    // initial opengl code
+    glutInit(&argc, argv);
     glutDisplayFunc(display);
     glutReshapeFunc(resize);
     glutKeyboardFunc(keyPressed);
-    window = new Window(&argc, argv, "WORD GL", 640, 480);
+    // create and launch window
+    window = new Window("WORD GL", 640, 480);
 }

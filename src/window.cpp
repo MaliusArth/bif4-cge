@@ -31,12 +31,11 @@
 
 #include "window.h"
 
-Window::Window (int* argc, char** argv, const char* title, int width, int height){
+Window::Window (const char* title, int width, int height){
     // prevent division by 0
     if(height == 0){
         height = 1;
     }
-    glutInit(argc, argv);
     glutInitDisplayMode(GLUT_RGBA | GLUT_DOUBLE | GLUT_ALPHA | GLUT_DEPTH);
     glutInitWindowSize(width, height);
     glutInitWindowPosition(0, 0);
