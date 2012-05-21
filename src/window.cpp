@@ -73,6 +73,7 @@ void Window::init(){
     glEnable(GL_DEPTH_TEST);
     glShadeModel(GL_SMOOTH);
     this->resize(this->width, this->height);
+    glutFullScreen();
     glutMainLoop();
 }
 
