@@ -1,0 +1,7 @@
+*.class
+*.swp
+*.osm
+build
+.kdev4
+*kdev4
+*~
