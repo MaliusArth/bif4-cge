@@ -22,8 +22,6 @@
 
 /**
  * Initalizes the game
- * @param argc The console params size
- * @param argv The console params
  */
 Game::Game():
     dict(3, 100)

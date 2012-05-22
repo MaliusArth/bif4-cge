@@ -57,6 +57,7 @@ void Dictionairy::load(const char* path){
 
 /**
  * Returns a random word from the dictionairy
+ * @return the random word
  */
 std::string Dictionairy::getRandomWord(){
     int size = this->database.size();

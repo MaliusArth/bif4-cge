@@ -138,6 +138,10 @@ void Window::keyPressed(unsigned char key, int x, int y){
     }
 }
 
+/**
+ * Returns a static instance of the window. Used for wrapper functions for OpenGL
+ * @return The window instance
+ */
 Window* Window::getInstance(){
     return Window::windowInstance;
 }
