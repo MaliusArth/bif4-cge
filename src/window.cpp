@@ -30,6 +30,7 @@
 #include <unistd.h>
 
 #include "window.h"
+#include "game.h"
 #include "wrappers.h"
 
 // initialize static member variable with null
@@ -43,7 +44,7 @@ Window* Window::windowInstance = NULL;
  */
 Window::Window (int* argc, char** argv, const char* title, int width, int height){
     Window::windowInstance = this;
-    
+    this->title = title;
     // prevent division by 0
     if(height == 0){
         this->height = 1;
@@ -51,22 +52,21 @@ Window::Window (int* argc, char** argv, const char* title, int width, int height
         this->height = height;
     }
     this->width = width;
-
-    // initial opengl code
     glutInit(argc, argv);
-    glutInitDisplayMode(GLUT_RGBA | GLUT_DOUBLE | GLUT_ALPHA | GLUT_DEPTH);
-    glutInitWindowSize(this->width, this->height);
-    glutInitWindowPosition(0, 0);
-    this->window = glutCreateWindow(title);
-    glutDisplayFunc(&display_wrapper);
-    glutReshapeFunc(&resize_wrapper);
-    glutKeyboardFunc(&keyPressed_wrapper);
 }
 
 /**
  * Initializes the window
  */
 void Window::init(){
+    // initial opengl code
+    glutInitDisplayMode(GLUT_RGBA | GLUT_DOUBLE | GLUT_ALPHA | GLUT_DEPTH);
+    glutInitWindowSize(this->width, this->height);
+    glutInitWindowPosition(0, 0);
+    this->window = glutCreateWindow(this->title);
+    glutDisplayFunc(&display_wrapper);
+    glutReshapeFunc(&resize_wrapper);
+    glutKeyboardFunc(&keyPressed_wrapper);
     glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
     glClearDepth(1.0);
     glDepthFunc(GL_LESS);
@@ -96,6 +96,10 @@ void Window::resize( int width, int height ){
  * Displays the window
  */
 void Window::display(){
+    // game logic in here?
+    Game game;
+    game.start();
+
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
     glLoadIdentity();
