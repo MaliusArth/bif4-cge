@@ -17,17 +17,16 @@
  */
 
 
-#ifndef DICTIONAIRY_H
-#define DICTIONAIRY_H
+#pragma once
 
 #include <vector>
 #include <string>
 
-class Dictionairy{
+class Dictionary{
 
 public:
-    Dictionairy(int minLength, int maxLength);
-    ~Dictionairy();
+    Dictionary(int minLength, int maxLength);
+    ~Dictionary();
     void load(const char* path);
     std::string getRandomWord();
 
@@ -36,5 +35,3 @@ private:
     int maxLength;
     std::vector<std::string> database;
 };
-
-#endif // DICTIONAIRY_H

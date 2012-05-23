@@ -1,9 +1,8 @@
-add_executable(bif4-cge game.cpp dictionairy.cpp wrappers.cpp window.cpp main.cpp)
+add_executable(${APPLICATION_NAME} game.cpp dictionary.cpp wrappers.cpp window.cpp main.cpp)
 
 # set up libraries to link
 find_package(GLUT)
 find_package(OpenGL)
-find_package(OpenAL)
 
 # OpenGL
 if(OPENGL_FOUND)

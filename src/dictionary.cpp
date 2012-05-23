@@ -24,14 +24,14 @@
 #include <cstdlib>
 #include <time.h>
 
-#include "dictionairy.h"
+#include "dictionary.h"
 
 /**
  * Initializes the dictionairy
  * @param minLength The minimum length for a word to be read in
  * @param maxLength The maximum length for a word to be read in
  */
-Dictionairy::Dictionairy(int minLength, int maxLength){
+Dictionary::Dictionary(int minLength, int maxLength){
     this->minLength = minLength;
     this->maxLength = maxLength;
 }
@@ -40,7 +40,7 @@ Dictionairy::Dictionairy(int minLength, int maxLength){
  * Reads in the file and builds the database
  * @param path The path to the dictionairy file
  */
-void Dictionairy::load(const char* path){
+void Dictionary::load(const char* path){
     std::ifstream input(path);
     std::string line;
     if(input){
@@ -59,14 +59,14 @@ void Dictionairy::load(const char* path){
  * Returns a random word from the dictionairy
  * @return the random word
  */
-std::string Dictionairy::getRandomWord(){
+std::string Dictionary::getRandomWord(){
     int size = this->database.size();
     srand( time(NULL) );
     int randomNumber = rand() % size;
     return this->database[randomNumber];
 }
 
-Dictionairy::~Dictionairy(){
+Dictionary::~Dictionary(){
 
 }
 

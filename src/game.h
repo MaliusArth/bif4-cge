@@ -17,10 +17,9 @@
  */
 
 
-#ifndef GAME_H
-#define GAME_H
+#pragma once
 
-#include "dictionairy.h"
+#include "dictionary.h"
 
 class Game
 {
@@ -31,8 +30,7 @@ public:
     void start();
 
 private:
-    Dictionairy dict;
+    Dictionary dict;
 
 };
 
-#endif // GAME_H

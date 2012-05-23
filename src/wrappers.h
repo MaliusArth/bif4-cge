@@ -17,11 +17,9 @@
  */
 
 
-#ifndef WRAPPERS_H
-#define WRAPPERS_H
+#pragma once
 
 void display_wrapper();
 void resize_wrapper(int width, int height);
 void keyPressed_wrapper(unsigned char key, int x, int y);
 
-#endif // WRAPPERS_H
