@@ -19,14 +19,31 @@
 
 #pragma once
 
+#include "point.h"
+#include "dimension.h"
+#include "globject.h"
+
 namespace WordGL {
         
-    class GameTable {
+    class GameTable : GLObject {
 
     public:
-        GameTable();
+        GameTable(Point startPoint, Dimension dimension);
+        void draw();
         virtual ~GameTable();
 
+    private:
+        void drawBottom();
+        void drawFrontSide();
+        void drawRightSide();
+        void drawBackSide();
+        void drawLeftSide();
+        GLfloat startX;
+        GLfloat startY;
+        GLfloat startZ;
+        GLfloat width;
+        GLfloat height;
+        GLfloat depth;
         
     };
 

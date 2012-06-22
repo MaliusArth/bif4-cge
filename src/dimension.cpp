@@ -21,8 +21,8 @@
 
 namespace WordGL {
 
-    Dimension::Dimension ( GLfloat length, GLfloat width, GLfloat height ) {
-        this->length = length;
+    Dimension::Dimension ( GLfloat width, GLfloat depth, GLfloat height ) {
+        this->depth = depth;
         this->width = width;
         this->height = height;
     }
@@ -32,8 +32,8 @@ namespace WordGL {
         return this->height;
     }
 
-    GLfloat Dimension::getLength() {
-        return this->length;
+    GLfloat Dimension::getDepth() {
+        return this->depth;
     }
 
     GLfloat Dimension::getWidth() {

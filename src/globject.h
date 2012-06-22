@@ -23,20 +23,14 @@
 
 namespace WordGL {
 
-    class Dimension {
-        
+    class GLObject {
+
     public:
-        Dimension(GLfloat length, GLfloat width, GLfloat height);
-        virtual ~Dimension();
-        GLfloat getDepth();
-        GLfloat getWidth();
-        GLfloat getHeight();
+        GLObject();
+        virtual ~GLObject();
+        void setColor(GLfloat red, GLfloat green, GLfloat blue);
         
-    private:
-        GLfloat depth;
-        GLfloat width;
-        GLfloat height;
     };
+
     
 }
-

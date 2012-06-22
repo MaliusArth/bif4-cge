@@ -17,26 +17,24 @@
  */
 
 
-#pragma once
+
+#include "globject.h"
 
 #include <GL/gl.h>
 
 namespace WordGL {
 
-    class Dimension {
-        
-    public:
-        Dimension(GLfloat length, GLfloat width, GLfloat height);
-        virtual ~Dimension();
-        GLfloat getDepth();
-        GLfloat getWidth();
-        GLfloat getHeight();
-        
-    private:
-        GLfloat depth;
-        GLfloat width;
-        GLfloat height;
-    };
-    
-}
+    GLObject::GLObject() {
 
+    }
+
+    void GLObject::setColor ( GLfloat red, GLfloat green, GLfloat blue ) {
+        glColor3f(red, green, blue);
+    }
+
+    
+    GLObject::~GLObject() {
+
+    }
+
+}

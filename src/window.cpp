@@ -32,6 +32,7 @@
 #include "window.h"
 #include "game.h"
 #include "wrappers.h"
+#include "gametable.h"
 
 namespace WordGL {
     
@@ -103,25 +104,15 @@ namespace WordGL {
         game.start();
 
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-
+        glMatrixMode(GL_MODELVIEW);
         glLoadIdentity();
-        glTranslatef(-1.5f, 0.0f, -6.0f);
 
-        glBegin(GL_POLYGON);
-        glVertex3f( 0.0f, 1.0f, 0.0f);
-        glVertex3f( 1.0f,-1.0f, 0.0f);
-        glVertex3f(-1.0f,-1.0f, 0.0f);
-        glEnd();
-
-        glTranslatef(3.0f,0.0f,0.0f);
-
-        glBegin(GL_QUADS);
-        glVertex3f(-1.0f, 1.0f, 0.0f);
-        glVertex3f( 1.0f, 1.0f, 0.0f);
-        glVertex3f( 1.0f,-1.0f, 0.0f);
-        glVertex3f(-1.0f,-1.0f, 0.0f);
-        glEnd();
-
+        // position the gameTable
+        Point gameTablePosition(-2.0f, -2.0f, -8.0f);
+        Dimension gameTableDimension(4.0f, 8.0f, .2f);
+        GameTable gameTable(gameTablePosition, gameTableDimension);
+        gameTable.draw();
+        
         glutSwapBuffers();
     }
 
