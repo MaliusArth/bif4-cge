@@ -18,7 +18,6 @@
 
 
 #include "gametable.h"
-#include <boost/concept_check.hpp>
 
 namespace WordGL {
 
