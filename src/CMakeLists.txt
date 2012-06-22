@@ -16,7 +16,7 @@ endif(OPENGL_FOUND)
 if(GLUT_FOUND)
     include_directories(${GLUT_INCLUDE_DIR})
     target_link_libraries(${APPLICATION_NAME} ${GLUT_LIBRARIES})
-# else(GLUT_FOUND)
+else(GLUT_FOUND)
     message("Require GLUT for video")
 endif(GLUT_FOUND)
 
