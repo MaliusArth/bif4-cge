@@ -1,40 +1,42 @@
 /*
  *  WordGL                                                        *
  *  Copyright (C) 2012  Bernhard Posselt <bernhard.posselt@gmx.at>
- * 
+ *
  *  This program is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
  *  the Free Software Foundation, either version 3 of the License, or
  *  (at your option) any later version.
- * 
+ *
  *  This program is distributed in the hope that it will be useful,
  *  but WITHOUT ANY WARRANTY; without even the implied warranty of
  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  *  GNU General Public License for more details.
- * 
+ *
  *  You should have received a copy of the GNU General Public License
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
 
-#include "wrappers.h"
-#include "window.h"
+#pragma once
+
+#include <GL/gl.h>
 
 namespace WordGL {
+
+    class Dimension {
+        
+    public:
+        Dimension(GLfloat length, GLfloat width, GLfloat height);
+        virtual ~Dimension();
+        GLfloat getLength();
+        GLfloat getWidth();
+        GLfloat getHeight();
+        
+    private:
+        GLfloat length;
+        GLfloat width;
+        GLfloat height;
+    };
     
-    /**
-    * Create wrapper functions for the object
-    */
-    void display_wrapper(){
-        Window::getInstance()->display();
-    }
-
-    void resize_wrapper(int width, int height){
-        Window::getInstance()->resize(width, height);
-    }
-
-    void keyPressed_wrapper(unsigned char key, int x, int y){
-        Window::getInstance()->keyPressed(key, x, y);
-    }
-
 }
+

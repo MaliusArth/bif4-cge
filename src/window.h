@@ -20,22 +20,25 @@
 
 #include <stdlib.h>
 
-class Window {
+namespace WordGL {
 
-public:
-    Window(int* argc, char** argv, const char* title, int width, int height);
-    ~Window();
-    void init();
-    void resize ( int width, int height );
-    void keyPressed(unsigned char key, int x, int y);
-    void display();
-    static Window* getInstance();
+    class Window {
 
-private:
-    int window;
-    int width;
-    int height;
-    const char* title;
-    static Window* windowInstance;
-};
+    public:
+        Window(int* argc, char** argv, const char* title, int width, int height);
+        ~Window();
+        void init();
+        void resize ( int width, int height );
+        void keyPressed(unsigned char key, int x, int y);
+        void display();
+        static Window* getInstance();
 
+    private:
+        int window;
+        int width;
+        int height;
+        const char* title;
+        static Window* windowInstance;
+    };
+
+}

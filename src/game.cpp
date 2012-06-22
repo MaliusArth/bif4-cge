@@ -20,25 +20,26 @@
 
 #include "game.h"
 
-/**
- * Initalizes the game
- */
-Game::Game():
-    dict(3, 100)
-{
-    this->dict.load("media/dictionairy.txt");
+namespace WordGL {
+
+    /**
+    * Initalizes the game
+    */
+    Game::Game():
+        dict(3, 100){
+        this->dict.load("media/dictionairy.txt");
+    }
+
+    /**
+    * Starts the game
+    */
+    void Game::start(){
+        std::cout << this->dict.getRandomWord() << std::endl;
+    }
+
+
+    Game::~Game(){
+
+    }
+
 }
-
-/**
- * Starts the game
- */
-void Game::start(){
-    std::cout << this->dict.getRandomWord() << std::endl;
-}
-
-
-Game::~Game()
-{
-
-}
-

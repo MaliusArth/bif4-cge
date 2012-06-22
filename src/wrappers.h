@@ -19,7 +19,10 @@
 
 #pragma once
 
-void display_wrapper();
-void resize_wrapper(int width, int height);
-void keyPressed_wrapper(unsigned char key, int x, int y);
+namespace WordGL {
 
+    void display_wrapper();
+    void resize_wrapper(int width, int height);
+    void keyPressed_wrapper(unsigned char key, int x, int y);
+
+}

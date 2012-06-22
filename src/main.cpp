@@ -20,7 +20,7 @@
 
 int main(int argc, char **argv) {
     // create and launch window
-    Window window(&argc, argv, "WORD GL", 640, 480);
+    WordGL::Window window(&argc, argv, "WORD GL", 640, 480);
     window.init();;
     return 0;
 }

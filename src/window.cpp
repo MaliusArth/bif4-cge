@@ -33,126 +33,124 @@
 #include "game.h"
 #include "wrappers.h"
 
-// initialize static member variable with null
-Window* Window::windowInstance = NULL;
+namespace WordGL {
+    
+    // initialize static member variable with null
+    Window* Window::windowInstance = NULL;
 
-/**
- * Creates the window
- * @param title The window title
- * @param width The width of the window
- * @param height The height of the window
- */
-Window::Window (int* argc, char** argv, const char* title, int width, int height){
-    Window::windowInstance = this;
-    this->title = title;
-    // prevent division by 0
-    if(height == 0){
-        this->height = 1;
-    } else {
-        this->height = height;
+    /**
+    * Creates the window
+    * @param title The window title
+    * @param width The width of the window
+    * @param height The height of the window
+    */
+    Window::Window (int* argc, char** argv, const char* title, int width, int height){
+        Window::windowInstance = this;
+        this->title = title;
+        // prevent division by 0
+        if(height == 0){
+            this->height = 1;
+        } else {
+            this->height = height;
+        }
+        this->width = width;
+        glutInit(argc, argv);
     }
-    this->width = width;
-    glutInit(argc, argv);
-}
 
-/**
- * Initializes the window
- */
-void Window::init(){
-    // initial opengl code
-    glutInitDisplayMode(GLUT_RGBA | GLUT_DOUBLE | GLUT_ALPHA | GLUT_DEPTH);
-    glutInitWindowSize(this->width, this->height);
-    glutInitWindowPosition(0, 0);
-    this->window = glutCreateWindow(this->title);
-    glutDisplayFunc(&display_wrapper);
-    glutReshapeFunc(&resize_wrapper);
-    glutKeyboardFunc(&keyPressed_wrapper);
-    glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
-    glClearDepth(1.0);
-    glDepthFunc(GL_LESS);
-    glEnable(GL_DEPTH_TEST);
-    glShadeModel(GL_SMOOTH);
-    this->resize(this->width, this->height);
-    glutFullScreen();
-    glutMainLoop();
-}
-
-
-
-/**
- * Resizes the window to a certain height
- * @param width The new width
- * @param height The new height
- */
-void Window::resize( int width, int height ){
-    glViewport(0, 0, width, height);
-    glMatrixMode(GL_PROJECTION);
-    glLoadIdentity();
-    gluPerspective(45.0f, (GLfloat)width/(GLfloat)height, 0.1f, 100.0f);
-    glMatrixMode(GL_MODELVIEW);
-}
-
-/**
- * Displays the window
- */
-void Window::display(){
-    // game logic in here?
-    Game game;
-    game.start();
-
-    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-
-    glLoadIdentity();
-    glTranslatef(-1.5f, 0.0f, -6.0f);
-    
-    glBegin(GL_POLYGON);
-    glVertex3f( 0.0f, 1.0f, 0.0f);
-    glVertex3f( 1.0f,-1.0f, 0.0f);
-    glVertex3f(-1.0f,-1.0f, 0.0f);
-    glEnd();
-    
-    glTranslatef(3.0f,0.0f,0.0f);
-    
-    glBegin(GL_QUADS);
-    glVertex3f(-1.0f, 1.0f, 0.0f);
-    glVertex3f( 1.0f, 1.0f, 0.0f);
-    glVertex3f( 1.0f,-1.0f, 0.0f);
-    glVertex3f(-1.0f,-1.0f, 0.0f);
-    glEnd();
-    
-    glutSwapBuffers();
-}
-
-/**
- * Handles input events from the keyboard
- * @param key The key which was pressed
- * @param x The x position where the key was pressed
- * @param y The y position where the key was pressed
- */
-void Window::keyPressed(unsigned char key, int x, int y){
-    usleep(100);
-    
-    if(key == 27){
-        glutDestroyWindow(this->window);
-        exit(0);
+    /**
+    * Initializes the window
+    */
+    void Window::init(){
+        // initial opengl code
+        glutInitDisplayMode(GLUT_RGBA | GLUT_DOUBLE | GLUT_ALPHA | GLUT_DEPTH);
+        glutInitWindowSize(this->width, this->height);
+        glutInitWindowPosition(0, 0);
+        this->window = glutCreateWindow(this->title);
+        glutDisplayFunc(&display_wrapper);
+        glutReshapeFunc(&resize_wrapper);
+        glutKeyboardFunc(&keyPressed_wrapper);
+        glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
+        glClearDepth(1.0);
+        glDepthFunc(GL_LESS);
+        glEnable(GL_DEPTH_TEST);
+        glShadeModel(GL_SMOOTH);
+        this->resize(this->width, this->height);
+        glutFullScreen();
+        glutMainLoop();
     }
+
+
+
+    /**
+    * Resizes the window to a certain height
+    * @param width The new width
+    * @param height The new height
+    */
+    void Window::resize( int width, int height ){
+        glViewport(0, 0, width, height);
+        glMatrixMode(GL_PROJECTION);
+        glLoadIdentity();
+        gluPerspective(45.0f, (GLfloat)width/(GLfloat)height, 0.1f, 100.0f);
+        glMatrixMode(GL_MODELVIEW);
+    }
+
+    /**
+    * Displays the window
+    */
+    void Window::display(){
+        // game logic in here?
+        Game game;
+        game.start();
+
+        glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
+        glLoadIdentity();
+        glTranslatef(-1.5f, 0.0f, -6.0f);
+
+        glBegin(GL_POLYGON);
+        glVertex3f( 0.0f, 1.0f, 0.0f);
+        glVertex3f( 1.0f,-1.0f, 0.0f);
+        glVertex3f(-1.0f,-1.0f, 0.0f);
+        glEnd();
+
+        glTranslatef(3.0f,0.0f,0.0f);
+
+        glBegin(GL_QUADS);
+        glVertex3f(-1.0f, 1.0f, 0.0f);
+        glVertex3f( 1.0f, 1.0f, 0.0f);
+        glVertex3f( 1.0f,-1.0f, 0.0f);
+        glVertex3f(-1.0f,-1.0f, 0.0f);
+        glEnd();
+
+        glutSwapBuffers();
+    }
+
+    /**
+    * Handles input events from the keyboard
+    * @param key The key which was pressed
+    * @param x The x position where the key was pressed
+    * @param y The y position where the key was pressed
+    */
+    void Window::keyPressed(unsigned char key, int x, int y){
+        usleep(100);
+
+        if(key == 27){
+            glutDestroyWindow(this->window);
+            exit(0);
+        }
+    }
+
+    /**
+    * Returns a static instance of the window. Used for wrapper functions for OpenGL
+    * @return The window instance
+    */
+    Window* Window::getInstance(){
+        return Window::windowInstance;
+    }
+
+
+    Window::~Window(){
+
+    }
+
 }
-
-/**
- * Returns a static instance of the window. Used for wrapper functions for OpenGL
- * @return The window instance
- */
-Window* Window::getInstance(){
-    return Window::windowInstance;
-}
-
-
-Window::~Window(){
-
-}
-
-
-
-
-
-

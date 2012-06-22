@@ -21,16 +21,18 @@
 
 #include "dictionary.h"
 
-class Game
-{
+namespace WordGL {
+    
+    class Game {
 
-public:
-    Game();
-    ~Game();
-    void start();
+    public:
+        Game();
+        ~Game();
+        void start();
 
-private:
-    Dictionary dict;
+    private:
+        Dictionary dict;
 
-};
+    };
 
+}
