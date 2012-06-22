@@ -52,6 +52,7 @@ void Dictionary::load(const char* path){
         }
     } else {
         std::cerr << "Could not open dictionairy file " << path << std::endl;
+        exit(1);
     }
 }
 
@@ -61,9 +62,13 @@ void Dictionary::load(const char* path){
  */
 std::string Dictionary::getRandomWord(){
     int size = this->database.size();
-    srand( time(NULL) );
-    int randomNumber = rand() % size;
-    return this->database[randomNumber];
+    if(size > 0){
+        srand( time(NULL) );
+        int randomNumber = rand() % size;
+        return this->database[randomNumber];
+    } else {
+        return "none";
+    }
 }
 
 Dictionary::~Dictionary(){
