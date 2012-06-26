@@ -33,6 +33,7 @@
 #include "game.h"
 #include "wrappers.h"
 #include "gametable.h"
+#include "cube.h"
 
 namespace WordGL {
     
@@ -112,6 +113,12 @@ namespace WordGL {
         Dimension gameTableDimension(4.0f, 8.0f, .2f);
         GameTable gameTable(gameTablePosition, gameTableDimension);
         gameTable.draw();
+
+        // print a cube
+        Point cubePosition(-3.0f, -3.0f, -6.0f);
+        Dimension cubeDimension(4.0f, 8.0f, 4.0f);
+        Cube cube(cubePosition, cubeDimension);
+        cube.draw();
         
         glutSwapBuffers();
     }
