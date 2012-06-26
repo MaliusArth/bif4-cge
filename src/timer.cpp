@@ -23,11 +23,15 @@
 namespace WordGL {
 
     Timer::Timer() {
-        this->lastTimeSnapshot = time(NULL);
+        this->lastTimeSnapshot = time(NULL) * 1000;
     }
 
+    /**
+     * Returns the number of miliseconds that have passed since the last lookup
+     * @return the miliseconds passed since last lookup
+     */
     double Timer::getTimeDiff() {
-        this->lastTimeSnapshot = time(NULL) - this->lastTimeSnapshot;
+        this->lastTimeSnapshot = time(NULL)*1000 - this->lastTimeSnapshot;
         return this->lastTimeSnapshot;
     }
 
