@@ -40,7 +40,16 @@ namespace WordGL {
     }
 
     void GLCube::drawTop() {
-
+        glBegin(GL_TRIANGLES);
+        glVertex3f(0.0f, 0.0f+this->height, -this->depth);
+        glVertex3f(0.0f, 0.0f+this->height, 0.0f);
+        glVertex3f(this->width, 0.0f+this->height, 0.0f);
+        glEnd();
+        glBegin(GL_TRIANGLES);
+        glVertex3f(this->width, 0.0f+this->height, 0.0f);
+        glVertex3f(0.0f, 0.0f+this->height, -this->depth);
+        glVertex3f(this->width, 0.0f+this->height, -this->depth);
+        glEnd();
     }
 
     void GLCube::drawFrontSide() {
