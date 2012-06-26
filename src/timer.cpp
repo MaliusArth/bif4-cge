@@ -31,8 +31,8 @@ namespace WordGL {
      * @return the miliseconds passed since last lookup
      */
     time_t Timer::getTimeDiff() {
-        t_time currentTime = time(NULL)*1000;
-        t_time diffTime = currentTime - this->lastTimeSnapshot;
+        time_t currentTime = time(NULL)*1000;
+        time_t diffTime = currentTime - this->lastTimeSnapshot;
         this->lastTimeSnapshot = currentTime;
         return diffTime;
     }
