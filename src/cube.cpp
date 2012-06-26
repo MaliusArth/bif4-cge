@@ -25,7 +25,6 @@ namespace WordGL {
         this->setCoordsDimension(startPoint, dimension);
     }
 
-
     Cube::~Cube() {
 
     }

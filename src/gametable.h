@@ -21,11 +21,11 @@
 
 #include "point.h"
 #include "dimension.h"
-#include "globject.h"
+#include "glcube.h"
 
 namespace WordGL {
         
-    class GameTable : GLObject {
+    class GameTable : public GLCube {
 
     public:
         GameTable(Point startPoint, Dimension dimension);
@@ -33,11 +33,7 @@ namespace WordGL {
         virtual ~GameTable();
 
     private:
-        void drawBottom();
-        void drawFrontSide();
-        void drawRightSide();
-        void drawBackSide();
-        void drawLeftSide();
+
         
     };
 

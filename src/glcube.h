@@ -1,5 +1,5 @@
 /*
- *  WordGL                                                        
+ *  WordGL
  *  Copyright (C) 2012  Bernhard Posselt <bernhard.posselt@gmx.at>
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -19,19 +19,25 @@
 
 #pragma once
 
-#include "glcube.h"
+#include "globject.h"
 
 namespace WordGL {
 
-    class Cube : public GLCube {
+    class GLCube : public GLObject {
 
     public:
-        Cube(Point startPoint, Dimension dimension);
-        virtual ~Cube();
-        void draw();
-        
+        GLCube();
+        virtual ~GLCube();
+
+    protected:
+        void drawBottom();
+        void drawTop();
+        void drawFrontSide();
+        void drawRightSide();
+        void drawBackSide();
+        void drawLeftSide();
     };
-    
+   
 }
 
 
