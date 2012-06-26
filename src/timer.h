@@ -19,6 +19,8 @@
 
 #pragma once
 
+#include <ctime>
+
 namespace WordGL {
 
     class Timer {
@@ -26,10 +28,10 @@ namespace WordGL {
     public:
         Timer();
         virtual ~Timer();
-        double getTimeDiff();
+        time_t getTimeDiff();
 
     private:
-        double lastTimeSnapshot;
+        time_t lastTimeSnapshot;
     };
     
     
