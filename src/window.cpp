@@ -107,16 +107,19 @@ namespace WordGL {
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
         glMatrixMode(GL_MODELVIEW);
         glLoadIdentity();
-
+        gluLookAt( 3.0f, 9.0f, -10.0f,
+                   3.0f, 0.0f, -13.5f,
+                   0, 1.0f, -1.0f);
+        
         // position the gameTable
-        Point gameTablePosition(-2.0f, -2.0f, -8.0f);
-        Dimension gameTableDimension(4.0f, 8.0f, .2f);
+        Point gameTablePosition(0.0f, 0.0f, -10.0f);
+        Dimension gameTableDimension(6.0f, 8.0f, 0.5f);
         GameTable gameTable(gameTablePosition, gameTableDimension);
         gameTable.draw();
 
         // print a cube
-        Point cubePosition(-3.0f, -3.0f, -6.0f);
-        Dimension cubeDimension(4.0f, 8.0f, 4.0f);
+        Point cubePosition(0.0f, 0.0f, -7.5f);
+        Dimension cubeDimension(0.5f, 0.5f, 0.5f);
         Cube cube(cubePosition, cubeDimension);
         cube.draw();
         
