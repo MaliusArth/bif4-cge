@@ -29,7 +29,7 @@ namespace WordGL {
      * Draws the table at the coordinates with the given dimension
      */
     void GameTable::draw() {
-        glTranslatef(this->startX, this->startY, this->startZ);
+        this->move(this->startX, this->startY, this->startZ);
         this->drawBottom();
         this->drawFrontSide();
         this->drawBackSide();

@@ -28,6 +28,7 @@ namespace WordGL {
     public:
         Block(Point startPoint, Dimension dimension);
         virtual ~Block();
+        void draw();
 
     private:
         void drawBottom();
@@ -36,7 +37,6 @@ namespace WordGL {
         void drawRightSide();
         void drawBackSide();
         void drawLeftSide();
-
         
     };
     

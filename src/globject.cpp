@@ -45,6 +45,10 @@ namespace WordGL {
         glColor3f(red, green, blue);
     }
 
+    void GLObject::move ( GLfloat xCoord, GLfloat yCoord, GLfloat zCoord) {
+        glTranslatef(xCoord, yCoord, zCoord);
+    }
+
     
     GLObject::~GLObject() {
 
