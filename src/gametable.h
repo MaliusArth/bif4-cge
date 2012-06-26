@@ -38,12 +38,6 @@ namespace WordGL {
         void drawRightSide();
         void drawBackSide();
         void drawLeftSide();
-        GLfloat startX;
-        GLfloat startY;
-        GLfloat startZ;
-        GLfloat width;
-        GLfloat height;
-        GLfloat depth;
         
     };
 

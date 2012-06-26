@@ -1,5 +1,5 @@
 /*
- *  WordGL                                                        *
+ *  WordGL                                                        
  *  Copyright (C) 2012  Bernhard Posselt <bernhard.posselt@gmx.at>
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -19,34 +19,27 @@
 
 #pragma once
 
-#ifdef __APPLE__
-    #include <OpenGL/gl.h>
-#else
-    #include <GL/gl.h>
-#endif
-
-#include "point.h"
-#include "dimension.h"
+#include "globject.h"
 
 namespace WordGL {
 
-    class GLObject {
+    class Block : GLObject {
 
     public:
-        GLObject();
-        virtual ~GLObject();
-        void setColor(GLfloat red, GLfloat green, GLfloat blue);
+        Block(Point startPoint, Dimension dimension);
+        virtual ~Block();
 
-    protected:
-        void setCoordsDimension(Point startPoint, Dimension dimension);
-        GLfloat startX;
-        GLfloat startY;
-        GLfloat startZ;
-        GLfloat width;
-        GLfloat height;
-        GLfloat depth;
+    private:
+        void drawBottom();
+        void drawTop();
+        void drawFrontSide();
+        void drawRightSide();
+        void drawBackSide();
+        void drawLeftSide();
+
         
     };
-
     
 }
+
+

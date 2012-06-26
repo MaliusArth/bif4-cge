@@ -22,12 +22,7 @@
 namespace WordGL {
 
     GameTable::GameTable ( Point startPoint, Dimension dimension ){
-        this->startX = startPoint.getXCoord();
-        this->startY = startPoint.getYCoord();
-        this->startZ = startPoint.getZCoord();
-        this->width = dimension.getWidth();
-        this->depth = dimension.getDepth();
-        this->height = dimension.getHeight();
+        this->setCoordsDimension(startPoint, dimension);
     }
 
     /**
