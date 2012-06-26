@@ -22,16 +22,20 @@
 #include <vector>
 #include <string>
 
-class Dictionary{
+namespace WordGL {
+    
+    class Dictionary{
 
-public:
-    Dictionary(int minLength, int maxLength);
-    ~Dictionary();
-    void load(const char* path);
-    std::string getRandomWord();
+    public:
+        Dictionary(int minLength, int maxLength);
+        ~Dictionary();
+        void load(const char* path);
+        std::string getRandomWord();
 
-private:
-    int minLength;
-    int maxLength;
-    std::vector<std::string> database;
-};
+    private:
+        int minLength;
+        int maxLength;
+        std::vector<std::string> database;
+    };
+
+}

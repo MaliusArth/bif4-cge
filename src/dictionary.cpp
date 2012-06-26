@@ -26,53 +26,55 @@
 
 #include "dictionary.h"
 
-/**
- * Initializes the dictionairy
- * @param minLength The minimum length for a word to be read in
- * @param maxLength The maximum length for a word to be read in
- */
-Dictionary::Dictionary(int minLength, int maxLength){
-    this->minLength = minLength;
-    this->maxLength = maxLength;
-}
+namespace WordGL {
 
-/**
- * Reads in the file and builds the database
- * @param path The path to the dictionairy file
- */
-void Dictionary::load(const char* path){
-    std::ifstream input(path);
-    std::string line;
-    if(input){
-        while(std::getline(input, line)){
-            int length = line.length();
-            if(length >= this->minLength && length <= this->maxLength){
-                this->database.push_back(line);
+    /**
+    * Initializes the dictionairy
+    * @param minLength The minimum length for a word to be read in
+    * @param maxLength The maximum length for a word to be read in
+    */
+    Dictionary::Dictionary(int minLength, int maxLength){
+        this->minLength = minLength;
+        this->maxLength = maxLength;
+    }
+
+    /**
+    * Reads in the file and builds the database
+    * @param path The path to the dictionairy file
+    */
+    void Dictionary::load(const char* path){
+        std::ifstream input(path);
+        std::string line;
+        if(input){
+            while(std::getline(input, line)){
+                int length = line.length();
+                if(length >= this->minLength && length <= this->maxLength){
+                    this->database.push_back(line);
+                }
             }
+        } else {
+            std::cerr << "Could not open dictionairy file " << path << std::endl;
+            exit(1);
         }
-    } else {
-        std::cerr << "Could not open dictionairy file " << path << std::endl;
-        exit(1);
     }
-}
 
-/**
- * Returns a random word from the dictionairy
- * @return the random word
- */
-std::string Dictionary::getRandomWord(){
-    int size = this->database.size();
-    if(size > 0){
-        srand( time(NULL) );
-        int randomNumber = rand() % size;
-        return this->database[randomNumber];
-    } else {
-        return "none";
+    /**
+    * Returns a random word from the dictionairy
+    * @return the random word
+    */
+    std::string Dictionary::getRandomWord(){
+        int size = this->database.size();
+        if(size > 0){
+            srand( time(NULL) );
+            int randomNumber = rand() % size;
+            return this->database[randomNumber];
+        } else {
+            return "none";
+        }
     }
+
+    Dictionary::~Dictionary(){
+
+    }
+
 }
-
-Dictionary::~Dictionary(){
-
-}
-
-

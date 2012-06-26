@@ -27,7 +27,7 @@ namespace WordGL {
     */
     Game::Game():
         dict(3, 100){
-        this->dict.load("media/dictionairy.txt");
+        this->dict.load("media/dictionary.txt");
     }
 
     /**
