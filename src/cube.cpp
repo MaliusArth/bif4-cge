@@ -17,16 +17,16 @@
  */
 
 
-#include "block.h"
+#include "cube.h"
 
 namespace WordGL {
     
-    Block::Block ( Point startPoint, Dimension dimension ) {
+    Cube::Cube ( Point startPoint, Dimension dimension ) {
         this->setCoordsDimension(startPoint, dimension);
     }
 
 
-    Block::~Block() {
+    Cube::~Cube() {
 
     }
     

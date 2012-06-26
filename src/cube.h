@@ -23,11 +23,11 @@
 
 namespace WordGL {
 
-    class Block : GLObject {
+    class Cube : GLObject {
 
     public:
-        Block(Point startPoint, Dimension dimension);
-        virtual ~Block();
+        Cube(Point startPoint, Dimension dimension);
+        virtual ~Cube();
         void draw();
 
     private:
