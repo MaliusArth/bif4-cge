@@ -18,7 +18,7 @@
 
 
 #include "timer.h"
-#include "ctime"
+#include <ctime>
 
 namespace WordGL {
 
