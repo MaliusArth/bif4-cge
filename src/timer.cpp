@@ -18,12 +18,24 @@
 
 
 #include "timer.h"
+#include "ctime"
 
-Timer::Timer() {
+namespace WordGL {
 
+    Timer::Timer() {
+        this->lastTimeSnapshot = time(NULL);
+    }
+
+    double Timer::getTimeDiff() {
+        this->lastTimeSnapshot = time(NULL) - this->lastTimeSnapshot;
+        return this->lastTimeSnapshot;
+    }
+
+    
+    Timer::~Timer() {
+        
+    }
+    
 }
 
-Timer::~Timer() {
-
-}
 

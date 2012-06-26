@@ -17,14 +17,21 @@
  */
 
 
-#ifndef TIMER_H
-#define TIMER_H
+#pragma once
 
-class Timer {
+namespace WordGL {
 
+    class Timer {
+        
     public:
-    Timer();
-    virtual ~Timer();
-};
+        Timer();
+        virtual ~Timer();
+        double getTimeDiff();
 
-#endif // TIMER_H
+    private:
+        double lastTimeSnapshot;
+    };
+    
+    
+}
+
