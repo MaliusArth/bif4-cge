@@ -1,4 +1,4 @@
-/*
+/**
  *  WordGL
  *  Copyright (C) 2012  Bernhard Posselt <bernhard.posselt@gmx.at>
  *

@@ -1,5 +1,5 @@
-/*
- *  WordGL                                                        
+/**
+ *  WordGL
  *  Copyright (C) 2012  Bernhard Posselt <bernhard.posselt@gmx.at>
  *
  *  This program is free software: you can redistribute it and/or modify

@@ -17,12 +17,14 @@
  */
 
 
-#pragma once
+#ifndef TIMER_H
+#define TIMER_H
 
-namespace WordGL {
+class Timer {
 
-    void display_wrapper();
-    void resize_wrapper(int width, int height);
-    void keyPressed_wrapper(unsigned char key, int x, int y);
+    public:
+    Timer();
+    virtual ~Timer();
+};
 
-}
+#endif // TIMER_H
