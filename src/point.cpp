@@ -19,7 +19,11 @@
 
 #include "point.h"
 
-#include <GL/gl.h>
+#ifdef __APPLE__
+    #include <OpenGL/gl.h>
+#else
+    #include <GL/gl.h>
+#endif
 
 namespace WordGL {
     
