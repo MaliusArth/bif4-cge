@@ -18,6 +18,12 @@
 
 #include "cube.h"
 
+#ifdef __APPLE__
+    #include <OpenGL/gl.h>
+#else
+    #include <GL/gl.h>
+#endif
+
 namespace WordGL {
     
     Cube::Cube ( Point startPoint, Dimension dimension ) {
@@ -27,18 +33,70 @@ namespace WordGL {
     void Cube::draw() {
         glPushMatrix();
         this->move(this->startX, this->startY, this->startZ);
+        
+        // top and bottom
         this->setColor(0.3f, 1.0f, 1.0f);
-        this->drawTop();
-        this->drawBottom();
+        if(this->topTextureId == NULL){
+            this->drawTop();
+        } else {
+            this->drawTop(this->topTextureId);
+        }
+
+        if(this->bottomTextureId == NULL){
+            this->drawBottom();
+        } else {
+            this->drawTop(this->bottomTextureId);
+        }
+
+        // left and right
         this->setColor(0.5f, 1.0f, 1.0f);
-        this->drawFrontSide();
-        this->drawBackSide();
+        if(this->leftTextureId == NULL){
+            this->drawLeftSide();
+        } else {
+            this->drawLeftSide(this->leftTextureId);
+        }
+
+        // front and back
         this->setColor(0.0f, 1.0f, 1.0f);
-        this->drawLeftSide();
-        this->drawRightSide();
+        if(this->frontTextureId == NULL){
+            this->drawFrontSide();
+        } else {
+            this->drawFrontSide(this->frontTextureId);
+        }
+
+        if(this->backTextureId == NULL){
+            this->drawBackSide();
+        } else {
+            this->drawBackSide(this->backTextureId);
+        }
+        
         glPopMatrix();
     }
+    
 
+    void Cube::setTopTextureId ( GLuint textureId ) {
+        this->topTextureId = textureId;
+    }
+
+    void Cube::setBackTextureId ( GLuint textureId ) {
+        this->backTextureId = textureId;
+    }
+
+    void Cube::setBottomTextureId ( GLuint textureId ) {
+        this->bottomTextureId = textureId;
+    }
+
+    void Cube::setFrontTextureId ( GLuint textureId ) {
+        this->frontTextureId = textureId;
+    }
+
+    void Cube::setRightTextureId ( GLuint textureId ) {
+        this->rightTextureId = textureId;
+    }
+
+    void Cube::setLeftTextureId ( GLuint textureId ) {
+        this->leftTextureId = textureId;
+    }
     
     Cube::~Cube() {
 

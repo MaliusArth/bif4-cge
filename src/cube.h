@@ -21,6 +21,12 @@
 
 #include "glcube.h"
 
+#ifdef __APPLE__
+    #include <OpenGL/gl.h>
+#else
+    #include <GL/gl.h>
+#endif
+
 namespace WordGL {
 
     class Cube : public GLCube {
@@ -29,7 +35,20 @@ namespace WordGL {
         Cube(Point startPoint, Dimension dimension);
         virtual ~Cube();
         void draw();
-        
+        void setTopTextureId(GLuint textureId);
+        void setBottomTextureId(GLuint textureId);
+        void setLeftTextureId(GLuint textureId);
+        void setRightTextureId(GLuint textureId);
+        void setFrontTextureId(GLuint textureId);
+        void setBackTextureId(GLuint textureId);
+
+    private:
+        GLuint topTextureId;
+        GLuint bottomTextureId;
+        GLuint leftTextureId;
+        GLuint rightTextureId;
+        GLuint frontTextureId;
+        GLuint backTextureId;
     };
     
 }
