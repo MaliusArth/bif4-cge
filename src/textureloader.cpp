@@ -50,7 +50,7 @@ namespace WordGL {
      * then the textureid is stored in a vector
      * @param *image
      */
-    void TextureLoader::loadMipmappedTexture(Image *image) {
+    void TextureLoader::loadMipmappedTexture(Image *image, std::string filename) {
         GLuint textureId;
         glGenTextures(1, &textureId);
         glBindTexture(GL_TEXTURE_2D, textureId);
@@ -63,10 +63,6 @@ namespace WordGL {
         
         // push filename and id into vector
         typedef std::pair<std::string, GLuint> stringIdPair;
-        // TODO: get filename of *image
-        // std::string filename = image->getFileName();
-        std::string filename("");
-        
         this->textureIds.insert(stringIdPair(filename, textureId));
         delete image;
     }
