@@ -33,17 +33,13 @@
 #include "textureloader.h"
 #include "imageloader.h"
 
-<<<<<<< HEAD
 #define EXT_LEN 4
 #define EXT ".bmp"
-=======
->>>>>>> ad716b5146e7e97f238914ff7f012d297467d1a2
 
 namespace WordGL {
 
     TextureLoader::TextureLoader(){
     }
-<<<<<<< HEAD
     
     // lists all textures in directory and calls loadMipmappedTexture
     // for each one of them
@@ -54,21 +50,10 @@ namespace WordGL {
 	struct dirent *dirp;
 	if((dp  = opendir(path.c_str())) == NULL) {
 	    std::cout << "Error(" << errno << ") opening " << path << std::endl;
-=======
-
-    void TextureLoader::loadTexturesFromDirectory ( std::string path ) {
-        // TODO: list all textures in directory and call loadMipmappedTexture
-        // for each one of them
-        DIR *dp;
-	struct dirent *dirp;
-	if((dp  = opendir(path.c_str())) == NULL) {
-        std::cout << "Error(" << errno << ") opening " << path << std::endl;
->>>>>>> ad716b5146e7e97f238914ff7f012d297467d1a2
 	    //return errno;
 	}
 
 	while ((dirp = readdir(dp)) != NULL) {
-<<<<<<< HEAD
 	    std::string filename = std::string(dirp->d_name);
 	    std::string filepath = path + std::string(dirp->d_name);
 	    if ((filename.length() > 3) && filename.substr(filename.length() - EXT_LEN, std::string::npos) == EXT)
@@ -78,12 +63,6 @@ namespace WordGL {
 		delete image;
 		std::cout << filepath << std::endl;
 	    }
-=======
-        Image* image = loadBMP(path + std::string(dirp->d_name));
-        loadMipmappedTexture(image, path + std::string(dirp->d_name));
-	    delete image;
-        std::cout << path << std::string(dirp->d_name) << std::endl;
->>>>>>> ad716b5146e7e97f238914ff7f012d297467d1a2
 	}
 	closedir(dp);
 	//return 0;
