@@ -133,9 +133,9 @@ namespace WordGL {
 	};
 
 
-    Image* loadBMP(const char* filename) {
+    Image* loadBMP( std::string filename) {	//const char*
         ifstream input;
-        input.open(filename, ifstream::binary);
+        input.open(filename.c_str(), ifstream::binary);
         assert(!input.fail() || !"Could not find file");
         char buffer[2];
         input.read(buffer, 2);
