@@ -16,39 +16,24 @@
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#pragma once
-
-#include "globject.h"
-
-#ifdef __APPLE__
-    #include <OpenGL/gl.h>
-#else
-    #include <GL/gl.h>
-#endif
+#include "scorepanel.h"
+#include "point.h"
+#include "dimension.h"
 
 namespace WordGL {
+    
+    ScorePanel::ScorePanel(Point startPoint, Dimension dimension) {
+        this->setCoordsDimension(startPoint, dimension);
+    }
 
-    class GLCube : public GLObject {
+    ScorePanel::~ScorePanel() {
 
-    public:
-        GLCube();
-        virtual ~GLCube();
+    }
 
-    protected:
-        void drawBottom();
-        void drawBottom(GLuint textureId);
-        void drawTop();
-        void drawTop(GLuint textureId);
-        void drawFrontSide();
-        void drawFrontSide(GLuint textureId);
-        void drawRightSide();
-        void drawRightSide(GLuint textureId);
-        void drawBackSide();
-        void drawBackSide(GLuint textureId);
-        void drawLeftSide();
-        void drawLeftSide(GLuint textureId);
-    };
-   
+    void ScorePanel::draw() {
+
+    }
+
 }
 
 

@@ -16,39 +16,24 @@
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+
 #pragma once
 
-#include "globject.h"
+#include "point.h"
+#include "dimension.h"
+#include "glcube.h"
 
-#ifdef __APPLE__
-    #include <OpenGL/gl.h>
-#else
-    #include <GL/gl.h>
-#endif
-
-namespace WordGL {
-
-    class GLCube : public GLObject {
+namespace WordGL{
+    
+    class ScorePanel: public GLCube {
 
     public:
-        GLCube();
-        virtual ~GLCube();
-
-    protected:
-        void drawBottom();
-        void drawBottom(GLuint textureId);
-        void drawTop();
-        void drawTop(GLuint textureId);
-        void drawFrontSide();
-        void drawFrontSide(GLuint textureId);
-        void drawRightSide();
-        void drawRightSide(GLuint textureId);
-        void drawBackSide();
-        void drawBackSide(GLuint textureId);
-        void drawLeftSide();
-        void drawLeftSide(GLuint textureId);
+        ScorePanel(Point startPoint, Dimension dimension);
+        virtual ~ScorePanel();
+        void draw();
     };
-   
+    
 }
+
 
 

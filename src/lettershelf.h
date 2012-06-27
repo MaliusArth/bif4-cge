@@ -1,6 +1,6 @@
 /**
  *  WordGL
- *  Copyright (C) 2012  Bernhard Posselt <bernhard.posselt@gmx.at>
+ *  Copyright (C) 2012  Patrick Stapfer <p.stapfer@technikum-wien.at>
  *
  *  This program is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -18,37 +18,26 @@
 
 #pragma once
 
-#include "globject.h"
-
-#ifdef __APPLE__
-    #include <OpenGL/gl.h>
-#else
-    #include <GL/gl.h>
-#endif
+#include "point.h"
+#include "dimension.h"
+#include "cube.h"
+#include <vector>
 
 namespace WordGL {
-
-    class GLCube : public GLObject {
+        
+    class LetterShelf: public GLCube {
 
     public:
-        GLCube();
-        virtual ~GLCube();
+		LetterShelf();
+        LetterShelf(Point startPoint, Dimension dimension);
+        virtual ~LetterShelf();
+		void draw();
 
-    protected:
-        void drawBottom();
-        void drawBottom(GLuint textureId);
-        void drawTop();
-        void drawTop(GLuint textureId);
-        void drawFrontSide();
-        void drawFrontSide(GLuint textureId);
-        void drawRightSide();
-        void drawRightSide(GLuint textureId);
-        void drawBackSide();
-        void drawBackSide(GLuint textureId);
-        void drawLeftSide();
-        void drawLeftSide(GLuint textureId);
+    private:
+		std::vector<Cube> cubes;
+		void push(char c);
+		void pop();
+		void clear();
     };
-   
+
 }
-
-

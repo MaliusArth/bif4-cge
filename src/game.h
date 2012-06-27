@@ -20,6 +20,12 @@
 #pragma once
 
 #include "dictionary.h"
+#include "scorepanel.h"
+#include "lettershelf.h"
+#include "gametable.h"
+#include "pane.h"
+#include "timer.h"
+
 #include <vector>
 
 namespace WordGL {
@@ -27,16 +33,22 @@ namespace WordGL {
     class Game {
 
     public:
-        Game();
+        Game(unsigned int newLineInterval);
         ~Game();
         void start();
 		void input(char c);
-        void drawAll();
+        void update();
 
     private:
+        unsigned int newLineInterval;
         void processInput();
         int getLetterIndex(char letter);
+        Timer timer;
         Dictionary dict;
+        Pane backGround;
+        GameTable gameTable;
+        ScorePanel scorePanel;
+        LetterShelf letterShelf;
 		std::vector<char> inputQueue;
         
     };

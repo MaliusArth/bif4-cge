@@ -1,6 +1,6 @@
 /**
  *  WordGL
- *  Copyright (C) 2012  Bernhard Posselt <bernhard.posselt@gmx.at>
+ *  Copyright (C) 2012  Patrick Stapfer <p.stapfer@technikum-wien.at>
  *
  *  This program is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -16,9 +16,10 @@
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#pragma once
 
-#include "globject.h"
+#include "lettershelf.h"
+#include "dimension.h"
+#include "point.h"
 
 #ifdef __APPLE__
     #include <OpenGL/gl.h>
@@ -27,28 +28,30 @@
 #endif
 
 namespace WordGL {
+	
+    LetterShelf::LetterShelf(Point startPoint, Dimension dimension) {
+        this->setCoordsDimension(startPoint, dimension);
+    }
 
-    class GLCube : public GLObject {
+	LetterShelf::~LetterShelf() {
 
-    public:
-        GLCube();
-        virtual ~GLCube();
+    }
+	
+	void LetterShelf::push(char c){
+		
+	}
+	
+	void LetterShelf::pop(){
+		
+	}	
+	
+	void LetterShelf::clear(){
+		
+	}
 
-    protected:
-        void drawBottom();
-        void drawBottom(GLuint textureId);
-        void drawTop();
-        void drawTop(GLuint textureId);
-        void drawFrontSide();
-        void drawFrontSide(GLuint textureId);
-        void drawRightSide();
-        void drawRightSide(GLuint textureId);
-        void drawBackSide();
-        void drawBackSide(GLuint textureId);
-        void drawLeftSide();
-        void drawLeftSide(GLuint textureId);
-    };
-   
+    void LetterShelf::draw() {
+
+    }
+
+
 }
-
-
