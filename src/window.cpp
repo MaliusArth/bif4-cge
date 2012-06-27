@@ -105,8 +105,9 @@ namespace WordGL {
         gluLookAt( 3.0f, 10.0f, 0.0f,
                    3.0f, 0.0f, -3.5f,
                    0, 1.0f, -1.0f);
-
-        this->game.drawAll();        
+        // draw game objects
+        this->game.drawAll();
+        
         glutSwapBuffers();
     }
 

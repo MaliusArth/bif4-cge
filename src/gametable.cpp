@@ -30,7 +30,7 @@ namespace WordGL {
      */
     void GameTable::draw() {
         this->move(this->startX, this->startY, this->startZ);
-        this->setColor(1.0f, 1.0f, 0.0f);
+        this->setColor(1.0f, 0.0f, 0.0f);
         this->drawBottom();
     }
 
