@@ -46,7 +46,7 @@ namespace WordGL {
 	void Game::input(char character){
 		//If the input character is between aA-zZ
 		if((character >= 65 && character <= 90) || (character >= 97 && character <= 122)){
-			this->inputQueue.push_back(character);
+			this->letterShelf.push(character);
 		}
         
         //If character is a carriage return -> Process the word
@@ -86,7 +86,6 @@ namespace WordGL {
         if(this->gameTable.isGameOver() || score < 0){
             this->showGameOverScreen();
         }
-        this->updateInputQueue();
         this->updateScore();
         // draw objects
         this->backGround.draw();
@@ -115,10 +114,6 @@ namespace WordGL {
 
     void Game::addNewLine() {
         this->gameTable.addNewLine();
-    }
-
-    void Game::updateInputQueue() {
-
     }
 
     void Game::updateScore() {
