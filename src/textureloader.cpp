@@ -81,7 +81,7 @@ namespace WordGL {
     }
 
     /**
-    * Returns a static instance of the TextureLoader. Used for wrapper functions for OpenGL
+    * Returns a static instance of the TextureLoader.
     * @return The TextureLoader instance
     */
     TextureLoader* TextureLoader::getInstance(){
