@@ -29,7 +29,7 @@ namespace WordGL {
     /**
     * Initalizes the game
     */
-    Game::Game():
+    Game::Game(unsigned int newLineInterval):
         dict(3, 100),
         backGround(Point(-32.0f, -0.01f, -32.0f), Dimension(64.0f, 64.0f, 64.0f)),
         gameTable(Point(0.0f, 0.0f, -8.0f), Dimension(6.0f, 8.0f, 0.5f)),
@@ -37,6 +37,7 @@ namespace WordGL {
         letterShelf(Point(0.0f, 0.0f, -8.0f), Dimension(6.0f, 8.0f, 0.5f))
         {
         this->dict.load("resources/dict/dictionary.txt");
+        this->newLineInterval = newLineInterval;
     }
 	
 	void Game::input(char c){
@@ -58,7 +59,9 @@ namespace WordGL {
         }
 	}
 
-    void Game::drawAll() {
+    void Game::update() {
+
+        
         this->backGround.draw();
         this->gameTable.draw();
         this->scorePanel.draw();
