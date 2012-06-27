@@ -34,7 +34,7 @@
 #include "wrappers.h"
 #include "gametable.h"
 #include "cube.h"
-#include "textureloader.h"
+
 
 namespace WordGL {
     
@@ -69,18 +69,14 @@ namespace WordGL {
         glutInitWindowSize(this->width, this->height);
         glutInitWindowPosition(0, 0);
         this->window = glutCreateWindow(this->title);
-	// initialize rendering	
-	glEnable(GL_DEPTH_TEST);
-	glEnable(GL_LIGHTING);
-	glEnable(GL_LIGHT0);
-	glEnable(GL_NORMALIZE);
-	glEnable(GL_COLOR_MATERIAL);
-	
-	//TODO: fix: undefined reference
-	//textureLoader::TextureLoader::getInstance()->initRendering();
-	TextureLoader *loader;
-	loader=TextureLoader::getInstance();
-	loader->initRendering();
+        
+        // initialize rendering	
+        glEnable(GL_DEPTH_TEST);
+        glEnable(GL_LIGHTING);
+        glEnable(GL_LIGHT0);
+        glEnable(GL_NORMALIZE);
+        glEnable(GL_COLOR_MATERIAL);
+        glEnable(GL_TEXTURE_2D);
 	
         glutDisplayFunc(&display_wrapper);
         glutReshapeFunc(&resize_wrapper);

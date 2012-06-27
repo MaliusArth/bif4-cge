@@ -33,7 +33,6 @@
 
 #include "imageloader.h"
 
-#define TEX_COUNT 27
 
 namespace WordGL {
 
@@ -42,14 +41,13 @@ namespace WordGL {
     public:
         TextureLoader();
         ~TextureLoader();
-	void initRendering();
-	GLuint loadMipmappedTexture(Image *image);
-        static TextureLoader* getInstance();
-	//std::vector<GLuint> _textureId;	//[TEX_COUNT]
-	GLuint _textureId;
+        void initRendering();
+        GLuint loadMipmappedTexture(Image *image);
+        GLuint _textureId;
 
     private:
-        static TextureLoader* loaderInstance;
+
+        
     };
 
 }

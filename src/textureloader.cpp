@@ -35,61 +35,42 @@
 
 
 namespace WordGL {
-    
-    // initialize static member variable with null
-    TextureLoader* TextureLoader::loaderInstance = NULL;
-    //Segmentation fault?
-    //std::vector<GLuint> _textureId;
-    GLuint _textureId;
-    /**
-    * Creates the TextureLoader
-    */
-    TextureLoader::TextureLoader (){
-        TextureLoader::loaderInstance = this;
+
+    TextureLoader::TextureLoader(){
     }
-    
-    //NOTICE: load multiple at once with glGenTextures(TEX_COUNT, &_textureId[0]);
-    //Makes the image into a mipmapped texture, and returns the id of the texture
+
+    /**
+     * Loads multiple textures at once and turns the image into a mipmapped texture,
+     * @param *image
+     * @return the id of the texture
+     */
     GLuint TextureLoader::loadMipmappedTexture(Image *image) {
-	GLuint textureId;
-	glGenTextures(1, &textureId);
-	glBindTexture(GL_TEXTURE_2D, textureId);
-	gluBuild2DMipmaps(GL_TEXTURE_2D,
-			GL_RGB,
-			image->width, image->height,
-			GL_RGB,
-			GL_UNSIGNED_BYTE,
-			image->pixels);
-	return textureId;
+        GLuint textureId;
+        glGenTextures(1, &textureId);
+        glBindTexture(GL_TEXTURE_2D, textureId);
+        gluBuild2DMipmaps(GL_TEXTURE_2D,
+                GL_RGB,
+                image->width, image->height,
+                GL_RGB,
+                GL_UNSIGNED_BYTE,
+                image->pixels);
+        return textureId;
     }
-
-    //TODO: load multiple at once
-    //Initializes rendering (enables macros) and creates textures
-    void TextureLoader::initRendering(){
-	// initialize rendering	
-	glEnable(GL_DEPTH_TEST);
-	glEnable(GL_LIGHTING);
-	glEnable(GL_LIGHT0);
-	glEnable(GL_NORMALIZE);
-	glEnable(GL_COLOR_MATERIAL);
-	
-	glEnable(GL_TEXTURE_2D);
-	
-	//TODO: multiples with wrapper method with loop;
-	//NOTICE: DONT CHANGE loadBMP ==>dont change loadMipmappedTexture either!
-	Image* image = loadBMP("resources/textures/a.bmp");
-	//Segmentation fault?
-	//_textureId.push_back(loadMipmappedTexture(image));
-	_textureId = loadMipmappedTexture(image);
-	delete image;
-    }
-
+    
     /**
-    * Returns a static instance of the TextureLoader.
-    * @return The TextureLoader instance
-    */
-    TextureLoader* TextureLoader::getInstance(){
-        return TextureLoader::loaderInstance;
+     * Initializes rendering (enables macros) and creates textures
+     */
+    void TextureLoader::initRendering(){
+        //TODO: load multiple at once
+        // initialize rendering
+
+        //TODO: multiples with wrapper method with loop;
+        //NOTICE: DONT CHANGE loadBMP ==>dont change loadMipmappedTexture either!
+        Image* image = loadBMP("resources/textures/a.bmp");
+        //Segmentation fault?
+        //_textureId.push_back(loadMipmappedTexture(image));
+        _textureId = loadMipmappedTexture(image);
+        delete image;
     }
 
 
