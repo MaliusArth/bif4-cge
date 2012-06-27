@@ -33,28 +33,27 @@
 #include "textureloader.h"
 #include "imageloader.h"
 
-using namespace std;
 
 namespace WordGL {
 
     TextureLoader::TextureLoader(){
     }
 
-    void TextureLoader::loadTexturesFromDirectory ( string path ) {
+    void TextureLoader::loadTexturesFromDirectory ( std::string path ) {
         // TODO: list all textures in directory and call loadMipmappedTexture
         // for each one of them
         DIR *dp;
 	struct dirent *dirp;
 	if((dp  = opendir(path.c_str())) == NULL) {
-	    cout << "Error(" << errno << ") opening " << path << endl;
+        std::cout << "Error(" << errno << ") opening " << path << std::endl;
 	    //return errno;
 	}
 
 	while ((dirp = readdir(dp)) != NULL) {
-	    Image* image = loadBMP(path + string(dirp->d_name));
-	    loadMipmappedTexture(image, path + string(dirp->d_name));
+        Image* image = loadBMP(path + std::string(dirp->d_name));
+        loadMipmappedTexture(image, path + std::string(dirp->d_name));
 	    delete image;
-	    cout << path << string(dirp->d_name) << endl;
+        std::cout << path << std::string(dirp->d_name) << std::endl;
 	}
 	closedir(dp);
 	//return 0;
@@ -66,7 +65,7 @@ namespace WordGL {
      * then the textureid is stored in a vector
      * @param *image
      */
-    void TextureLoader::loadMipmappedTexture(Image *image, string filename) {
+    void TextureLoader::loadMipmappedTexture(Image *image, std::string filename) {
         GLuint textureId;
         glGenTextures(1, &textureId);
         glBindTexture(GL_TEXTURE_2D, textureId);
