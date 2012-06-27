@@ -39,7 +39,7 @@ namespace WordGL {
     
     // initialize static member variable with null
     Window* Window::windowInstance = NULL;
-
+    
     /**
     * Creates the window
     * @param title The window title
@@ -68,13 +68,22 @@ namespace WordGL {
         glutInitWindowSize(this->width, this->height);
         glutInitWindowPosition(0, 0);
         this->window = glutCreateWindow(this->title);
+	// initialize rendering	
+	glEnable(GL_DEPTH_TEST);
+	glEnable(GL_LIGHTING);
+	glEnable(GL_LIGHT0);
+	glEnable(GL_NORMALIZE);
+	glEnable(GL_COLOR_MATERIAL);
+	
+	//TODO: fix: undefined reference
+	//textureLoader::TextureLoader::getInstance()->initRendering();
+	
         glutDisplayFunc(&display_wrapper);
         glutReshapeFunc(&resize_wrapper);
         glutKeyboardFunc(&keyPressed_wrapper);
         glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
         glClearDepth(1.0);
         glDepthFunc(GL_LESS);
-        glEnable(GL_DEPTH_TEST);
         glShadeModel(GL_SMOOTH);
         this->resize(this->width, this->height);
         glutFullScreen();
@@ -93,7 +102,7 @@ namespace WordGL {
         glMatrixMode(GL_PROJECTION);
         glLoadIdentity();
         gluPerspective(45.0f, (GLfloat)width/(GLfloat)height, 0.1f, 100.0f);
-        glMatrixMode(GL_MODELVIEW);
+        glMatrixMode(GL_MODELVIEW);	//comment? viktor
     }
 
     /**
@@ -105,23 +114,66 @@ namespace WordGL {
         game.start();
 
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-        glMatrixMode(GL_MODELVIEW);
+        
+	glMatrixMode(GL_MODELVIEW);
         glLoadIdentity();
+	
+	// lights!
+	// lighting
+	GLfloat ambientLight[] = {1.0f, 1.0f, 1.0f, 1.0f};
+	glLightModelfv(GL_LIGHT_MODEL_AMBIENT, ambientLight);
+	
+	GLfloat lightColor[] = {0.7f, 0.7f, 0.7f, 1.0f};
+	GLfloat lightPos[] = {-0.2f, 0.3f, -1, 0.0f};
+	glLightfv(GL_LIGHT0, GL_DIFFUSE, lightColor);
+	glLightfv(GL_LIGHT0, GL_POSITION, lightPos);
+	
+	// camera!
+	// set camera direction
         gluLookAt( 3.0f, 10.0f, 0.0f,
                    3.0f, 0.0f, -3.5f,
                    0, 1.0f, -1.0f);
         
-        // position the gameTable
+	// action!
+	
+//	Draw the floor
+// 	glTranslatef(0.0f, -5.4f, 0.0f);
+// 	glEnable(GL_TEXTURE_2D);
+// 	glBindTexture(GL_TEXTURE_2D, _textureId);
+// 	//glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+// 	//glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+// 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+// 	glTexParameteri(GL_TEXTURE_2D,
+// 					GL_TEXTURE_MIN_FILTER,
+// 					GL_LINEAR_MIPMAP_LINEAR);
+// 	
+// 	glBegin(GL_QUADS);
+// 	
+// 	glNormal3f(0.0f, 1.0f, 0.0f);
+// 	glTexCoord2f(2000 / FLOOR_TEXTURE_SIZE, _pos / FLOOR_TEXTURE_SIZE);
+// 	glVertex3f(-1000.0f, 0.0f, -1000.0f);
+// 	glTexCoord2f(2000 / FLOOR_TEXTURE_SIZE, (2000 + _pos) / FLOOR_TEXTURE_SIZE);
+// 	glVertex3f(-1000.0f, 0.0f, 1000.0f);
+// 	glTexCoord2f(0.0f, (2000 + _pos) / FLOOR_TEXTURE_SIZE);
+// 	glVertex3f(1000.0f, 0.0f, 1000.0f);
+// 	glTexCoord2f(0.0f, _pos / FLOOR_TEXTURE_SIZE);
+// 	glVertex3f(1000.0f, 0.0f, -1000.0f);
+// 	
+// 	glEnd();
+// 	
+// 	glutSwapBuffers();
+	
+        // draw the gameTable
         Point gameTablePosition(0.0f, 0.0f, -8.0f);
         Dimension gameTableDimension(6.0f, 8.0f, 0.5f);
         GameTable gameTable(gameTablePosition, gameTableDimension);
         gameTable.draw();
 
-        // print a cube
+        // draw a cube
         Point cubePosition(0.0f, 0.0f, 0.0f);
         Dimension cubeDimension(0.5f, 0.5f, 0.5f);
         Cube cube(cubePosition, cubeDimension);
-        cube.draw();
+        cube.draw();	//TODO: add texture drawing
         
         glutSwapBuffers();
     }
@@ -148,7 +200,6 @@ namespace WordGL {
     Window* Window::getInstance(){
         return Window::windowInstance;
     }
-
 
     Window::~Window(){
 

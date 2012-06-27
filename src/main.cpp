@@ -19,8 +19,13 @@
 #include "window.h"
 
 int main(int argc, char **argv) {
-    // create and launch window
-    WordGL::Window window(&argc, argv, "WORD GL", 640, 480);
-    window.init();
-    return 0;
+  //create imageLoader and load images
+  textureLoader::TextureLoader myloader();
+  //loader.initRendering();
+  
+  
+  // create and launch window
+  WordGL::Window window(&argc, argv, "WORD GL", 640, 480);
+  window.init();
+  return 0;
 }

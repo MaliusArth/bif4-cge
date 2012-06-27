@@ -45,13 +45,4 @@ class Image {
 //Reads a bitmap image from file.
 Image* loadBMP(const char* filename);
 
-
-
-
-
-
-
-
-
-
 #endif

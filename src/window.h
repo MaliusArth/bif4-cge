@@ -20,6 +20,8 @@
 
 #include <stdlib.h>
 
+#include "../resources/textures/textureLoader.h"
+
 namespace WordGL {
 
     class Window {
