@@ -43,7 +43,7 @@ namespace WordGL {
     };
     
     //Reads a bitmap image from file.
-    Image* loadBMP(const char* filename);
+    Image* loadBMP( std::string filename);	//const char*
 }
 
 

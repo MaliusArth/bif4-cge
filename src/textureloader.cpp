@@ -22,22 +22,42 @@
     #include <GL/glu.h>
 #endif
 
+#include <sys/types.h>
+#include <dirent.h>
+#include <errno.h>
 #include <vector>
 #include <string>
+#include <iostream>
 #include <utility>
 
 #include "textureloader.h"
 #include "imageloader.h"
 
+using namespace std;
 
 namespace WordGL {
 
     TextureLoader::TextureLoader(){
     }
 
-    void TextureLoader::loadTexturesFromDirectory ( const char* path ) {
+    void TextureLoader::loadTexturesFromDirectory ( string path ) {
         // TODO: list all textures in directory and call loadMipmappedTexture
         // for each one of them
+        DIR *dp;
+	struct dirent *dirp;
+	if((dp  = opendir(path.c_str())) == NULL) {
+	    cout << "Error(" << errno << ") opening " << path << endl;
+	    //return errno;
+	}
+
+	while ((dirp = readdir(dp)) != NULL) {
+	    Image* image = loadBMP(path + string(dirp->d_name));
+	    loadMipmappedTexture(image, path + string(dirp->d_name));
+	    delete image;
+	    cout << path << string(dirp->d_name) << endl;
+	}
+	closedir(dp);
+	//return 0;
     }
 
 
@@ -46,7 +66,7 @@ namespace WordGL {
      * then the textureid is stored in a vector
      * @param *image
      */
-    void TextureLoader::loadMipmappedTexture(Image *image, std::string filename) {
+    void TextureLoader::loadMipmappedTexture(Image *image, string filename) {
         GLuint textureId;
         glGenTextures(1, &textureId);
         glBindTexture(GL_TEXTURE_2D, textureId);
@@ -60,7 +80,7 @@ namespace WordGL {
         // push filename and id into vector
         typedef std::pair<std::string, GLuint> stringIdPair;
         this->textureIds.insert(stringIdPair(filename, textureId));
-        delete image;
+        //delete image;
     }
 
     GLuint TextureLoader::getTextureId ( std::string key ) {
