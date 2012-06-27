@@ -56,7 +56,7 @@ namespace WordGL {
     void Game::drawAll() {
         // draw the general background
         Point bgPosition(-8.0f, -0.1f, -8.0f);
-        Dimension bgDimension(64.0f, 64.0f, 64.0f);
+        Dimension bgDimension(64.0f, 256.0f, 64.0f);
         Pane bg(bgPosition, bgDimension);
         bg.draw();
         
@@ -67,7 +67,7 @@ namespace WordGL {
         gameTable.draw();
 
         // print a cube
-        Point cubePosition(0.0f, 0.0f, 0.0f);
+        Point cubePosition(0.0f, 0.0f, -8.0f);
         Dimension cubeDimension(0.5f, 0.5f, 0.5f);
         Cube cube(cubePosition, cubeDimension);
         cube.draw();

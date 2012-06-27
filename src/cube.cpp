@@ -27,13 +27,13 @@ namespace WordGL {
     void Cube::draw() {
         glPushMatrix();
         this->move(this->startX, this->startY, this->startZ);
-        this->setColor(0.3f, 1.0f, 0.1f);
+        this->setColor(0.3f, 1.0f, 1.0f);
         this->drawTop();
         this->drawBottom();
-        this->setColor(0.5f, 1.0f, 0.1f);
+        this->setColor(0.5f, 1.0f, 1.0f);
         this->drawFrontSide();
         this->drawBackSide();
-        this->setColor(0.0f, 1.0f, 0.7f);
+        this->setColor(0.0f, 1.0f, 1.0f);
         this->drawLeftSide();
         this->drawRightSide();
         glPopMatrix();
