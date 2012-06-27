@@ -64,14 +64,36 @@ namespace WordGL {
         Point gameTablePosition(0.0f, 0.0f, -8.0f);
         Dimension gameTableDimension(6.0f, 8.0f, 0.5f);
         GameTable gameTable(gameTablePosition, gameTableDimension);
+        // NOTE: everything that is drawn after the gameTable is positioned
+        // relatively to the gametables origin -> 0, 0, 0 would be in the upper
+        // left corner
         gameTable.draw();
 
         // print a cube
-        Point cubePosition(0.0f, 0.0f, -8.0f);
+        Point cubePosition(0.0f, 0.0f, 0.0f);
         Dimension cubeDimension(0.5f, 0.5f, 0.5f);
         Cube cube(cubePosition, cubeDimension);
         cube.draw();
     }
+
+    /**
+     * Ascii chars can be upper or lower case and are mapped from 65-90 and
+     * from 97-122. We only look at lower case letters though. This method returns
+     * the index from 0-25 for any given char
+     * @param letter The character which is mapped to 0-25
+     * @return The index of the character between 0 and 25, if its not a valid character
+     *         it defaults to 0
+     */
+    int Game::getLetterIndex(char letter) {
+        if(letter >= 65 && letter <= 90){
+            return letter - 65;
+        } else if(letter >= 97 && letter <= 122){
+            return letter - 97;
+        } else {
+            return 0;
+        }
+    }
+
 
     Game::~Game(){
 

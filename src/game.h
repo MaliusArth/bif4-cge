@@ -32,12 +32,13 @@ namespace WordGL {
         void start();
 		void input(char c);
         void drawAll();
-		
 
     private:
+        void processInput();
+        int getLetterIndex(char letter);
         Dictionary dict;
 		std::vector<char> inputQueue;
-        void processInput();
+        
     };
 
 }

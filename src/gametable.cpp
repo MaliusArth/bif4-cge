@@ -33,7 +33,6 @@ namespace WordGL {
         this->move(this->startX, this->startY, this->startZ);
         this->setColor(1.0f, 0.0f, 0.0f);
         this->drawBottom();
-        glPopMatrix();
     }
 
 
