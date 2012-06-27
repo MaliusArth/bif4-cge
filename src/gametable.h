@@ -21,6 +21,7 @@
 #include "point.h"
 #include "dimension.h"
 #include "glcube.h"
+#include <vector>
 
 namespace WordGL {
         
@@ -32,6 +33,7 @@ namespace WordGL {
         void draw();
         bool isGameOver();
         void addNewLine();
+        bool containsCharacters(std::vector<char> characters);
         
     private:
 
