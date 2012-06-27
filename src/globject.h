@@ -36,6 +36,7 @@ namespace WordGL {
         GLObject();
         virtual ~GLObject();
         void setColor(GLfloat red, GLfloat green, GLfloat blue);
+        void undoStartPositionTranslation();
 
     protected:
         void setCoordsDimension(Point startPoint, Dimension dimension);

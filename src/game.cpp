@@ -55,13 +55,14 @@ namespace WordGL {
 
     void Game::drawAll() {
         // draw the general background
-        Point bgPosition(0.0f, -0.1f, -8.0f);
+        Point bgPosition(-8.0f, -8.0f, -8.0f);
         Dimension bgDimension(16.0f, 16.0f, 16.0f);
         Pane bg(bgPosition, bgDimension);
         bg.draw();
+        bg.undoStartPositionTranslation();
         
         // position the gameTable
-        Point gameTablePosition(0.0f, 0.1f, 0.0f);
+        Point gameTablePosition(0.0f, 0.0f, 8.0f);
         Dimension gameTableDimension(6.0f, 8.0f, 0.5f);
         GameTable gameTable(gameTablePosition, gameTableDimension);
         gameTable.draw();

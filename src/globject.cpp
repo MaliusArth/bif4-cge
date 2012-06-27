@@ -49,6 +49,13 @@ namespace WordGL {
         glTranslatef(xCoord, yCoord, zCoord);
     }
 
+    /**
+     * Translates back into the previous point
+     */
+    void GLObject::undoStartPositionTranslation() {
+        glTranslatef(-this->startX, -this->startY, -this->startZ);
+    }
+
     
     GLObject::~GLObject() {
 
