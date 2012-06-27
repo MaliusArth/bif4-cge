@@ -38,7 +38,9 @@ namespace WordGL {
     
     // initialize static member variable with null
     TextureLoader* TextureLoader::loaderInstance = NULL;
-    std::vector<GLuint> _textureId[]={};
+    //Segmentation fault?
+    //std::vector<GLuint> _textureId;
+    GLuint _textureId;
     /**
     * Creates the TextureLoader
     */
@@ -48,7 +50,7 @@ namespace WordGL {
     
     //NOTICE: load multiple at once with glGenTextures(TEX_COUNT, &_textureId[0]);
     //Makes the image into a mipmapped texture, and returns the id of the texture
-    GLuint loadMipmappedTexture(Image *image) {
+    GLuint TextureLoader::loadMipmappedTexture(Image *image) {
 	GLuint textureId;
 	glGenTextures(1, &textureId);
 	glBindTexture(GL_TEXTURE_2D, textureId);
@@ -75,8 +77,10 @@ namespace WordGL {
 	
 	//TODO: multiples with wrapper method with loop;
 	//NOTICE: DONT CHANGE loadBMP ==>dont change loadMipmappedTexture either!
-	Image* image = loadBMP("a.bmp");
-	_textureId.push_back(loadMipmappedTexture(image));
+	Image* image = loadBMP("resources/textures/a.bmp");
+	//Segmentation fault?
+	//_textureId.push_back(loadMipmappedTexture(image));
+	_textureId = loadMipmappedTexture(image);
 	delete image;
     }
 
