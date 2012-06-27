@@ -58,9 +58,9 @@ namespace WordGL {
 	
 	void Game::processInput(){
         std::vector<char> characters = this->letterShelf.clear();
-        std::string word;
+        std::string word("");
         for(unsigned int i=0; i<characters.size(); i++){
-            word.append(characters[i]);
+            word.append(&characters[i]);
         }
 
         bool valid = true;

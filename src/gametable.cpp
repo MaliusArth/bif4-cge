@@ -46,7 +46,7 @@ namespace WordGL {
         return false;
     }
 
-    bool GameTable::containsCharacters ( std::vector characters ) {
+    bool GameTable::containsCharacters ( std::vector<char> characters ) {
         // FIXME
         return true;
     }

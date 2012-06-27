@@ -33,7 +33,7 @@ namespace WordGL {
         void draw();
         bool isGameOver();
         void addNewLine();
-        bool containsCharacters(std::vector characters);
+        bool containsCharacters(std::vector<char> characters);
         
     private:
 
