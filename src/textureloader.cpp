@@ -33,28 +33,36 @@
 #include "textureloader.h"
 #include "imageloader.h"
 
-using namespace std;
+#define EXT_LEN 4
+#define EXT ".bmp"
 
 namespace WordGL {
 
     TextureLoader::TextureLoader(){
     }
-
-    void TextureLoader::loadTexturesFromDirectory ( string path ) {
-        // TODO: list all textures in directory and call loadMipmappedTexture
-        // for each one of them
+    
+    // lists all textures in directory and calls loadMipmappedTexture
+    // for each one of them
+    void TextureLoader::loadTexturesFromDirectory ( std::string path ) {
+        
+        std::cout << path << std::endl;
         DIR *dp;
 	struct dirent *dirp;
 	if((dp  = opendir(path.c_str())) == NULL) {
-	    cout << "Error(" << errno << ") opening " << path << endl;
+	    std::cout << "Error(" << errno << ") opening " << path << std::endl;
 	    //return errno;
 	}
 
 	while ((dirp = readdir(dp)) != NULL) {
-	    Image* image = loadBMP(path + string(dirp->d_name));
-	    loadMipmappedTexture(image, path + string(dirp->d_name));
-	    delete image;
-	    cout << path << string(dirp->d_name) << endl;
+	    std::string filename = std::string(dirp->d_name);
+	    std::string filepath = path + std::string(dirp->d_name);
+	    if ((filename.length() > 3) && filename.substr(filename.length() - EXT_LEN, std::string::npos) == EXT)
+	    {
+		Image* image = loadBMP(filepath);
+		loadMipmappedTexture(image, filename);
+		delete image;
+		std::cout << filepath << std::endl;
+	    }
 	}
 	closedir(dp);
 	//return 0;
@@ -66,21 +74,22 @@ namespace WordGL {
      * then the textureid is stored in a vector
      * @param *image
      */
-    void TextureLoader::loadMipmappedTexture(Image *image, string filename) {
+    void TextureLoader::loadMipmappedTexture(Image *image, std::string filename) {
         GLuint textureId;
         glGenTextures(1, &textureId);
         glBindTexture(GL_TEXTURE_2D, textureId);
+	
+	//Segmentation fault
         gluBuild2DMipmaps(GL_TEXTURE_2D,
-                GL_RGB,
-                image->width, image->height,
-                GL_RGB,
-                GL_UNSIGNED_BYTE,
-                image->pixels);
+					  GL_RGB,
+					  image->width, image->height,
+					  GL_RGB,
+					  GL_UNSIGNED_BYTE,
+					  image->pixels);
         
         // push filename and id into vector
-        typedef std::pair<std::string, GLuint> stringIdPair;
-        this->textureIds.insert(stringIdPair(filename, textureId));
-        //delete image;
+        //TODO:uncomment: typedef std::pair<std::string, GLuint> stringIdPair;
+        //TODO:uncomment: this->textureIds.insert(stringIdPair(filename, textureId));
     }
 
     GLuint TextureLoader::getTextureId ( std::string key ) {
