@@ -16,30 +16,28 @@
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#pragma once
 
-#include "point.h"
-#include "dimension.h"
 #include "lettercube.h"
-#include <vector>
+
+#ifdef __APPLE__
+    #include <OpenGL/gl.h>
+#else
+    #include <GL/gl.h>
+#endif
 
 namespace WordGL {
-        
-    class LetterShelf: public GLCube {
 
-    public:
-        LetterShelf(Point startPoint, Dimension dimension);
-        virtual ~LetterShelf();
-		void draw();
-		void push(char character);
-		void pop();
-		std::vector<char> clear();
-		
-    private:
-		unsigned int max_letters;
-		std::vector<LetterCube> cubes;
-		
-		
-    };
+    LetterCube::LetterCube ( Point startPoint, Dimension dimension, GLuint textureId, char letter): Cube(startPoint,dimension) {
+		this->setTopTextureId(textureId);
+		this->letter = letter;
+    }
+
+	char LetterCube::getLetter(){
+		return this->letter;
+	}
+
+    LetterCube::~LetterCube() {
+
+    }
 
 }

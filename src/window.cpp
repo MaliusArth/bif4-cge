@@ -32,8 +32,8 @@
 #include "window.h"
 #include "game.h"
 #include "wrappers.h"
+#include "settings.h"
 
-#define LINE_UPDATE_INTERVAL 500000
 
 
 namespace WordGL {

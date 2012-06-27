@@ -31,27 +31,35 @@ namespace WordGL {
 	
     LetterShelf::LetterShelf(Point startPoint, Dimension dimension) {
         this->setCoordsDimension(startPoint, dimension);
+		this->max_letters = max_letters;
     }
 
 	LetterShelf::~LetterShelf() {
 
     }
 	
-	void LetterShelf::push(char c){
-		
+	void LetterShelf::push(char character){
+		//LetterCube cube erstellen
 	}
 	
 	void LetterShelf::pop(){
 		
 	}	
 	
-	void LetterShelf::clear(){
+	std::vector<char> LetterShelf::clear(){
+		std::vector<char> ret;
+		for(unsigned int i = 0; i < this->cubes.size(); i++){
+			ret.push_back(this->cubes[i].getLetter());
+		}
 		
+		return ret;
 	}
 
     void LetterShelf::draw() {
-
+		glPushMatrix();
+        this->move(this->startX, this->startY, this->startZ);
+        this->setColor(1.0f, 1.0f, 1.0f);
+        this->drawBottom();
+        glPopMatrix();
     }
-
-
 }

@@ -23,6 +23,7 @@
 #include "cube.h"
 #include "pane.h"
 #include "textureloader.h"
+#include <cstdlib>
 
 namespace WordGL {
 
@@ -34,34 +35,59 @@ namespace WordGL {
         backGround(Point(-32.0f, -0.01f, -32.0f), Dimension(64.0f, 64.0f, 64.0f)),
         gameTable(Point(0.0f, 0.0f, -8.0f), Dimension(6.0f, 8.0f, 0.5f)),
         scorePanel(Point(0.0f, 0.0f, -8.0f), Dimension(6.0f, 8.0f, 0.5f)),
-        letterShelf(Point(0.0f, 0.0f, -8.0f), Dimension(6.0f, 8.0f, 0.5f))
+        letterShelf(Point(0.0f, 0.0f, -0.5f), Dimension(6.0f, 8.0f, 0.5f))
         {
         this->dict.load("resources/dict/dictionary.txt");
         this->newLineInterval = newLineInterval;
+        this->score = 0;
+        this->addNewLine();
     }
 	
-	void Game::input(char c){
+	void Game::input(char character){
 		//If the input character is between aA-zZ
-		if((c >= 65 && c <= 90) || (c >= 97 && c <= 122)){
-			this->inputQueue.push_back(c);
+		if((character >= 65 && character <= 90) || (character >= 97 && character <= 122)){
+			this->letterShelf.push(character);
 		}
         
         //If character is a carriage return -> Process the word
-        if(c == 13){
+        if(character == 13){
             this->processInput();
         }
 		
 	}
 	
 	void Game::processInput(){
-		for (unsigned int i=0; i < this->inputQueue.size(); i++) {
-            std::cout << this->inputQueue[i] << std::endl;
+        std::vector<char> characters = this->letterShelf.clear();
+        std::string word("");
+        for(unsigned int i=0; i<characters.size(); i++){
+            word.append(&characters[i]);
+        }
+
+        bool valid = true;
+        if(!this->dict.containsWord(word.c_str())){
+            valid = false;
+        }
+        if(!this->gameTable.containsCharacters(characters)){
+            valid = false;
+        }
+            
+        if(valid){
+            this->score += this->calculateScore(characters);
+        } else {
+            this->score -= this->calculateScore(characters);
         }
 	}
 
     void Game::update() {
-
-        
+        if(this->timer.getTimeDiff() >= this->newLineInterval){
+            this->timer.resetTimer();
+            this->addNewLine();
+        }
+        if(this->gameTable.isGameOver() || score < 0){
+            this->showGameOverScreen();
+        }
+        this->updateScore();
+        // draw objects
         this->backGround.draw();
         this->gameTable.draw();
         this->scorePanel.draw();
@@ -84,6 +110,27 @@ namespace WordGL {
         } else {
             return 0;
         }
+    }
+
+    void Game::addNewLine() {
+        this->gameTable.addNewLine();
+    }
+
+    void Game::updateScore() {
+        this->scorePanel.setScore(this->score);
+    }
+
+    void Game::showGameOverScreen() {
+        exit(0);
+    }
+
+    int Game::calculateScore ( std::vector< char > letters ) {
+        int score = 0;
+        for(unsigned int i=0; i<letters.size(); i++){
+            int letterIndex = this->getLetterIndex(letters[i]);
+            score += this->charPoints[letterIndex];
+        }
+        return score;
     }
 
 

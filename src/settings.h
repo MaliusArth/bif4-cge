@@ -1,6 +1,6 @@
 /**
  *  WordGL
- *  Copyright (C) 2012  Patrick Stapfer <p.stapfer@technikum-wien.at>
+ *  Copyright (C) 2012  Bernhard Posselt <bernhard.posselt@gmx.at>
  *
  *  This program is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -16,30 +16,5 @@
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#pragma once
 
-#include "point.h"
-#include "dimension.h"
-#include "lettercube.h"
-#include <vector>
-
-namespace WordGL {
-        
-    class LetterShelf: public GLCube {
-
-    public:
-        LetterShelf(Point startPoint, Dimension dimension);
-        virtual ~LetterShelf();
-		void draw();
-		void push(char character);
-		void pop();
-		std::vector<char> clear();
-		
-    private:
-		unsigned int max_letters;
-		std::vector<LetterCube> cubes;
-		
-		
-    };
-
-}
+#define LINE_UPDATE_INTERVAL 500000

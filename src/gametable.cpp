@@ -18,6 +18,7 @@
 
 
 #include "gametable.h"
+#include <vector>
 
 namespace WordGL {
 
@@ -34,6 +35,20 @@ namespace WordGL {
         this->setColor(1.0f, 0.0f, 0.0f);
         this->drawBottom();
         glPopMatrix();
+    }
+
+    void GameTable::addNewLine() {
+
+    }
+    
+    bool GameTable::isGameOver() {
+        // FIXME:
+        return false;
+    }
+
+    bool GameTable::containsCharacters ( std::vector<char> characters ) {
+        // FIXME
+        return true;
     }
 
     
