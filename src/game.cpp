@@ -55,8 +55,8 @@ namespace WordGL {
 
     void Game::drawAll() {
         // draw the general background
-        Point bgPosition(-8.0f, -0.1f, -8.0f);
-        Dimension bgDimension(64.0f, 256.0f, 64.0f);
+        Point bgPosition(-32.0f, -0.01f, -32.0f);
+        Dimension bgDimension(64.0f, 64.0f, 64.0f);
         Pane bg(bgPosition, bgDimension);
         bg.draw();
         

@@ -102,7 +102,7 @@ namespace WordGL {
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
         glMatrixMode(GL_MODELVIEW);
         glLoadIdentity();
-        gluLookAt( 3.0f, 10.0f, 0.0f,
+        gluLookAt( 3.0f, 12.0f, -2.0f,
                    3.0f, 0.0f, -3.5f,
                    0, 1.0f, -1.0f);
         // draw game objects
