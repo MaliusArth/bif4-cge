@@ -24,7 +24,8 @@
     #include <GL/glu.h>
 #endif
 
-#include <vector>
+#include <map>
+#include <string>
 
 #include "imageloader.h"
 
@@ -36,12 +37,11 @@ namespace WordGL {
     public:
         TextureLoader();
         ~TextureLoader();
-        void initRendering();
-        GLuint loadMipmappedTexture(Image *image);
-        GLuint _textureId;
+        void loadTexturesFromDirectory(const char* path);
+        void loadMipmappedTexture(Image *image);
 
     private:
-
+        std::map<std::string, GLuint> textureIds;
         
     };
 

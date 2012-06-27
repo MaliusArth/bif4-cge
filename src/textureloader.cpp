@@ -26,9 +26,9 @@
     #include <GL/glu.h>
 #endif
 
-#include <stdlib.h>
-#include <unistd.h>
 #include <vector>
+#include <string>
+#include <utility>
 
 #include "textureloader.h"
 #include "imageloader.h"
@@ -39,12 +39,18 @@ namespace WordGL {
     TextureLoader::TextureLoader(){
     }
 
+    void TextureLoader::loadTexturesFromDirectory ( const char* path ) {
+        // TODO: list all textures in directory and call loadMipmappedTexture
+        // for each one of them
+    }
+
+
     /**
      * Loads multiple textures at once and turns the image into a mipmapped texture,
+     * then the textureid is stored in a vector
      * @param *image
-     * @return the id of the texture
      */
-    GLuint TextureLoader::loadMipmappedTexture(Image *image) {
+    void TextureLoader::loadMipmappedTexture(Image *image) {
         GLuint textureId;
         glGenTextures(1, &textureId);
         glBindTexture(GL_TEXTURE_2D, textureId);
@@ -54,24 +60,18 @@ namespace WordGL {
                 GL_RGB,
                 GL_UNSIGNED_BYTE,
                 image->pixels);
-        return textureId;
-    }
-    
-    /**
-     * Initializes rendering (enables macros) and creates textures
-     */
-    void TextureLoader::initRendering(){
-        //TODO: load multiple at once
-        // initialize rendering
-
-        //TODO: multiples with wrapper method with loop;
-        //NOTICE: DONT CHANGE loadBMP ==>dont change loadMipmappedTexture either!
-        Image* image = loadBMP("resources/textures/a.bmp");
-        //Segmentation fault?
-        //_textureId.push_back(loadMipmappedTexture(image));
-        _textureId = loadMipmappedTexture(image);
+        
+        // push filename and id into vector
+        std::pair<std::string, GLuint> hashPair;
+        // TODO: get filename of *image
+        // std::string filename = image->getFileName();
+        std::string filename("");
+        hashPair = make_pair(filename, textureId);
+        
+        this->textureIds.insert(hashPair);
         delete image;
     }
+
 
 
     TextureLoader::~TextureLoader(){
