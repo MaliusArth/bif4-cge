@@ -23,6 +23,7 @@
 #include "cube.h"
 #include "pane.h"
 #include "textureloader.h"
+#include <cstdlib>
 
 namespace WordGL {
 
@@ -39,22 +40,30 @@ namespace WordGL {
         this->dict.load("resources/dict/dictionary.txt");
         this->newLineInterval = newLineInterval;
         this->score = 0;
+        this->addNewLine();
     }
 	
-	void Game::input(char c){
+	void Game::input(char character){
 		//If the input character is between aA-zZ
-		if((c >= 65 && c <= 90) || (c >= 97 && c <= 122)){
-			this->inputQueue.push_back(c);
+		if((character >= 65 && character <= 90) || (character >= 97 && character <= 122)){
+			this->inputQueue.push_back(character);
 		}
         
         //If character is a carriage return -> Process the word
-        if(c == 13){
+        if(character == 13){
             this->processInput();
         }
 		
 	}
 	
 	void Game::processInput(){
+        // TODO:
+        // 0. clear inputshelf
+        // 1. check if input was on board
+        // 2. check if string is in dictionary
+        // if all correct: calculate score and add points
+        // if not, subtract score
+        
 		for (unsigned int i=0; i < this->inputQueue.size(); i++) {
             std::cout << this->inputQueue[i] << std::endl;
         }
@@ -62,13 +71,15 @@ namespace WordGL {
 
     void Game::update() {
         if(this->timer.getTimeDiff() >= this->newLineInterval){
+            this->timer.resetTimer();
             this->addNewLine();
         }
-        if(this->gameTable.isGameOver()){
+        if(this->gameTable.isGameOver() || score < 0){
             this->showGameOverScreen();
         }
         this->updateInputQueue();
         this->updateScore();
+        // draw objects
         this->backGround.draw();
         this->gameTable.draw();
         this->scorePanel.draw();
@@ -94,7 +105,7 @@ namespace WordGL {
     }
 
     void Game::addNewLine() {
-
+        this->gameTable.addNewLine();
     }
 
     void Game::updateInputQueue() {
@@ -102,11 +113,20 @@ namespace WordGL {
     }
 
     void Game::updateScore() {
-
+        this->scorePanel.setScore(this->score);
     }
 
     void Game::showGameOverScreen() {
+        exit(0);
+    }
 
+    int Game::calculateScore ( std::vector< char > letters ) {
+        int score = 0;
+        for(unsigned int i=0; i<letters.size(); i++){
+            int letterIndex = this->getLetterIndex(letters[i]);
+            score += this->charPoints[letterIndex];
+        }
+        return score;
     }
 
 

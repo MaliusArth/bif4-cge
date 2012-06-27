@@ -31,7 +31,8 @@ namespace WordGL {
         virtual ~GameTable();
         void draw();
         bool isGameOver();
-
+        void addNewLine();
+        
     private:
 
         
