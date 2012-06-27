@@ -49,6 +49,12 @@ namespace WordGL {
         GLuint rightTextureId;
         GLuint frontTextureId;
         GLuint backTextureId;
+        bool topTexture;
+        bool bottomTexture;
+        bool leftTexture;
+        bool rightTexture;
+        bool frontTexture;
+        bool backTexture;
     };
     
 }

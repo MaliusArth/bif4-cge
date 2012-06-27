@@ -28,6 +28,12 @@ namespace WordGL {
     
     Cube::Cube ( Point startPoint, Dimension dimension ) {
         this->setCoordsDimension(startPoint, dimension);
+        this->topTexture = false;
+        this->bottomTexture = false;
+        this->rightTexture = false;
+        this->leftTexture = false;
+        this->frontTexture = false;
+        this->backTexture = false;
     }
 
     void Cube::draw() {
@@ -36,13 +42,13 @@ namespace WordGL {
         
         // top and bottom
         this->setColor(0.3f, 1.0f, 1.0f);
-        if(this->topTextureId == NULL){
+        if(this->topTexture){
             this->drawTop();
         } else {
             this->drawTop(this->topTextureId);
         }
 
-        if(this->bottomTextureId == NULL){
+        if(this->bottomTexture){
             this->drawBottom();
         } else {
             this->drawTop(this->bottomTextureId);
@@ -50,14 +56,14 @@ namespace WordGL {
 
         // left and right
         this->setColor(0.5f, 1.0f, 1.0f);
-        if(this->leftTextureId == NULL){
+        if(this->leftTexture){
             this->drawLeftSide();
         } else {
             this->drawLeftSide(this->leftTextureId);
         }
 
         this->setColor(0.5f, 1.0f, 1.0f);
-        if(this->rightTextureId == NULL){
+        if(this->rightTexture){
             this->drawRightSide();
         } else {
             this->drawRightSide(this->rightTextureId);
@@ -65,13 +71,13 @@ namespace WordGL {
         
         // front and back
         this->setColor(0.0f, 1.0f, 1.0f);
-        if(this->frontTextureId == NULL){
+        if(this->frontTexture){
             this->drawFrontSide();
         } else {
             this->drawFrontSide(this->frontTextureId);
         }
 
-        if(this->backTextureId == NULL){
+        if(this->backTexture){
             this->drawBackSide();
         } else {
             this->drawBackSide(this->backTextureId);
@@ -82,26 +88,32 @@ namespace WordGL {
     
 
     void Cube::setTopTextureId ( GLuint textureId ) {
+        this->topTexture = true;
         this->topTextureId = textureId;
     }
 
+    void Cube::setBottomTextureId ( GLuint textureId ) {
+        this->bottomTexture = true;
+        this->bottomTextureId = textureId;
+    }
+    
     void Cube::setBackTextureId ( GLuint textureId ) {
+        this->backTexture = true;
         this->backTextureId = textureId;
     }
 
-    void Cube::setBottomTextureId ( GLuint textureId ) {
-        this->bottomTextureId = textureId;
-    }
-
     void Cube::setFrontTextureId ( GLuint textureId ) {
+        this->frontTexture = true;
         this->frontTextureId = textureId;
     }
 
     void Cube::setRightTextureId ( GLuint textureId ) {
+        this->rightTexture = true;
         this->rightTextureId = textureId;
     }
 
     void Cube::setLeftTextureId ( GLuint textureId ) {
+        this->leftTexture = true;
         this->leftTextureId = textureId;
     }
     
