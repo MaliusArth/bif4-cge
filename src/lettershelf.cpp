@@ -38,8 +38,8 @@ namespace WordGL {
 
     }
 	
-	void LetterShelf::push(LetterCube cube){
-		
+	void LetterShelf::push(char character){
+		//LetterCube cube erstellen
 	}
 	
 	void LetterShelf::pop(){

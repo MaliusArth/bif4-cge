@@ -31,13 +31,14 @@ namespace WordGL {
         LetterShelf(Point startPoint, Dimension dimension);
         virtual ~LetterShelf();
 		void draw();
+		void push(char character);
+		void pop();
 		std::vector<char> clear();
-
+		
     private:
 		unsigned int max_letters;
 		std::vector<LetterCube> cubes;
-		void push(LetterCube cube);
-		void pop();
+		
 		
     };
 
