@@ -38,34 +38,28 @@
 
 namespace WordGL {
 
-    TextureLoader::TextureLoader(){
-    }
-    
-    // lists all textures in directory and calls loadMipmappedTexture
-    // for each one of them
-    void TextureLoader::loadTexturesFromDirectory ( std::string path ) {
-        
+    TextureLoader::TextureLoader(std::string path){
         std::cout << path << std::endl;
         DIR *dp;
-	struct dirent *dirp;
-	if((dp  = opendir(path.c_str())) == NULL) {
-	    std::cout << "Error(" << errno << ") opening " << path << std::endl;
-	    //return errno;
-	}
+        struct dirent *dirp;
+        if((dp  = opendir(path.c_str())) == NULL) {
+            std::cout << "Error(" << errno << ") opening " << path << std::endl;
+            //return errno;
+        }
 
-	while ((dirp = readdir(dp)) != NULL) {
-	    std::string filename = std::string(dirp->d_name);
-	    std::string filepath = path + std::string(dirp->d_name);
-	    if ((filename.length() > 3) && filename.substr(filename.length() - EXT_LEN, std::string::npos) == EXT)
-	    {
-		Image* image = loadBMP(filepath);
-		loadMipmappedTexture(image, filename);
-		delete image;
-		std::cout << filepath << std::endl;
-	    }
-	}
-	closedir(dp);
-	//return 0;
+        while ((dirp = readdir(dp)) != NULL) {
+            std::string filename = std::string(dirp->d_name);
+            std::string filepath = path + std::string(dirp->d_name);
+            if ((filename.length() > 3) && filename.substr(filename.length() - EXT_LEN, std::string::npos) == EXT)
+            {
+            Image* image = loadBMP(filepath);
+            loadMipmappedTexture(image, filename);
+            delete image;
+            std::cout << filepath << std::endl;
+            }
+        }
+        closedir(dp);
+        //return 0;
     }
 
 

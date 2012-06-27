@@ -27,6 +27,7 @@
 
 #include "point.h"
 #include "dimension.h"
+#include "textureloader.h"
 
 namespace WordGL {
 
@@ -40,6 +41,7 @@ namespace WordGL {
     protected:
         void setCoordsDimension(Point startPoint, Dimension dimension);
         void move(GLfloat xCoord, GLfloat yCoord, GLfloat zCoord);
+        static TextureLoader textureLoader;
         GLfloat startX;
         GLfloat startY;
         GLfloat startZ;

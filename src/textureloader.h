@@ -35,9 +35,8 @@ namespace WordGL {
     class TextureLoader {
 
     public:
-        TextureLoader();
+        TextureLoader(std::string path);
         ~TextureLoader();
-        void loadTexturesFromDirectory( std::string path);
         void loadMipmappedTexture(Image *image, std::string filename);
         GLuint getTextureId(std::string key);
 

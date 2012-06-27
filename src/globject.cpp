@@ -19,6 +19,8 @@
 
 
 #include "globject.h"
+#include "textureloader.h"
+#include <string>
 
 #ifdef __APPLE__
     #include <OpenGL/gl.h>
@@ -27,6 +29,8 @@
 #endif
 
 namespace WordGL {
+
+    TextureLoader GLObject::textureLoader = TextureLoader( std::string("media/textures/"));
 
     GLObject::GLObject() {
 
