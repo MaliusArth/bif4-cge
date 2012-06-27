@@ -25,11 +25,11 @@
 
 namespace WordGL {
         
-    class LetterShelf {
+    class LetterShelf: public GLCube {
 
     public:
 		LetterShelf();
-        LetterShelf(Point startPoint, unsigned int max_input);
+        LetterShelf(Point startPoint, Dimension dimension);
         virtual ~LetterShelf();
 		void draw();
 

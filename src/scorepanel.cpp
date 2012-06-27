@@ -1,6 +1,6 @@
 /**
  *  WordGL
- *  Copyright (C) 2012  Patrick Stapfer <p.stapfer@technikum-wien.at>
+ *  Copyright (C) 2012  Bernhard Posselt <bernhard.posselt@gmx.at>
  *
  *  This program is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -16,42 +16,24 @@
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-
-#include "lettershelf.h"
-#include "dimension.h"
+#include "scorepanel.h"
 #include "point.h"
-
-#ifdef __APPLE__
-    #include <OpenGL/gl.h>
-#else
-    #include <GL/gl.h>
-#endif
+#include "dimension.h"
 
 namespace WordGL {
-	
-    LetterShelf::LetterShelf(Point startPoint, Dimension dimension) {
+    
+    ScorePanel::ScorePanel(Point startPoint, Dimension dimension) {
         this->setCoordsDimension(startPoint, dimension);
     }
 
-	LetterShelf::~LetterShelf() {
-
-    }
-	
-	void LetterShelf::push(char c){
-		
-	}
-	
-	void LetterShelf::pop(){
-		
-	}	
-	
-	void LetterShelf::clear(){
-		
-	}
-
-    void LetterShelf::draw() {
+    ScorePanel::~ScorePanel() {
 
     }
 
+    void ScorePanel::draw() {
+
+    }
 
 }
+
+

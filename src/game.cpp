@@ -30,7 +30,12 @@ namespace WordGL {
     * Initalizes the game
     */
     Game::Game():
-        dict(3, 100){
+        dict(3, 100),
+        backGround(Point(-32.0f, -0.01f, -32.0f), Dimension(64.0f, 64.0f, 64.0f)),
+        gameTable(Point(0.0f, 0.0f, -8.0f), Dimension(6.0f, 8.0f, 0.5f)),
+        scorePanel(Point(0.0f, 0.0f, -8.0f), Dimension(6.0f, 8.0f, 0.5f)),
+        letterShelf(Point(0.0f, 0.0f, -8.0f), Dimension(6.0f, 8.0f, 0.5f))
+        {
         this->dict.load("resources/dict/dictionary.txt");
     }
 	
@@ -54,26 +59,10 @@ namespace WordGL {
 	}
 
     void Game::drawAll() {
-        // draw the general background
-        Point bgPosition(-32.0f, -0.01f, -32.0f);
-        Dimension bgDimension(64.0f, 64.0f, 64.0f);
-        Pane bg(bgPosition, bgDimension);
-        bg.draw();
-        
-        // position the gameTable
-        Point gameTablePosition(0.0f, 0.0f, -8.0f);
-        Dimension gameTableDimension(6.0f, 8.0f, 0.5f);
-        GameTable gameTable(gameTablePosition, gameTableDimension);
-        // NOTE: everything that is drawn after the gameTable is positioned
-        // relatively to the gametables origin -> 0, 0, 0 would be in the upper
-        // left corner
-        gameTable.draw();
-
-        // print a cube
-        Point cubePosition(0.0f, 0.0f, 0.0f);
-        Dimension cubeDimension(0.5f, 0.5f, 0.5f);
-        Cube cube(cubePosition, cubeDimension);
-        cube.draw();
+        this->backGround.draw();
+        this->gameTable.draw();
+        this->scorePanel.draw();
+        this->letterShelf.draw();
     }
 
     /**
