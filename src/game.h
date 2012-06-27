@@ -40,9 +40,12 @@ namespace WordGL {
         void update();
 
     private:
-        unsigned int newLineInterval;
         void processInput();
         int getLetterIndex(char letter);
+        void addNewLine();
+        void updateInputQueue();
+        void updateScore();
+        void showGameOverScreen();
         Timer timer;
         Dictionary dict;
         Pane backGround;
@@ -50,6 +53,8 @@ namespace WordGL {
         ScorePanel scorePanel;
         LetterShelf letterShelf;
 		std::vector<char> inputQueue;
+        unsigned int newLineInterval;
+        unsigned int score;
         
     };
 

@@ -16,25 +16,5 @@
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#pragma once
 
-#include "point.h"
-#include "dimension.h"
-#include "glcube.h"
-
-namespace WordGL {
-        
-    class GameTable : public GLCube {
-
-    public:
-        GameTable(Point startPoint, Dimension dimension);
-        virtual ~GameTable();
-        void draw();
-        bool isGameOver();
-
-    private:
-
-        
-    };
-
-}
+#define LINE_UPDATE_INTERVAL 500000

@@ -38,6 +38,7 @@ namespace WordGL {
         {
         this->dict.load("resources/dict/dictionary.txt");
         this->newLineInterval = newLineInterval;
+        this->score = 0;
     }
 	
 	void Game::input(char c){
@@ -60,8 +61,14 @@ namespace WordGL {
 	}
 
     void Game::update() {
-
-        
+        if(this->timer.getTimeDiff() >= this->newLineInterval){
+            this->addNewLine();
+        }
+        if(this->gameTable.isGameOver()){
+            this->showGameOverScreen();
+        }
+        this->updateInputQueue();
+        this->updateScore();
         this->backGround.draw();
         this->gameTable.draw();
         this->scorePanel.draw();
@@ -84,6 +91,22 @@ namespace WordGL {
         } else {
             return 0;
         }
+    }
+
+    void Game::addNewLine() {
+
+    }
+
+    void Game::updateInputQueue() {
+
+    }
+
+    void Game::updateScore() {
+
+    }
+
+    void Game::showGameOverScreen() {
+
     }
 
 
