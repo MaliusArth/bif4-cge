@@ -24,6 +24,7 @@
 #include "lettershelf.h"
 #include "gametable.h"
 #include "pane.h"
+#include "timer.h"
 
 #include <vector>
 
@@ -32,21 +33,30 @@ namespace WordGL {
     class Game {
 
     public:
-        Game();
+        Game(unsigned int newLineInterval);
         ~Game();
         void start();
 		void input(char c);
-        void drawAll();
+        void update();
 
     private:
         void processInput();
         int getLetterIndex(char letter);
+        void addNewLine();
+        void updateInputQueue();
+        void updateScore();
+        void showGameOverScreen();
+        int calculateScore(std::vector<char> letters);
+        Timer timer;
         Dictionary dict;
         Pane backGround;
         GameTable gameTable;
         ScorePanel scorePanel;
         LetterShelf letterShelf;
 		std::vector<char> inputQueue;
+        int charPoints[26];
+        unsigned int newLineInterval;
+        int score;
         
     };
 

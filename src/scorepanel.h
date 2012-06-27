@@ -31,6 +31,10 @@ namespace WordGL{
         ScorePanel(Point startPoint, Dimension dimension);
         virtual ~ScorePanel();
         void draw();
+        void setScore(int score);
+
+    private:
+        int score;
     };
     
 }

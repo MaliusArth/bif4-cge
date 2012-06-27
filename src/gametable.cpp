@@ -36,6 +36,16 @@ namespace WordGL {
         glPopMatrix();
     }
 
+    void GameTable::addNewLine() {
+
+    }
+    
+    bool GameTable::isGameOver() {
+        // FIXME:
+        return false;
+    }
+
+
     
     GameTable::~GameTable() {
 

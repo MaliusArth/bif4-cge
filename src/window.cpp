@@ -32,6 +32,8 @@
 #include "window.h"
 #include "game.h"
 #include "wrappers.h"
+#include "settings.h"
+
 
 
 namespace WordGL {
@@ -45,7 +47,8 @@ namespace WordGL {
     * @param width The width of the window
     * @param height The height of the window
     */
-    Window::Window (int* argc, char** argv, const char* title, int width, int height){
+    Window::Window (int* argc, char** argv, const char* title, int width, int height):
+        game(LINE_UPDATE_INTERVAL){
         Window::windowInstance = this;
         this->title = title;
         // prevent division by 0
@@ -115,7 +118,7 @@ namespace WordGL {
                    3.0f, 0.0f, -3.5f,
                    0, 1.0f, -1.0f);
         // draw game objects
-        this->game.drawAll();
+        this->game.update();
         glutSwapBuffers();
     }
 
