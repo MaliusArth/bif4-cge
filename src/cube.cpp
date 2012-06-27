@@ -56,6 +56,13 @@ namespace WordGL {
             this->drawLeftSide(this->leftTextureId);
         }
 
+        this->setColor(0.5f, 1.0f, 1.0f);
+        if(this->rightTextureId == NULL){
+            this->drawRightSide();
+        } else {
+            this->drawRightSide(this->rightTextureId);
+        }
+        
         // front and back
         this->setColor(0.0f, 1.0f, 1.0f);
         if(this->frontTextureId == NULL){
