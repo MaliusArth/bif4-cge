@@ -35,7 +35,7 @@
 
 #define TEX_COUNT 27
 
-namespace textureLoader {
+namespace WordGL {
 
     class TextureLoader {
 

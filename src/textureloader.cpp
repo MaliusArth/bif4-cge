@@ -19,14 +19,15 @@
 #include <stdlib.h>
 #include <unistd.h>
 
-#include "textureLoader.h"
+#include "textureloader.h"
+#include <vector>
 
 
-namespace textureLoader {
+namespace WordGL {
     
     // initialize static member variable with null
     TextureLoader* TextureLoader::loaderInstance = NULL;
-    vector<Gluint> _textureId[]={};
+    std::vector<Gluint> _textureId[]={};
     /**
     * Creates the TextureLoader
     */

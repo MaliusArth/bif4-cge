@@ -1,4 +1,4 @@
-/**
+n/**
  *  WordGL
  *  Copyright (C) 2012  Bernhard Posselt <bernhard.posselt@gmx.at>
  *
@@ -34,6 +34,7 @@
 #include "wrappers.h"
 #include "gametable.h"
 #include "cube.h"
+#include "textureLoader.h"
 
 namespace WordGL {
     
