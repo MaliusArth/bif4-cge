@@ -19,6 +19,9 @@
 #include <iostream>
 
 #include "game.h"
+#include "gametable.h"
+#include "cube.h"
+
 
 namespace WordGL {
 
@@ -28,18 +31,6 @@ namespace WordGL {
     Game::Game():
         dict(3, 100){
         this->dict.load("resources/dict/dictionary.txt");
-    }
-
-    /**
-    * Starts the game
-    */
-    void Game::start(){
-        std::cout << this->dict.getRandomWord() << std::endl;
-    }
-
-
-    Game::~Game(){
-
     }
 	
 	void Game::input(char c){
@@ -60,4 +51,23 @@ namespace WordGL {
             std::cout << this->inputQueue[i] << std::endl;
         }
 	}
+
+    void Game::drawAll() {
+        // position the gameTable
+        Point gameTablePosition(0.0f, 0.0f, -8.0f);
+        Dimension gameTableDimension(6.0f, 8.0f, 0.5f);
+        GameTable gameTable(gameTablePosition, gameTableDimension);
+        gameTable.draw();
+
+        // print a cube
+        Point cubePosition(0.0f, 0.0f, 0.0f);
+        Dimension cubeDimension(0.5f, 0.5f, 0.5f);
+        Cube cube(cubePosition, cubeDimension);
+        cube.draw();
+    }
+
+    Game::~Game(){
+
+    }
+    
 }

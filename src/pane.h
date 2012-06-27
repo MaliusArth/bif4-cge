@@ -17,27 +17,21 @@
  */
 
 
-#include "gametable.h"
+#pragma once
+
+#include "glcube.h"
 
 namespace WordGL {
+    
+    class Pane: public GLCube {
 
-    GameTable::GameTable ( Point startPoint, Dimension dimension ){
-        this->setCoordsDimension(startPoint, dimension);
-    }
-
-    /**
-     * Draws the table at the coordinates with the given dimension
-     */
-    void GameTable::draw() {
-        this->move(this->startX, this->startY, this->startZ);
-        this->setColor(1.0f, 1.0f, 0.0f);
-        this->drawBottom();
-    }
-
+    public:
+        Pane(Point startPoint, Dimension dimension);
+        void draw();
+        virtual ~Pane();
+    };
 
     
-    GameTable::~GameTable() {
-
-    }
-
 }
+
+

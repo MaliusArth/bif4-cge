@@ -31,6 +31,7 @@ namespace WordGL {
         ~Game();
         void start();
 		void input(char c);
+        void drawAll();
 		
 
     private:

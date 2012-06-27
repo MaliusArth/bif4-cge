@@ -32,8 +32,6 @@
 #include "window.h"
 #include "game.h"
 #include "wrappers.h"
-#include "gametable.h"
-#include "cube.h"
 
 namespace WordGL {
     
@@ -100,28 +98,15 @@ namespace WordGL {
     * Displays the window
     */
     void Window::display(){
-        // game logic in here?
-        this->game.start();
-
+        // clear screen and position camera
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
         glMatrixMode(GL_MODELVIEW);
         glLoadIdentity();
         gluLookAt( 3.0f, 10.0f, 0.0f,
                    3.0f, 0.0f, -3.5f,
                    0, 1.0f, -1.0f);
-        
-        // position the gameTable
-        Point gameTablePosition(0.0f, 0.0f, -8.0f);
-        Dimension gameTableDimension(6.0f, 8.0f, 0.5f);
-        GameTable gameTable(gameTablePosition, gameTableDimension);
-        gameTable.draw();
 
-        // print a cube
-        Point cubePosition(0.0f, 0.0f, 0.0f);
-        Dimension cubeDimension(0.5f, 0.5f, 0.5f);
-        Cube cube(cubePosition, cubeDimension);
-        cube.draw();
-        
+        this->game.drawAll();        
         glutSwapBuffers();
     }
 

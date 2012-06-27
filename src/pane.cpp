@@ -17,26 +17,21 @@
  */
 
 
-#include "gametable.h"
+#include "pane.h"
 
 namespace WordGL {
 
-    GameTable::GameTable ( Point startPoint, Dimension dimension ){
+    Pane::Pane ( Point startPoint, Dimension dimension ) {
         this->setCoordsDimension(startPoint, dimension);
     }
 
-    /**
-     * Draws the table at the coordinates with the given dimension
-     */
-    void GameTable::draw() {
-        this->move(this->startX, this->startY, this->startZ);
-        this->setColor(1.0f, 1.0f, 0.0f);
+    
+    void Pane::draw() {
+        this->setColor(0.0f, 1.0f, 0.0f);
         this->drawBottom();
     }
 
-
-    
-    GameTable::~GameTable() {
+    Pane::~Pane() {
 
     }
 
