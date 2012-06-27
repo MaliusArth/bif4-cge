@@ -33,11 +33,12 @@
 #include "game.h"
 #include "wrappers.h"
 
+
 namespace WordGL {
     
     // initialize static member variable with null
     Window* Window::windowInstance = NULL;
-
+    
     /**
     * Creates the window
     * @param title The window title
@@ -66,13 +67,21 @@ namespace WordGL {
         glutInitWindowSize(this->width, this->height);
         glutInitWindowPosition(0, 0);
         this->window = glutCreateWindow(this->title);
+        
+        // initialize rendering	
+        glEnable(GL_DEPTH_TEST);
+        glEnable(GL_LIGHTING);
+        glEnable(GL_LIGHT0);
+        glEnable(GL_NORMALIZE);
+        glEnable(GL_COLOR_MATERIAL);
+        glEnable(GL_TEXTURE_2D);
+	
         glutDisplayFunc(&display_wrapper);
         glutReshapeFunc(&resize_wrapper);
         glutKeyboardFunc(&keyPressed_wrapper);
         glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
         glClearDepth(1.0);
         glDepthFunc(GL_LESS);
-        glEnable(GL_DEPTH_TEST);
         glShadeModel(GL_SMOOTH);
         this->resize(this->width, this->height);
         glutFullScreen();
@@ -91,7 +100,7 @@ namespace WordGL {
         glMatrixMode(GL_PROJECTION);
         glLoadIdentity();
         gluPerspective(45.0f, (GLfloat)width/(GLfloat)height, 0.1f, 100.0f);
-        glMatrixMode(GL_MODELVIEW);
+        glMatrixMode(GL_MODELVIEW);	//comment? viktor
     }
 
     /**
@@ -107,7 +116,6 @@ namespace WordGL {
                    0, 1.0f, -1.0f);
         // draw game objects
         this->game.drawAll();
-        
         glutSwapBuffers();
     }
 
@@ -135,7 +143,6 @@ namespace WordGL {
     Window* Window::getInstance(){
         return Window::windowInstance;
     }
-
 
     Window::~Window(){
 

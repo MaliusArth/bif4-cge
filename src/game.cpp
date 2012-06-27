@@ -22,7 +22,7 @@
 #include "gametable.h"
 #include "cube.h"
 #include "pane.h"
-
+#include "textureloader.h"
 
 namespace WordGL {
 

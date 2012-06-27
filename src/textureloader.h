@@ -1,6 +1,6 @@
 /**
  *  WordGL
- *  Copyright (C) 2012  Bernhard Posselt <bernhard.posselt@gmx.at>
+ *  Copyright (C) 2012  Viktor Was <viktor.was@technikum-wien.at>
  *
  *  This program is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -29,30 +29,25 @@
 #endif
 
 #include <stdlib.h>
-#include "game.h"
+#include <vector>
 
-#include "textureloader.h"
+#include "imageloader.h"
+
 
 namespace WordGL {
 
-    class Window {
+    class TextureLoader {
 
     public:
-        Window(int* argc, char** argv, const char* title, int width, int height);
-        ~Window();
-        void init();
-        void resize ( int width, int height );
-        void keyPressed(unsigned char key, int x, int y);
-        void display();
-        static Window* getInstance();
+        TextureLoader();
+        ~TextureLoader();
+        void initRendering();
+        GLuint loadMipmappedTexture(Image *image);
+        GLuint _textureId;
 
     private:
-        int window;
-        int width;
-        int height;
-        const char* title;
-        Game game;
-        static Window* windowInstance;
+
+        
     };
 
 }
