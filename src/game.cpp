@@ -41,5 +41,23 @@ namespace WordGL {
     Game::~Game(){
 
     }
-
+	
+	void Game::input(char c){
+		//If the input character is between aA-zZ
+		if((c >= 65 && c <= 90) || (c >= 97 && c <= 122)){
+			this->inputQueue.push_back(c);
+		}
+        
+        //If character is a carriage return -> Process the word
+        if(c == 13){
+            this->processInput();
+        }
+		
+	}
+	
+	void Game::processInput(){
+		for (unsigned int i=0; i < this->inputQueue.size(); i++) {
+            std::cout << this->inputQueue[i] << std::endl;
+        }
+	}
 }

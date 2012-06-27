@@ -19,6 +19,7 @@
 #pragma once
 
 #include <stdlib.h>
+#include "game.h"
 
 namespace WordGL {
 
@@ -38,6 +39,7 @@ namespace WordGL {
         int width;
         int height;
         const char* title;
+        Game game;
         static Window* windowInstance;
     };
 

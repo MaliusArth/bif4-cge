@@ -100,8 +100,7 @@ namespace WordGL {
     */
     void Window::display(){
         // game logic in here?
-        Game game;
-        game.start();
+        this->game.start();
 
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
         glMatrixMode(GL_MODELVIEW);
@@ -129,6 +128,8 @@ namespace WordGL {
             glutDestroyWindow(this->window);
             exit(0);
         }
+        
+        this->game.input(key);
     }
 
     /**

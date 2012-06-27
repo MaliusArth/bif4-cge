@@ -20,6 +20,7 @@
 #pragma once
 
 #include "dictionary.h"
+#include "vector.h"
 
 namespace WordGL {
     
@@ -29,10 +30,13 @@ namespace WordGL {
         Game();
         ~Game();
         void start();
+		void input(char c);
+		
 
     private:
         Dictionary dict;
-
+		vector<char> inputQueue;
+        void processInput();
     };
 
 }
