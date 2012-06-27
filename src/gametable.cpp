@@ -35,7 +35,6 @@ namespace WordGL {
         this->drawBottom();
     }
 
-
     
     GameTable::~GameTable() {
 
