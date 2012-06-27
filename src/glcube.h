@@ -20,6 +20,12 @@
 
 #include "globject.h"
 
+#ifdef __APPLE__
+    #include <OpenGL/gl.h>
+#else
+    #include <GL/gl.h>
+#endif
+
 namespace WordGL {
 
     class GLCube : public GLObject {
@@ -30,11 +36,17 @@ namespace WordGL {
 
     protected:
         void drawBottom();
+        void drawBottom(GLuint textureId);
         void drawTop();
+        void drawTop(GLuint textureId);
         void drawFrontSide();
+        void drawFrontSide(GLuint textureId);
         void drawRightSide();
+        void drawRightSide(GLuint textureId);
         void drawBackSide();
+        void drawBackSide(GLuint textureId);
         void drawLeftSide();
+        void drawLeftSide(GLuint textureId);
     };
    
 }

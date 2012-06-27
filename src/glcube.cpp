@@ -20,85 +20,96 @@
 
 #include "glcube.h"
 
+#ifdef __APPLE__
+    #include <OpenGL/gl.h>
+#else
+    #include <GL/gl.h>
+#endif
+
 namespace WordGL {
 
     GLCube::GLCube() {
 
     }
+
+    void GLCube::drawBottom(GLuint textureId) {
+        this->drawBottom();
+    }
     
     void GLCube::drawBottom() {
-        glBegin(GL_TRIANGLES);
+        glBegin(GL_QUADS);
         glVertex3f(0.0f, 0.0f, this->depth);
         glVertex3f(0.0f, 0.0f, 0.0f);
         glVertex3f(this->width, 0.0f, 0.0f);
-        glEnd();
-        glBegin(GL_TRIANGLES);
-        glVertex3f(this->width, 0.0f, 0.0f);
-        glVertex3f(0.0f, 0.0f, this->depth);
         glVertex3f(this->width, 0.0f, this->depth);
         glEnd();
     }
 
+    void GLCube::drawTop(GLuint textureId) {
+        // TODO: set texture
+        this->drawTop();
+    }
+    
     void GLCube::drawTop() {
-        glBegin(GL_TRIANGLES);
+        glBegin(GL_QUADS);
         glVertex3f(0.0f, 0.0f+this->height, this->depth);
         glVertex3f(0.0f, 0.0f+this->height, 0.0f);
         glVertex3f(this->width, 0.0f+this->height, 0.0f);
-        glEnd();
-        glBegin(GL_TRIANGLES);
-        glVertex3f(this->width, 0.0f+this->height, 0.0f);
-        glVertex3f(0.0f, 0.0f+this->height, this->depth);
         glVertex3f(this->width, 0.0f+this->height, this->depth);
         glEnd();
     }
 
+    void GLCube::drawFrontSide(GLuint textureId) {
+        // TODO: set texture
+        this->drawFrontSide();
+    }
+    
     void GLCube::drawFrontSide() {
-        glBegin(GL_TRIANGLES);
+        glBegin(GL_QUADS);
         glVertex3f(0.0f, 0.0f, 0.0f);
         glVertex3f(this->width, this->height, 0.0f);
         glVertex3f(0.0f, this->height, 0.0f);
-        glEnd();
-        glBegin(GL_TRIANGLES);
-        glVertex3f(0.0f, 0.0f, 0.0f);
         glVertex3f(this->width, 0.0f, 0.0f);
-        glVertex3f(this->width, this->height, 0.0f);
         glEnd();
+    }
+
+    void GLCube::drawBackSide(GLuint textureId) {
+        // TODO: set texture
+        this->drawBackSide();
     }
 
     void GLCube::drawBackSide() {
-        glBegin(GL_TRIANGLES);
+        glBegin(GL_QUADS);
         glVertex3f(0.0f, 0.0f, this->depth);
         glVertex3f(this->width, this->height, this->depth);
         glVertex3f(0.0f, this->height, this->depth);
-        glEnd();
-        glBegin(GL_TRIANGLES);
-        glVertex3f(0.0f, 0.0f, this->depth);
         glVertex3f(this->width, 0.0f, this->depth);
-        glVertex3f(this->width, this->height, this->depth);
         glEnd();
     }
 
+    void GLCube::drawLeftSide(GLuint textureId) {
+        // TODO: set texture
+        this->drawLeftSide();
+    }
+    
     void GLCube::drawLeftSide() {
-        glBegin(GL_TRIANGLES);
+        glBegin(GL_QUADS);
         glVertex3f(0.0f, 0.0f, 0.0f);
         glVertex3f(0.0f, 0.0f, this->depth);
-        glVertex3f(0.0f, this->height, this->depth);
-        glEnd();
-        glBegin(GL_TRIANGLES);
-        glVertex3f(0.0f, 0.0f, 0.0f);
         glVertex3f(0.0f, this->height, this->depth);
         glVertex3f(0.0f, this->height, 0.0f);
         glEnd();
     }
 
+    void GLCube::drawRightSide(GLuint textureId) {
+        // TODO: set texture
+        this->drawRightSide();
+    }
+    
     void GLCube::drawRightSide() {
-        glBegin(GL_TRIANGLES);
+        glBegin(GL_QUADS);
         glVertex3f(this->width, 0.0f, 0.0f);
         glVertex3f(this->width, 0.0f, this->depth);
-        glVertex3f(this->width, this->height, this->depth);
-        glEnd();
-        glBegin(GL_TRIANGLES);
-        glVertex3f(this->width, 0.0f, 0.0f);
         glVertex3f(this->width, this->height, this->depth);
         glVertex3f(this->width, this->height, 0.0f);
         glEnd();
