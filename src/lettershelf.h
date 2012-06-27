@@ -20,7 +20,7 @@
 
 #include "point.h"
 #include "dimension.h"
-#include "cube.h"
+#include "lettercube.h"
 #include <vector>
 
 namespace WordGL {
@@ -28,16 +28,17 @@ namespace WordGL {
     class LetterShelf: public GLCube {
 
     public:
-		LetterShelf();
         LetterShelf(Point startPoint, Dimension dimension);
         virtual ~LetterShelf();
 		void draw();
+		std::vector<char> clear();
 
     private:
-		std::vector<Cube> cubes;
-		void push(char c);
+		unsigned int max_letters;
+		std::vector<LetterCube> cubes;
+		void push(LetterCube cube);
 		void pop();
-		void clear();
+		
     };
 
 }
