@@ -1,4 +1,4 @@
-n/**
+/**
  *  WordGL
  *  Copyright (C) 2012  Bernhard Posselt <bernhard.posselt@gmx.at>
  *
@@ -34,7 +34,7 @@ n/**
 #include "wrappers.h"
 #include "gametable.h"
 #include "cube.h"
-#include "textureLoader.h"
+#include "textureloader.h"
 
 namespace WordGL {
     
@@ -78,8 +78,8 @@ namespace WordGL {
 	
 	//TODO: fix: undefined reference
 	//textureLoader::TextureLoader::getInstance()->initRendering();
-	textureLoader::TextureLoader *loader;
-	loader=textureLoader::TextureLoader::getInstance();
+	TextureLoader *loader;
+	loader=TextureLoader::getInstance();
 	loader->initRendering();
 	
         glutDisplayFunc(&display_wrapper);

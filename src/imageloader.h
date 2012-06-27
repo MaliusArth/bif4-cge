@@ -42,6 +42,7 @@ namespace WordGL {
             int height;
     };
     
+    //Reads a bitmap image from file.
     Image* loadBMP(const char* filename);
 }
 

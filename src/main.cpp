@@ -17,10 +17,11 @@
  */
 
 #include "window.h"
+#include "textureloader.h"
 
 int main(int argc, char **argv) {
   //create imageLoader and load images
-  textureLoader::TextureLoader myloader();
+  WordGL::TextureLoader myloader();
   //loader.initRendering();
   
   

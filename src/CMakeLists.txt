@@ -1,4 +1,4 @@
-add_executable(${APPLICATION_NAME} imageloader.cpp textureloader.cpp timer.cpp glcube.cpp cube.cpp globject.cpp dimension.cpp point.cpp gametable.cpp game.cpp dictionary.cpp wrappers.cpp window.cpp main.cpp)
+add_executable(${APPLICATION_NAME} timer.cpp glcube.cpp cube.cpp globject.cpp dimension.cpp point.cpp gametable.cpp game.cpp dictionary.cpp wrappers.cpp window.cpp imageloader.cpp textureloader.cpp main.cpp)
 
 # set up libraries to link
 find_package(GLUT)

@@ -45,7 +45,8 @@ namespace WordGL {
 	void initRendering();
 	GLuint loadMipmappedTexture(Image *image);
         static TextureLoader* getInstance();
-	std::vector<GLuint> _textureId;	//[TEX_COUNT]
+	//std::vector<GLuint> _textureId;	//[TEX_COUNT]
+	GLuint _textureId;
 
     private:
         static TextureLoader* loaderInstance;
