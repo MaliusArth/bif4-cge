@@ -20,11 +20,6 @@
 #include "textureloader.h"
 
 int main(int argc, char **argv) {
-  //create imageLoader and load images
-  WordGL::TextureLoader myloader();
-  //loader.initRendering();
-  
-  
   // create and launch window
   WordGL::Window window(&argc, argv, "WORD GL", 640, 480);
   window.init();
