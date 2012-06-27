@@ -77,6 +77,9 @@ namespace WordGL {
 	
 	//TODO: fix: undefined reference
 	//textureLoader::TextureLoader::getInstance()->initRendering();
+	textureLoader::TextureLoader *loader;
+	loader=textureLoader::TextureLoader::getInstance();
+	loader->initRendering();
 	
         glutDisplayFunc(&display_wrapper);
         glutReshapeFunc(&resize_wrapper);
