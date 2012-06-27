@@ -18,6 +18,7 @@
 
 
 #include "gametable.h"
+#include <vector>
 
 namespace WordGL {
 
@@ -45,6 +46,10 @@ namespace WordGL {
         return false;
     }
 
+    bool GameTable::containsCharacters ( std::vector characters ) {
+        // FIXME
+        return true;
+    }
 
     
     GameTable::~GameTable() {

@@ -78,7 +78,7 @@ namespace WordGL {
      * Checks if the word is in the dictionary
      * @return true if it contains the word, otherwise false
      */
-    bool Dictionary::containsWord ( const char* word ) {
+    bool Dictionary::containsWord (char* word ) {
         for(std::vector<std::string>::iterator wordIterator = this->database.begin();
             wordIterator != this->database.end();
             ++wordIterator){

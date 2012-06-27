@@ -57,15 +57,24 @@ namespace WordGL {
 	}
 	
 	void Game::processInput(){
-        // TODO:
-        // 0. clear inputshelf
-        // 1. check if input was on board
-        // 2. check if string is in dictionary
-        // if all correct: calculate score and add points
-        // if not, subtract score
-        
-		for (unsigned int i=0; i < this->inputQueue.size(); i++) {
-            std::cout << this->inputQueue[i] << std::endl;
+        std::vector<char> characters = this->letterShelf.clear();
+        std::string word;
+        for(unsigned int i=0; i<characters.size(); i++){
+            word.append(characters[i]);
+        }
+
+        bool valid = true;
+        if(!this->dict.containsWord(word.c_str())){
+            valid = false;
+        }
+        if(!this->gameTable.containsCharacters(characters)){
+            valid = false;
+        }
+            
+        if(valid){
+            this->score += this->calculateScore(characters);
+        } else {
+            this->score -= this->calculateScore(characters);
         }
 	}
 
