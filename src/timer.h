@@ -29,6 +29,7 @@ namespace WordGL {
         Timer();
         virtual ~Timer();
         time_t getTimeDiff();
+        void resetTimer();
 
     private:
         time_t lastTimeSnapshot;
