@@ -20,7 +20,7 @@
 #pragma once
 
 #include "dictionary.h"
-#include "vector.h"
+#include <vector>
 
 namespace WordGL {
     
@@ -35,7 +35,7 @@ namespace WordGL {
 
     private:
         Dictionary dict;
-		vector<char> inputQueue;
+		std::vector<char> inputQueue;
         void processInput();
     };
 

@@ -27,7 +27,7 @@ namespace WordGL {
     }
 
     /**
-     * Returns the number of miliseconds that have passed since the last lookup
+     * Returns the number of miliseconds that have passed since the last reset
      * @return the miliseconds passed since last lookup
      */
     time_t Timer::getTimeDiff() {
