@@ -35,13 +35,15 @@ namespace WordGL {
     class TextureLoader {
 
     public:
-        TextureLoader(std::string path);
+        static TextureLoader* getInstance();
         ~TextureLoader();
         void loadMipmappedTexture(Image *image, std::string filename);
         GLuint getTextureId(std::string key);
 
     private:
+        TextureLoader(std::string path);
         std::map<std::string, GLuint> textureIds;
+        static TextureLoader* loaderInstance;
         
     };
 

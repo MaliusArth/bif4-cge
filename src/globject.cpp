@@ -30,8 +30,6 @@
 
 namespace WordGL {
 
-    TextureLoader GLObject::textureLoader = TextureLoader( std::string("resources/textures/"));
-
     GLObject::GLObject() {
 
     }

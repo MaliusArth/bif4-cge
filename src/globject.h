@@ -41,7 +41,6 @@ namespace WordGL {
     protected:
         void setCoordsDimension(Point startPoint, Dimension dimension);
         void move(GLfloat xCoord, GLfloat yCoord, GLfloat zCoord);
-        static TextureLoader textureLoader;
         GLfloat startX;
         GLfloat startY;
         GLfloat startZ;

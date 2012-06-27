@@ -38,12 +38,21 @@
 
 namespace WordGL {
 
+    TextureLoader* TextureLoader::loaderInstance = NULL;
+
+    TextureLoader* TextureLoader::getInstance(){
+        if(TextureLoader::loaderInstance == NULL){
+            TextureLoader::loaderInstance = new TextureLoader(std::string("resources/textures/"));
+        }
+        return TextureLoader::loaderInstance;
+    }
+    
     TextureLoader::TextureLoader(std::string path){
         std::cout << path << std::endl;
         DIR *dp;
         struct dirent *dirp;
         if((dp  = opendir(path.c_str())) == NULL) {
-            std::cout << "Error(" << errno << ") opening " << path << std::endl;
+            std::cerr << "Error(" << errno << ") opening " << path << std::endl;
             //return errno;
         }
 
@@ -72,15 +81,18 @@ namespace WordGL {
         GLuint textureId;
         glGenTextures(1, &textureId);
         glBindTexture(GL_TEXTURE_2D, textureId);
-	
+
+        if(image->pixels == NULL)
+            std::cout << "hi";
+        
 	//Segmentation fault
-        gluBuild2DMipmaps(GL_TEXTURE_2D,
+        /*gluBuild2DMipmaps(GL_TEXTURE_2D,
 					  GL_RGB,
 					  image->width, image->height,
 					  GL_RGB,
 					  GL_UNSIGNED_BYTE,
 					  image->pixels);
-        
+        */
         // push filename and id into vector
         //TODO:uncomment: typedef std::pair<std::string, GLuint> stringIdPair;
         //TODO:uncomment: this->textureIds.insert(stringIdPair(filename, textureId));
