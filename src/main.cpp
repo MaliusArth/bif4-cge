@@ -21,6 +21,6 @@
 int main(int argc, char **argv) {
     // create and launch window
     WordGL::Window window(&argc, argv, "WORD GL", 640, 480);
-    window.init();;
+    window.init();
     return 0;
 }
