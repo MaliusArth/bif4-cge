@@ -62,16 +62,18 @@ namespace WordGL {
                 image->pixels);
         
         // push filename and id into vector
-        std::pair<std::string, GLuint> hashPair;
+        typedef std::pair<std::string, GLuint> stringIdPair;
         // TODO: get filename of *image
         // std::string filename = image->getFileName();
         std::string filename("");
-        hashPair = make_pair(filename, textureId);
         
-        this->textureIds.insert(hashPair);
+        this->textureIds.insert(stringIdPair(filename, textureId));
         delete image;
     }
 
+    GLuint TextureLoader::getTextureId ( std::string key ) {
+        return this->textureIds.find(key)->second;
+    }
 
 
     TextureLoader::~TextureLoader(){

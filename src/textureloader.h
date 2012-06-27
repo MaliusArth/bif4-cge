@@ -39,6 +39,7 @@ namespace WordGL {
         ~TextureLoader();
         void loadTexturesFromDirectory(const char* path);
         void loadMipmappedTexture(Image *image);
+        GLuint getTextureId(std::string key);
 
     private:
         std::map<std::string, GLuint> textureIds;
