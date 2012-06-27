@@ -17,9 +17,7 @@
  */
 
 
-#include "lettershelf.h"
-#include "dimension.h"
-#include "point.h"
+#include "lettercube.h"
 
 #ifdef __APPLE__
     #include <OpenGL/gl.h>
@@ -28,38 +26,18 @@
 #endif
 
 namespace WordGL {
-	
-    LetterShelf::LetterShelf(Point startPoint, Dimension dimension) {
-        this->setCoordsDimension(startPoint, dimension);
-		this->max_letters = max_letters;
+
+    LetterCube::LetterCube ( Point startPoint, Dimension dimension, GLuint textureId, char letter): Cube(startPoint,dimension) {
+		this->setTopTextureId(textureId);
+		this->letter = letter;
     }
 
-	LetterShelf::~LetterShelf() {
-
-    }
-	
-	void LetterShelf::push(LetterCube cube){
-		
-	}
-	
-	void LetterShelf::pop(){
-		
-	}	
-	
-	std::vector<char> LetterShelf::clear(){
-		std::vector<char> ret;
-		for(unsigned int i = 0; i < this->cubes.size(); i++){
-			ret.push_back(this->cubes[i].getLetter());
-		}
-		
-		return ret;
+	char LetterCube::getLetter(){
+		return this->letter;
 	}
 
-    void LetterShelf::draw() {
-		glPushMatrix();
-        this->move(this->startX, this->startY, this->startZ);
-        this->setColor(1.0f, 1.0f, 1.0f);
-        this->drawBottom();
-        glPopMatrix();
+    LetterCube::~LetterCube() {
+
     }
+
 }

@@ -35,7 +35,7 @@ namespace WordGL {
         backGround(Point(-32.0f, -0.01f, -32.0f), Dimension(64.0f, 64.0f, 64.0f)),
         gameTable(Point(0.0f, 0.0f, -8.0f), Dimension(6.0f, 8.0f, 0.5f)),
         scorePanel(Point(0.0f, 0.0f, -8.0f), Dimension(6.0f, 8.0f, 0.5f)),
-        letterShelf(Point(0.0f, 0.0f, -8.0f), Dimension(6.0f, 8.0f, 0.5f))
+        letterShelf(Point(0.0f, 0.0f, -0.5f), Dimension(6.0f, 8.0f, 0.5f))
         {
         this->dict.load("resources/dict/dictionary.txt");
         this->newLineInterval = newLineInterval;
