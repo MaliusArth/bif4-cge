@@ -16,13 +16,33 @@
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-
-#pragma once
+#include "cube.h"
 
 namespace WordGL {
+    
+    Cube::Cube ( Point startPoint, Dimension dimension ) {
+        this->setCoordsDimension(startPoint, dimension);
+    }
 
-    void display_wrapper();
-    void resize_wrapper(int width, int height);
-    void keyPressed_wrapper(unsigned char key, int x, int y);
+    void Cube::draw() {
+        this->move(this->startX, this->startY, this->startZ);
+        this->setColor(0.3f, 1.0f, 0.1f);
+        this->drawTop();
+        this->drawBottom();
+        this->setColor(0.5f, 1.0f, 0.1f);
+        this->drawFrontSide();
+        this->drawBackSide();
+        this->setColor(0.0f, 1.0f, 0.7f);
+        this->drawLeftSide();
+        this->drawRightSide();
+    }
 
+    
+    Cube::~Cube() {
+
+    }
+    
 }
+
+
+

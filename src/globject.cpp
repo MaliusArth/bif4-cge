@@ -1,5 +1,5 @@
-/*
- *  WordGL                                                        *
+/**
+ *  WordGL
  *  Copyright (C) 2012  Bernhard Posselt <bernhard.posselt@gmx.at>
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -32,8 +32,21 @@ namespace WordGL {
 
     }
 
+    void GLObject::setCoordsDimension ( Point startPoint, Dimension dimension ) {
+        this->startX = startPoint.getXCoord();
+        this->startY = startPoint.getYCoord();
+        this->startZ = startPoint.getZCoord();
+        this->width = dimension.getWidth();
+        this->depth = dimension.getDepth();
+        this->height = dimension.getHeight();
+    }
+
     void GLObject::setColor ( GLfloat red, GLfloat green, GLfloat blue ) {
         glColor3f(red, green, blue);
+    }
+
+    void GLObject::move ( GLfloat xCoord, GLfloat yCoord, GLfloat zCoord) {
+        glTranslatef(xCoord, yCoord, zCoord);
     }
 
     

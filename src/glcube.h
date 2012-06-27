@@ -16,13 +16,27 @@
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-
 #pragma once
+
+#include "globject.h"
 
 namespace WordGL {
 
-    void display_wrapper();
-    void resize_wrapper(int width, int height);
-    void keyPressed_wrapper(unsigned char key, int x, int y);
+    class GLCube : public GLObject {
 
+    public:
+        GLCube();
+        virtual ~GLCube();
+
+    protected:
+        void drawBottom();
+        void drawTop();
+        void drawFrontSide();
+        void drawRightSide();
+        void drawBackSide();
+        void drawLeftSide();
+    };
+   
 }
+
+

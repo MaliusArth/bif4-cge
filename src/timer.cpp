@@ -17,12 +17,31 @@
  */
 
 
-#pragma once
+#include "timer.h"
+#include <ctime>
 
 namespace WordGL {
 
-    void display_wrapper();
-    void resize_wrapper(int width, int height);
-    void keyPressed_wrapper(unsigned char key, int x, int y);
+    Timer::Timer() {
+        this->lastTimeSnapshot = time(NULL) * 1000;
+    }
 
+    /**
+     * Returns the number of miliseconds that have passed since the last lookup
+     * @return the miliseconds passed since last lookup
+     */
+    time_t Timer::getTimeDiff() {
+        t_time currentTime = time(NULL)*1000;
+        t_time diffTime = currentTime - this->lastTimeSnapshot;
+        this->lastTimeSnapshot = currentTime;
+        return diffTime;
+    }
+
+    
+    Timer::~Timer() {
+        
+    }
+    
 }
+
+

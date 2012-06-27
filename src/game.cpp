@@ -1,5 +1,5 @@
-/*
- *  WordGL                                                        *
+/**
+ *  WordGL
  *  Copyright (C) 2012  Bernhard Posselt <bernhard.posselt@gmx.at>
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -27,7 +27,7 @@ namespace WordGL {
     */
     Game::Game():
         dict(3, 100){
-        this->dict.load("media/dictionary.txt");
+        this->dict.load("resources/dict/dictionary.txt");
     }
 
     /**

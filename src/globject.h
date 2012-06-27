@@ -1,5 +1,5 @@
-/*
- *  WordGL                                                        *
+/**
+ *  WordGL
  *  Copyright (C) 2012  Bernhard Posselt <bernhard.posselt@gmx.at>
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -25,6 +25,9 @@
     #include <GL/gl.h>
 #endif
 
+#include "point.h"
+#include "dimension.h"
+
 namespace WordGL {
 
     class GLObject {
@@ -33,6 +36,16 @@ namespace WordGL {
         GLObject();
         virtual ~GLObject();
         void setColor(GLfloat red, GLfloat green, GLfloat blue);
+
+    protected:
+        void setCoordsDimension(Point startPoint, Dimension dimension);
+        void move(GLfloat xCoord, GLfloat yCoord, GLfloat zCoord);
+        GLfloat startX;
+        GLfloat startY;
+        GLfloat startZ;
+        GLfloat width;
+        GLfloat height;
+        GLfloat depth;
         
     };
 

@@ -1,5 +1,5 @@
-/*
- *  WordGL                                                        *
+/**
+ *  WordGL
  *  Copyright (C) 2012  Bernhard Posselt <bernhard.posselt@gmx.at>
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -30,6 +30,7 @@ namespace WordGL {
         Dictionary(int minLength, int maxLength);
         ~Dictionary();
         void load(const char* path);
+        bool containsWord(const char* word);
         std::string getRandomWord();
 
     private:

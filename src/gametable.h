@@ -1,5 +1,5 @@
-/*
- *  WordGL                                                        *
+/**
+ *  WordGL
  *  Copyright (C) 2012  Bernhard Posselt <bernhard.posselt@gmx.at>
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -16,16 +16,15 @@
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-
 #pragma once
 
 #include "point.h"
 #include "dimension.h"
-#include "globject.h"
+#include "glcube.h"
 
 namespace WordGL {
         
-    class GameTable : GLObject {
+    class GameTable : public GLCube {
 
     public:
         GameTable(Point startPoint, Dimension dimension);
@@ -33,17 +32,7 @@ namespace WordGL {
         virtual ~GameTable();
 
     private:
-        void drawBottom();
-        void drawFrontSide();
-        void drawRightSide();
-        void drawBackSide();
-        void drawLeftSide();
-        GLfloat startX;
-        GLfloat startY;
-        GLfloat startZ;
-        GLfloat width;
-        GLfloat height;
-        GLfloat depth;
+
         
     };
 

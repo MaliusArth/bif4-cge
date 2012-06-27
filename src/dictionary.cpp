@@ -1,5 +1,5 @@
-/*
- *  WordGL                                                        *
+/**
+ *  WordGL
  *  Copyright (C) 2012  Bernhard Posselt <bernhard.posselt@gmx.at>
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -23,13 +23,14 @@
 #include <iostream>
 #include <cstdlib>
 #include <time.h>
+#include <cstring>
 
 #include "dictionary.h"
 
 namespace WordGL {
 
     /**
-    * Initializes the dictionairy
+    * Initializes the dictionary
     * @param minLength The minimum length for a word to be read in
     * @param maxLength The maximum length for a word to be read in
     */
@@ -40,7 +41,7 @@ namespace WordGL {
 
     /**
     * Reads in the file and builds the database
-    * @param path The path to the dictionairy file
+    * @param path The path to the dictionary file
     */
     void Dictionary::load(const char* path){
         std::ifstream input(path);
@@ -53,13 +54,13 @@ namespace WordGL {
                 }
             }
         } else {
-            std::cerr << "Could not open dictionairy file " << path << std::endl;
+            std::cerr << "Could not open dictionary file " << path << std::endl;
             exit(1);
         }
     }
 
     /**
-    * Returns a random word from the dictionairy
+    * Returns a random word from the dictionary
     * @return the random word
     */
     std::string Dictionary::getRandomWord(){
@@ -72,6 +73,22 @@ namespace WordGL {
             return "none";
         }
     }
+
+    /**
+     * Checks if the word is in the dictionary
+     * @return true if it contains the word, otherwise false
+     */
+    bool Dictionary::containsWord ( const char* word ) {
+        for(std::vector<std::string>::iterator wordIterator = this->database.begin();
+            wordIterator != this->database.end();
+            ++wordIterator){
+            if((*wordIterator).compare(word) != 0){
+                return true;
+            }
+        }
+        return false;
+    }
+
 
     Dictionary::~Dictionary(){
 

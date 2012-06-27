@@ -1,17 +1,17 @@
-/*
- *  WordGL                                                        *
+/**
+ *  WordGL
  *  Copyright (C) 2012  Bernhard Posselt <bernhard.posselt@gmx.at>
- * 
+ *
  *  This program is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
  *  the Free Software Foundation, either version 3 of the License, or
  *  (at your option) any later version.
- * 
+ *
  *  This program is distributed in the hope that it will be useful,
  *  but WITHOUT ANY WARRANTY; without even the implied warranty of
  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  *  GNU General Public License for more details.
- * 
+ *
  *  You should have received a copy of the GNU General Public License
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
@@ -33,6 +33,7 @@
 #include "game.h"
 #include "wrappers.h"
 #include "gametable.h"
+#include "cube.h"
 
 namespace WordGL {
     
@@ -105,12 +106,21 @@ namespace WordGL {
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
         glMatrixMode(GL_MODELVIEW);
         glLoadIdentity();
-
+        gluLookAt( 3.0f, 10.0f, 0.0f,
+                   3.0f, 0.0f, -3.5f,
+                   0, 1.0f, -1.0f);
+        
         // position the gameTable
-        Point gameTablePosition(-2.0f, -2.0f, -8.0f);
-        Dimension gameTableDimension(4.0f, 8.0f, .2f);
+        Point gameTablePosition(0.0f, 0.0f, -8.0f);
+        Dimension gameTableDimension(6.0f, 8.0f, 0.5f);
         GameTable gameTable(gameTablePosition, gameTableDimension);
         gameTable.draw();
+
+        // print a cube
+        Point cubePosition(0.0f, 0.0f, 0.0f);
+        Dimension cubeDimension(0.5f, 0.5f, 0.5f);
+        Cube cube(cubePosition, cubeDimension);
+        cube.draw();
         
         glutSwapBuffers();
     }
