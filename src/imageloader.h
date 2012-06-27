@@ -41,7 +41,8 @@ namespace WordGL {
             int width;
             int height;
     };
-
+    
+    Image* loadBMP(const char* filename);
 }
 
 

@@ -16,18 +16,29 @@
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+#ifdef __APPLE__
+    #include <GLUT/glut.h>
+    #include <OpenGL/gl.h>
+    #include <OpenGL/glu.h>
+#else
+    #include <GL/glut.h>
+    #include <GL/gl.h>
+    #include <GL/glu.h>
+#endif
+
 #include <stdlib.h>
 #include <unistd.h>
+#include <vector>
 
 #include "textureloader.h"
-#include <vector>
+#include "imageloader.h"
 
 
 namespace WordGL {
     
     // initialize static member variable with null
     TextureLoader* TextureLoader::loaderInstance = NULL;
-    std::vector<Gluint> _textureId[]={};
+    std::vector<GLuint> _textureId[]={};
     /**
     * Creates the TextureLoader
     */
@@ -38,17 +49,17 @@ namespace WordGL {
     //NOTICE: load multiple at once with glGenTextures(TEX_COUNT, &_textureId[0]);
     //Makes the image into a mipmapped texture, and returns the id of the texture
     GLuint loadMipmappedTexture(Image *image) {
-      GLuint textureId;
-      glGenTextures(1, &textureId);
-      glBindTexture(GL_TEXTURE_2D, textureId);
-      gluBuild2DMipmaps(GL_TEXTURE_2D,
-			  GL_RGB,
-			  image->width, image->height,
-			  GL_RGB,
-			  GL_UNSIGNED_BYTE,
-			  image->pixels);
+	GLuint textureId;
+	glGenTextures(1, &textureId);
+	glBindTexture(GL_TEXTURE_2D, textureId);
+	gluBuild2DMipmaps(GL_TEXTURE_2D,
+			GL_RGB,
+			image->width, image->height,
+			GL_RGB,
+			GL_UNSIGNED_BYTE,
+			image->pixels);
 	return textureId;
-}
+    }
 
     //TODO: load multiple at once
     //Initializes rendering (enables macros) and creates textures
@@ -65,7 +76,7 @@ namespace WordGL {
 	//TODO: multiples with wrapper method with loop;
 	//NOTICE: DONT CHANGE loadBMP ==>dont change loadMipmappedTexture either!
 	Image* image = loadBMP("a.bmp");
-	_textureId.push_back(TextureLoader::loadMipmappedTexture(image));
+	_textureId.push_back(loadMipmappedTexture(image));
 	delete image;
     }
 
