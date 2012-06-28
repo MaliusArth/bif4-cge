@@ -16,6 +16,11 @@
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+#ifdef __APPLE__
+    #include <OpenGL/gl.h>
+#else
+    #include <GL/gl.h>
+#endif
 
 #include "gametablelettercube.h"
 #include "lettercube.h"
@@ -24,20 +29,24 @@
 
 namespace WordGL {
 
-    GameTableLetterCube::GameTableLetterCube(Point startPoint, Dimension dimension, char letter):
+    GameTableLetterCube::GameTableLetterCube(Point startPoint, Dimension dimension, char letter, GLfloat cubeUnit):
         LetterCube(startPoint, dimension, letter){
         this->column = 0;
         this->row = 0;
-
+        this->cubeUnit = cubeUnit;
     }
 
     unsigned int GameTableLetterCube::getColumn() {
         return this->column;
     }
 
+    unsigned int GameTableLetterCube::getRow() {
+        return this->row;
+    }
+    
     void GameTableLetterCube::incrementRow() {
         this->row += 1;
-        // TODO: adjust coords
+        this->startX += this->cubeUnit;
     }
 
     

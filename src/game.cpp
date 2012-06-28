@@ -90,6 +90,7 @@ namespace WordGL {
 	}
 
     void Game::update() {
+        this->gameTable.getRandomCharacter();
         if(this->timer.getTimeDiff() >= this->newLineInterval){
             this->timer.resetTimer();
             this->gameTable.addNewLine();

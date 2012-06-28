@@ -25,7 +25,11 @@
 #include "dimension.h"
 #include "gametablelettercube.h"
 
+#include <ctime>
+#include <cstdlib>
+#include <cmath>
 #include <vector>
+#include <iostream>
 
 namespace WordGL {
 
@@ -59,13 +63,14 @@ namespace WordGL {
         for(unsigned int i=0; i<this->columns; i++){
             Point startPoint(i*this->rowUnit, 0.0f, i*this->rowUnit);
             Dimension dimension(this->rowUnit, this->rowUnit, 0.5f);
-            GameTableLetterCube* letterCube = new GameTableLetterCube(startPoint, dimension, this->getRandomCharacter());
+            GameTableLetterCube* letterCube =
+                new GameTableLetterCube(startPoint, dimension, this->getRandomCharacter(), this->rowUnit);
             this->letterCubes.push_back(letterCube);
         }
         
 
         // check if the oldest element exceeds the maximum length
-        if(this->letterCubes[0]->getColumn() >= this->columns){
+        if(this->letterCubes[0]->getRow() >= this->rows){
             this->longerThanMaximum = true;
         }
     }
@@ -74,7 +79,48 @@ namespace WordGL {
      * Get a random character based on the probability of the letter
      */
     char GameTable::getRandomCharacter() {
-        return 'a';
+        // default random character
+        char randomChar = 'a';
+        // store letter frequency
+        double letterFrequency[26];
+        letterFrequency[0] = 0.0816;
+        letterFrequency[1] = 0.0149;
+        letterFrequency[2] = 0.0278;
+        letterFrequency[3] = 0.0425;
+        letterFrequency[4] = 0.1270;
+        letterFrequency[5] = 0.0228;
+        letterFrequency[6] = 0.0202;
+        letterFrequency[7] = 0.0609;
+        letterFrequency[8] = 0.0697;
+        letterFrequency[9] = 0.0015;
+        letterFrequency[10] = 0.0074;
+        letterFrequency[11] = 0.0402;
+        letterFrequency[12] = 0.0251;
+        letterFrequency[13] = 0.0674;
+        letterFrequency[14] = 0.0750;
+        letterFrequency[15] = 0.0192;
+        letterFrequency[16] = 0.0009;
+        letterFrequency[17] = 0.0598;
+        letterFrequency[18] = 0.0633;
+        letterFrequency[19] = 0.0905;
+        letterFrequency[20] = 0.0275;
+        letterFrequency[21] = 0.0103;
+        letterFrequency[22] = 0.0246;
+        letterFrequency[23] = 0.0015;
+        letterFrequency[24] = 0.0197;
+        letterFrequency[25] = 0.0007;
+        
+        int randomNumber = rand() % 10000;
+
+        double lastProbability = 0.0;
+        for(int i=0; i<26; i++){
+            lastProbability += letterFrequency[i];
+            if(randomNumber <= floor(lastProbability*10000)){
+                randomChar = 97 + i;
+                break;
+            }
+        }
+        return randomChar;
     }
 
     bool GameTable::isGameOver() {

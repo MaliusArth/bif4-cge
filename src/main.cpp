@@ -18,10 +18,14 @@
 
 #include "window.h"
 #include "textureloader.h"
+#include <ctime>
 
 int main(int argc, char **argv) {
-  // create and launch window
-  WordGL::Window window(&argc, argv, "WORD GL", 640, 480);
-  window.init();
-  return 0;
+    // initalize the random number generator
+    srand( time(NULL) );
+    
+    // create and launch window
+    WordGL::Window window(&argc, argv, "WORD GL", 640, 480);
+    window.init();
+    return 0;
 }

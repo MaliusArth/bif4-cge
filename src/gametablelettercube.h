@@ -18,23 +18,33 @@
 
 
 #pragma once
+
+#ifdef __APPLE__
+    #include <OpenGL/gl.h>
+#else
+    #include <GL/gl.h>
+#endif
+
 #include "lettercube.h"
 #include "dimension.h"
 #include "point.h"
+
 
 namespace WordGL {
     
     class GameTableLetterCube: public LetterCube {
 
     public:
-        GameTableLetterCube(Point startPoint, Dimension dimension, char letter);
+        GameTableLetterCube(Point startPoint, Dimension dimension, char letter, GLfloat cubeUnit);
         virtual ~GameTableLetterCube();
         unsigned int getColumn();
+        unsigned int getRow();
         void incrementRow();
 
     private:
         int column;
         int row;
+        GLfloat cubeUnit;
     };
     
 }
