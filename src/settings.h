@@ -18,7 +18,7 @@
 
 
 // miliseconds until the next row appears
-#define LINE_UPDATE_INTERVAL 500000
+#define LINE_UPDATE_INTERVAL 5000
 
 // min and max word length from the dictionary and typing
 #define WORD_MIN_LENGTH 3
