@@ -70,7 +70,6 @@ namespace WordGL {
             }
         }
         closedir(dp);
-        //return 0;
     }
 
 
@@ -83,21 +82,16 @@ namespace WordGL {
         GLuint textureId;
         glGenTextures(1, &textureId);
         glBindTexture(GL_TEXTURE_2D, textureId);
-
-        if(image->pixels == NULL)
-            std::cout << "hi";
-        
-	//Segmentation fault
-        /*gluBuild2DMipmaps(GL_TEXTURE_2D,
+        gluBuild2DMipmaps(GL_TEXTURE_2D,
 					  GL_RGB,
 					  image->width, image->height,
 					  GL_RGB,
 					  GL_UNSIGNED_BYTE,
 					  image->pixels);
-        */
+        
         // push filename and id into vector
-        //TODO:uncomment: typedef std::pair<std::string, GLuint> stringIdPair;
-        //TODO:uncomment: this->textureIds.insert(stringIdPair(filename, textureId));
+        typedef std::pair<std::string, GLuint> stringIdPair;
+        this->textureIds.insert(stringIdPair(filename, textureId));
     }
 
     GLuint TextureLoader::getTextureId ( std::string key ) {
