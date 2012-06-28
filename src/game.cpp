@@ -21,7 +21,6 @@
 #include "game.h"
 #include "settings.h"
 #include "gametable.h"
-#include "cube.h"
 #include "pane.h"
 #include "textureloader.h"
 #include <cstdlib>

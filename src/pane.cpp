@@ -18,11 +18,13 @@
 
 
 #include "pane.h"
+#include "dimension.h"
+#include "point.h"
+#include "glcube.h"
 
 namespace WordGL {
 
-    Pane::Pane ( Point startPoint, Dimension dimension ) {
-        this->setCoordsDimension(startPoint, dimension);
+    Pane::Pane ( Point startPoint, Dimension dimension ): GLCube(startPoint, dimension) {
     }
 
     
