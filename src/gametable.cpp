@@ -35,7 +35,6 @@ namespace WordGL {
      * Draws the table at the coordinates with the given dimension
      */
     void GameTable::draw() {
-        TextureLoader* textureLoader = TextureLoader::getInstance();
         glPushMatrix();
         this->move(this->startX, this->startY, this->startZ);
         this->setColor(1.0f, 0.0f, 0.0f);
