@@ -40,7 +40,7 @@ namespace WordGL {
 	void LetterCube::setLetter(char letter){
         this->letter = letter;
         std::string textureName("");
-        textureName += letter;
+        textureName += this->letter;
 		this->setTopTexture(textureName);
 	}
 

@@ -48,11 +48,12 @@ namespace WordGL {
 	void Game::input(char character){
         // convert upper to lowercase characters
 		if(character >= 97 && character <= 122){
-            character -= 32;
+            this->letterShelf.push(character);
+            
         }
 
 		if(character >= 65 && character <= 90){
-			this->letterShelf.push(character);
+            character += 32;
 		}
         
 		//if backspace or entf was pressed
@@ -84,7 +85,7 @@ namespace WordGL {
         }
         
         if(valid){
-            this->gameTable.removeWord(characters);
+            //this->gameTable.removeWord(characters);
             
             //this->scorePanel.addScore(this->calculateScore(characters));
         } else {
