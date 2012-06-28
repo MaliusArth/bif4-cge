@@ -89,7 +89,7 @@ namespace WordGL {
             this->showGameOverScreen();
         }
         // draw objects
-        //this->backGround.draw();
+        this->backGround.draw();
         this->gameTable.draw();
         this->scorePanel.draw();
         this->letterShelf.draw();
