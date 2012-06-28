@@ -34,7 +34,15 @@ namespace WordGL {
         this->score = score;
     }
 
+    void ScorePanel::addScore ( int score ) {
+        this->score += score;
+    }
 
+    int ScorePanel::getScore() {
+        return this->score;
+    }
+
+    
     void ScorePanel::draw() {
 
     }

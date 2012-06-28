@@ -40,7 +40,6 @@ namespace WordGL {
         {
         this->dict.load(DICTIONARY_PATH);
         this->newLineInterval = newLineInterval;
-        this->score = 0;
         this->addNewLine();
         this->initLetterPoints();
     }
@@ -74,9 +73,9 @@ namespace WordGL {
         }
             
         if(valid){
-            this->score += this->calculateScore(characters);
+            this->scorePanel.addScore(this->calculateScore(characters));
         } else {
-            this->score -= this->calculateScore(characters);
+            this->scorePanel.addScore(-this->calculateScore(characters));
         }
 	}
 
@@ -85,10 +84,9 @@ namespace WordGL {
             this->timer.resetTimer();
             this->addNewLine();
         }
-        if(this->gameTable.isGameOver() || score < 0){
+        if(this->gameTable.isGameOver() || this->scorePanel.getScore() < 0){
             this->showGameOverScreen();
         }
-        this->updateScore();
         // draw objects
         this->backGround.draw();
         this->gameTable.draw();
@@ -116,10 +114,6 @@ namespace WordGL {
 
     void Game::addNewLine() {
         this->gameTable.addNewLine();
-    }
-
-    void Game::updateScore() {
-        this->scorePanel.setScore(this->score);
     }
 
     void Game::showGameOverScreen() {

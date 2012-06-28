@@ -43,8 +43,6 @@ namespace WordGL {
         void processInput();
         int getLetterIndex(char letter);
         void addNewLine();
-        void updateInputQueue();
-        void updateScore();
         void showGameOverScreen();
         void initLetterPoints();
         int calculateScore(std::vector<char> letters);
@@ -57,7 +55,6 @@ namespace WordGL {
 		std::vector<char> inputQueue;
         int charPoints[26];
         unsigned int newLineInterval;
-        int score;
         
     };
 

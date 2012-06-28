@@ -32,7 +32,9 @@ namespace WordGL{
         virtual ~ScorePanel();
         void draw();
         void setScore(int score);
-
+        void addScore(int score);
+        int getScore();
+        
     private:
         int score;
     };
