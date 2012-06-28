@@ -24,6 +24,8 @@
 #include <cstdlib>
 #include <time.h>
 #include <cstring>
+#include <algorithm>
+
 
 #include "dictionary.h"
 
@@ -77,14 +79,18 @@ namespace WordGL {
      * Checks if the word is in the dictionary
      * @return true if it contains the word, otherwise false
      */
-    bool Dictionary::containsWord ( const char* word ) {
+    bool Dictionary::containsWord ( std::string word ) {
         for(std::vector<std::string>::iterator wordIterator = this->database.begin();
             wordIterator != this->database.end();
             ++wordIterator){
-            if((*wordIterator).compare(word) != 0){
+            std::string dictWord = *wordIterator;
+            std::transform(dictWord.begin(), dictWord.end(), dictWord.begin(), ::toupper);
+            if(dictWord.compare(word) == 0){
+                std::cout << word << " is in the dictionary" << std::endl;
                 return true;
             }
         }
+        std::cout << word << " is not in the dictionary" << std::endl;
         return false;
     }
 

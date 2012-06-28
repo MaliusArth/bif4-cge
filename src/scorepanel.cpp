@@ -61,6 +61,7 @@ namespace WordGL {
 		size_t score_len = scoreString.size();
 		
 		//Go this loop backwards (work the score from right to left)
+        /* SEGFAULTS
 		for(unsigned int i = this->cubes.size(); i > 0; i--){
 			if(score_len >= i){
 				this->cubes[i]->setLetter(scoreString[i]);
@@ -68,7 +69,7 @@ namespace WordGL {
 			else{
 				this->cubes[i]->setLetter('0');
 			}
-		}
+		}*/
     }
 
     void ScorePanel::addScore ( int score ) {

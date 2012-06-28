@@ -134,16 +134,26 @@ namespace WordGL {
      * Check if the gametable contains the letters we entered
      */
     bool GameTable::containsCharacters ( std::vector<char> characters ) {
+        std::vector<char> charactersCopy(characters);
         // check each lettercube we got if the current character matches it
         for(unsigned int i=0; i<this->letterCubes.size(); i++){
-            for(unsigned int j=characters.size()-1; j>=0; j--){
-                if(characters[j] == this->letterCubes[i]->getLetter()){
-                    characters.erase(characters.begin()+j);
+            for(unsigned int j=0; j<charactersCopy.size(); j++){
+                if(charactersCopy[j] == '0'){
+                    continue;
+                }
+                if(charactersCopy[j] == this->letterCubes[i]->getLetter()){
+                    charactersCopy[j] = '0';
                 }
             }
         }
-        
-        if(characters.size() == 0){
+
+        unsigned int found = 0;
+        for(unsigned int i=0; i<charactersCopy.size(); i++){
+            if(charactersCopy[i] == '0'){
+                found++;
+            }
+        }
+        if(characters.size() == found){
             return true;
         } else {
             return false;
@@ -155,14 +165,23 @@ namespace WordGL {
      * Removes the word from the gametable
      */
     void GameTable::removeWord ( std::vector< char > characters ) {
+        std::vector<GameTableLetterCube*> letterCubeCopy(this->letterCubes);
+        std::vector<int> positionsToDelete;
+        
         // the oldest letter is in the beginning
-        for(unsigned int i=0; i<letterCubes.size(); i++){
-            for(unsigned int j=characters.size()-1; j>=0; j--){
+        for(unsigned int i=this->letterCubes.size()-1; i>=0; i--){
+            for(unsigned int j=0; j<characters.size(); j++){
                 if(characters[j] == this->letterCubes[i]->getLetter()){
-                    this->letterCubes.erase(this->letterCubes.begin()+i);
+                    positionsToDelete.push_back(i);
                 }
             }
         }
+
+        // delete from the back to not fuck up positions
+        for(unsigned int i=positionsToDelete.size()-1; i>=0; i--){
+            letterCubeCopy.erase(letterCubeCopy.begin()+i);
+        }
+        this->letterCubes = letterCubeCopy;
     }
 
     
