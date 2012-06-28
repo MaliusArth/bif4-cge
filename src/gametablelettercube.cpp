@@ -46,7 +46,7 @@ namespace WordGL {
     
     void GameTableLetterCube::incrementRow() {
         this->row += 1;
-        this->startX += this->cubeUnit;
+        this->startZ += this->cubeUnit;
     }
 
     
