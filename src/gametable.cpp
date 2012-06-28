@@ -134,21 +134,21 @@ namespace WordGL {
      * Check if the gametable contains the letters we entered
      */
     bool GameTable::containsCharacters ( std::vector<char> characters ) {
-        std::vector<char> charactersCopy(characters);
+        //std::vector<char> charactersCopy(characters);
         // check each lettercube we got if the current character matches it
-        unsigned int found = 0;
+        /*unsigned int found = 0;
         std::cout << charactersCopy.size() << std::endl;
         for(unsigned int i=charactersCopy.size()-1; i>=0; i--){
             
             std::cout << "checking letter " << charactersCopy[i] << std::endl;
-            /*
+            
             for(unsigned int j=0; j<this->letterCubes.size(); j++){
                 std::cout << "checking letter from cube" << charactersCopy[j] << std::endl;
                 std::cout << "checking letter nr " << j << std::endl;
                 /*if(charactersCopy[i] == this->letterCubes[j]->getLetter()){
                     std::cout << "found letter on board" << std::endl;
                 }
-            }*/
+            }
         }
        
 
@@ -156,8 +156,8 @@ namespace WordGL {
             return true;
         } else {
             return false;
-        }
-        
+    }*/
+        return false;
     }
 
     /**
