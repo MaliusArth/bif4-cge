@@ -30,13 +30,13 @@
 #include <iostream>
 #include <utility>
 #include <cstring>
+#include <cstdlib>
 
 #include "textureloader.h"
 #include "imageloader.h"
 #include "settings.h"
 
-#define EXT_LEN 4
-#define EXT ".bmp"
+#define EXTENSION ".bmp"
 
 namespace WordGL {
 
@@ -48,49 +48,57 @@ namespace WordGL {
         }
         return TextureLoader::loaderInstance;
     }
-    
-    TextureLoader::TextureLoader(std::string path){
-        std::cout << path << std::endl;
-        DIR *dp;
-        struct dirent *dirp;
-        if((dp  = opendir(path.c_str())) == NULL) {
-            std::cerr << "Error(" << errno << ") opening " << path << std::endl;
-            //return errno;
-        }
-
-        while ((dirp = readdir(dp)) != NULL) {
-            std::string file = std::string(dirp->d_name);
-	    std::string filename = file.substr(0,filename.length() - EXT_LEN);
-            std::string filepath = path + std::string(dirp->d_name);
-            if ((std::string(dirp->d_name).length() > 3) && file.substr(file.length() - EXT_LEN, std::string::npos) == EXT)
-            {
-            Image* image = loadBMP(filepath);
-            loadMipmappedTexture(image, filename);
-            delete image;
-            std::cout << filepath << std::endl;
-            }
-        }
-        closedir(dp);
-    }
-
 
     /**
-     * Loads multiple textures at once and turns the image into a mipmapped texture,
-     * then the textureid is stored in a vector
+     * Loads all bmps in a directory
+     * @param path the path to the texture directory
+     */
+    TextureLoader::TextureLoader(std::string path){
+        
+        DIR *directoryHandle;
+        struct dirent *currentDirectory;
+
+        // check if path exists
+        if((directoryHandle  = opendir(path.c_str())) == NULL) {
+          std::cerr << "Error(" << errno << ") opening " << path << std::endl;
+          exit(1);
+        }
+
+        // open directory 
+        while ((currentDirectory = readdir(directoryHandle)) != NULL) {
+            std::string file = std::string(currentDirectory->d_name);
+            if(file.length() > 4){
+                std::string fileWithoutExtension = file.substr(0, file.length() - strlen(EXTENSION));
+                std::string fileExtension = file.substr(file.length() - strlen(EXTENSION), file.length());
+                std::string filepath = path + std::string(currentDirectory->d_name);
+                // check if extension is bmp
+                if (fileExtension.compare(EXTENSION) == 0){
+                    Image* image = loadBMP(filepath);
+                    loadMipmappedTexture(image, fileWithoutExtension);
+                    delete image;
+                }
+            }
+
+        }
+        closedir(directoryHandle);
+    }
+
+    /**
+     * Turns the image into a mipmapped texture, then the textureid is stored in a vector
      * @param *image
      */
     void TextureLoader::loadMipmappedTexture(Image *image, std::string filename) {
         GLuint textureId;
         glGenTextures(1, &textureId);
         glBindTexture(GL_TEXTURE_2D, textureId);
-	
+
         gluBuild2DMipmaps(GL_TEXTURE_2D,
-					  GL_RGB,
-					  image->width, image->height,
-					  GL_RGB,
-					  GL_UNSIGNED_BYTE,
-					  image->pixels);
-        
+					GL_RGB,
+					image->width, image->height,
+					GL_RGB,
+					GL_UNSIGNED_BYTE,
+					image->pixels);
+	
         // push filename and id into vector
         typedef std::pair<std::string, GLuint> stringIdPair;
         this->textureIds.insert(stringIdPair(filename, textureId));
