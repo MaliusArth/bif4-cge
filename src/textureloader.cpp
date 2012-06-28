@@ -54,25 +54,24 @@ namespace WordGL {
         DIR *dp;
         struct dirent *dirp;
         if((dp  = opendir(path.c_str())) == NULL) {
-            std::cerr << "Error(" << errno << ") opening " << path << std::endl;
-            //return errno;
+          std::cerr << "Error(" << errno << ") opening " << path << std::endl;
+          //return errno;
         }
 
         while ((dirp = readdir(dp)) != NULL) {
-            std::string file = std::string(dirp->d_name);
-	    std::string filename = file.substr(0,filename.length() - EXT_LEN);
-            std::string filepath = path + std::string(dirp->d_name);
-            if ((std::string(dirp->d_name).length() > 3) && file.substr(file.length() - EXT_LEN, std::string::npos) == EXT)
-            {
-            Image* image = loadBMP(filepath);
+	  std::string file = std::string(dirp->d_name);
+	  std::string filename = file.substr(0,filename.length() - EXT_LEN);
+          std::string filepath = path + std::string(dirp->d_name);
+          if ((std::string(dirp->d_name).length() > 3) && file.substr(file.length() - EXT_LEN, std::string::npos) == EXT)
+          {
+	    Image* image = loadBMP(filepath);
             loadMipmappedTexture(image, filename);
             delete image;
             std::cout << filepath << std::endl;
-            }
+          }
         }
         closedir(dp);
     }
-
 
     /**
      * Loads multiple textures at once and turns the image into a mipmapped texture,
@@ -85,15 +84,15 @@ namespace WordGL {
         glBindTexture(GL_TEXTURE_2D, textureId);
 	
         gluBuild2DMipmaps(GL_TEXTURE_2D,
-					  GL_RGB,
-					  image->width, image->height,
-					  GL_RGB,
-					  GL_UNSIGNED_BYTE,
-					  image->pixels);
-        
-        // push filename and id into vector
-        typedef std::pair<std::string, GLuint> stringIdPair;
-        this->textureIds.insert(stringIdPair(filename, textureId));
+					GL_RGB,
+					image->width, image->height,
+					GL_RGB,
+					GL_UNSIGNED_BYTE,
+					image->pixels);
+	
+	// push filename and id into vector
+	typedef std::pair<std::string, GLuint> stringIdPair;
+	this->textureIds.insert(stringIdPair(filename, textureId));
     }
 
     GLuint TextureLoader::getTextureId ( std::string key ) {
