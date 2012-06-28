@@ -29,6 +29,7 @@
 #include <string>
 #include <iostream>
 #include <utility>
+#include <cstring>
 
 #include "textureloader.h"
 #include "imageloader.h"
@@ -36,7 +37,6 @@
 
 #define EXT_LEN 4
 #define EXT ".bmp"
-
 
 namespace WordGL {
 
@@ -59,9 +59,10 @@ namespace WordGL {
         }
 
         while ((dirp = readdir(dp)) != NULL) {
-            std::string filename = std::string(dirp->d_name);
+            std::string file = std::string(dirp->d_name);
+	    std::string filename = file.substr(0,filename.length() - EXT_LEN);
             std::string filepath = path + std::string(dirp->d_name);
-            if ((filename.length() > 3) && filename.substr(filename.length() - EXT_LEN, std::string::npos) == EXT)
+            if ((std::string(dirp->d_name).length() > 3) && file.substr(file.length() - EXT_LEN, std::string::npos) == EXT)
             {
             Image* image = loadBMP(filepath);
             loadMipmappedTexture(image, filename);
@@ -70,7 +71,6 @@ namespace WordGL {
             }
         }
         closedir(dp);
-        //return 0;
     }
 
 
@@ -83,21 +83,17 @@ namespace WordGL {
         GLuint textureId;
         glGenTextures(1, &textureId);
         glBindTexture(GL_TEXTURE_2D, textureId);
-
-        if(image->pixels == NULL)
-            std::cout << "hi";
-        
-	//Segmentation fault
-        /*gluBuild2DMipmaps(GL_TEXTURE_2D,
+	
+        gluBuild2DMipmaps(GL_TEXTURE_2D,
 					  GL_RGB,
 					  image->width, image->height,
 					  GL_RGB,
 					  GL_UNSIGNED_BYTE,
 					  image->pixels);
-        */
+        
         // push filename and id into vector
-        //TODO:uncomment: typedef std::pair<std::string, GLuint> stringIdPair;
-        //TODO:uncomment: this->textureIds.insert(stringIdPair(filename, textureId));
+        typedef std::pair<std::string, GLuint> stringIdPair;
+        this->textureIds.insert(stringIdPair(filename, textureId));
     }
 
     GLuint TextureLoader::getTextureId ( std::string key ) {

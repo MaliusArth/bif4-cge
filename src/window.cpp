@@ -113,7 +113,7 @@ namespace WordGL {
         glMatrixMode(GL_PROJECTION);
         glLoadIdentity();
         gluPerspective(45.0f, (GLfloat)width/(GLfloat)height, 0.1f, 100.0f);
-        glMatrixMode(GL_MODELVIEW);	//comment? viktor
+        glMatrixMode(GL_MODELVIEW);
     }
 
     /**
@@ -128,7 +128,11 @@ namespace WordGL {
                    3.0f, 0.0f, -3.5f,
                    0, 1.0f, -1.0f);
         // draw game objects
+
+	//std::cout << "before update " << this->windowRefreshInterval << " " << this->windowRefreshRate << std::endl;
         this->game.update();
+        //std::cout << "after udpate" << std::endl;
+
         glutSwapBuffers();
     }
 
