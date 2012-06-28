@@ -25,6 +25,7 @@
 #include "pane.h"
 #include "textureloader.h"
 #include <cstdlib>
+#include <cmath>
 
 namespace WordGL {
 
@@ -84,6 +85,7 @@ namespace WordGL {
             this->timer.resetTimer();
             this->gameTable.addNewLine();
         }
+        // game over happens when there are more rows than maximum, or score is below 0
         if(this->gameTable.isGameOver() || this->scorePanel.getScore() < 0){
             this->showGameOverScreen();
         }
@@ -120,7 +122,13 @@ namespace WordGL {
         int score = 0;
         for(unsigned int i=0; i<letters.size(); i++){
             int letterIndex = this->getLetterIndex(letters[i]);
-            score += this->charPoints[letterIndex];
+            int letterScore = this->charPoints[letterIndex];
+            // if the word is longer than 3 characters, give a special bonus
+            // for every following character
+            if(i >= 3){
+                letterScore *= (int) pow(2, i-2);
+            }
+            score += letterScore;
         }
         return score;
     }
