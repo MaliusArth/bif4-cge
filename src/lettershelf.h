@@ -23,6 +23,13 @@
 #include "lettercube.h"
 #include <vector>
 
+#ifdef __APPLE__
+    #include <OpenGL/gl.h>
+#else
+    #include <GL/gl.h>
+#endif
+
+
 namespace WordGL {
         
     class LetterShelf: public GLCube {
@@ -38,8 +45,7 @@ namespace WordGL {
     private:
 		unsigned int max_letters;
 		std::vector<LetterCube> cubes;
-		
-		
+		Point currentPoint;
     };
 
 }

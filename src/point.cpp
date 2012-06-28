@@ -45,6 +45,17 @@ namespace WordGL {
         return this->zCoord;
     }
 
+	void Point::setXCoord(GLfloat x){
+		this->xCoord = x;
+	}
+	
+	void Point::setYCoord(GLfloat y){
+		this->yCoord = y;
+	}
+	
+	void Point::setZCoord(GLfloat z){
+		this->zCoord = z;
+	}
 
     Point::~Point() {
 

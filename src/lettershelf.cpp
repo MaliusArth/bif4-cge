@@ -21,6 +21,7 @@
 #include "dimension.h"
 #include "point.h"
 #include "settings.h"
+#include "lettercube.h"
 
 #ifdef __APPLE__
     #include <OpenGL/gl.h>
@@ -30,7 +31,7 @@
 
 namespace WordGL {
 	
-    LetterShelf::LetterShelf(Point startPoint, Dimension dimension) {
+    LetterShelf::LetterShelf(Point startPoint, Dimension dimension):currentPoint(0.0f,0.0f,0.0f){
         this->setCoordsDimension(startPoint, dimension);
 		this->max_letters = WORD_MAX_LENGTH;
     }
@@ -40,6 +41,12 @@ namespace WordGL {
     }
 	
 	void LetterShelf::push(char character){
+		//If the lettershelf is full, don't do anything
+		if(this->cubes.size()+1 >= this->max_letters) {
+			return;
+		}
+	
+		
 		//LetterCube cube erstellen
 	}
 	

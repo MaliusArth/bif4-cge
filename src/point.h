@@ -34,6 +34,9 @@ namespace WordGL {
         GLfloat getXCoord();
         GLfloat getYCoord();
         GLfloat getZCoord();
+		void setXCoord(GLfloat x);
+		void setYCoord(GLfloat y);
+		void setZCoord(GLfloat z);
 
     private:
         GLfloat xCoord;
