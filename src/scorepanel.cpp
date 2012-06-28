@@ -19,11 +19,11 @@
 #include "scorepanel.h"
 #include "point.h"
 #include "dimension.h"
+#include "glcube.h"
 
 namespace WordGL {
     
-    ScorePanel::ScorePanel(Point startPoint, Dimension dimension) {
-        this->setCoordsDimension(startPoint, dimension);
+    ScorePanel::ScorePanel(Point startPoint, Dimension dimension): GLCube(startPoint, dimension) {
     }
 
     ScorePanel::~ScorePanel() {

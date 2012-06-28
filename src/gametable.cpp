@@ -20,13 +20,13 @@
 #include "gametable.h"
 #include "textureloader.h"
 #include "settings.h"
+#include "glcube.h"
 
 #include <vector>
 
 namespace WordGL {
 
-    GameTable::GameTable ( Point startPoint, Dimension dimension ){
-        this->setCoordsDimension(startPoint, dimension);
+    GameTable::GameTable ( Point startPoint, Dimension dimension ): GLCube(startPoint, dimension){
         this->columns = GAMETABLE_COLUMNS_NUM;
         this->rows = GAMETABLE_ROWS_NUM;
     }
