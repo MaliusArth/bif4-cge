@@ -21,6 +21,9 @@
 #include "textureloader.h"
 #include "settings.h"
 #include "glcube.h"
+#include "point.h"
+#include "dimension.h"
+#include "gametablelettercube.h"
 
 #include <vector>
 
@@ -29,6 +32,7 @@ namespace WordGL {
     GameTable::GameTable ( Point startPoint, Dimension dimension ): GLCube(startPoint, dimension){
         this->columns = GAMETABLE_COLUMNS_NUM;
         this->rows = GAMETABLE_ROWS_NUM;
+        this->longerThanMaximum = false;
     }
 
     /**
@@ -37,23 +41,64 @@ namespace WordGL {
     void GameTable::draw() {
         glPushMatrix();
         this->move(this->startX, this->startY, this->startZ);
-        this->setColor(1.0f, 0.0f, 0.0f);
-        this->drawBottom();
+        this->drawBottom("checkerboard");
         glPopMatrix();
     }
 
     void GameTable::addNewLine() {
-
+        // check if we move longer than maximum
+        for(unsigned int i=0; i<this->columns; i++){
+            //Point ;
+            //GameTableLetterCube* letterCube = new LetterCube();
+            //this->letterCubes.push_back(letterCube);
+        }
+        // TODO: move all lettercubes one level down
     }
-    
+
+    /**
+     * Get a random character based on the probability of the letter
+     */
+    char GameTable::getRandomCharacter() {
+        return 'a';
+    }
+
     bool GameTable::isGameOver() {
-        // FIXME:
-        return false;
+        return this->longerThanMaximum;
     }       
 
+    /**
+     * Check if the gametable contains the letters we entered
+     */
     bool GameTable::containsCharacters ( std::vector<char> characters ) {
-        // FIXME
-        return true;
+        // check each lettercube we got if the current character matches it
+        for(unsigned int i=0; i<this->letterCubes.size(); i++){
+            for(unsigned int j=characters.size()-1; j>=0; j--){
+                if(characters[j] == this->letterCubes[i]->getLetter()){
+                    characters.erase(characters.begin()+j);
+                }
+            }
+        }
+        
+        if(characters.size() == 0){
+            return true;
+        } else {
+            return false;
+        }
+        
+    }
+
+    /**
+     * Removes the word from the gametable
+     */
+    void GameTable::removeWord ( std::vector< char > characters ) {
+        // the oldest letter is in the beginning
+        for(unsigned int i=0; i<letterCubes.size(); i++){
+            for(unsigned int j=characters.size()-1; j>=0; j--){
+                if(characters[j] == this->letterCubes[i]->getLetter()){
+                    this->letterCubes.erase(this->letterCubes.begin()+i);
+                }
+            }
+        }
     }
 
     

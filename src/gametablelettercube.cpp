@@ -17,19 +17,22 @@
  */
 
 
-#pragma once
+#include "gametablelettercube.h"
 #include "lettercube.h"
-#include "dimension.h"
 #include "point.h"
+#include "dimension.h"
 
 namespace WordGL {
-    
-    class GameTableLetterCube: public LetterCube {
 
-    public:
-        GameTableLetterCube(Point startPoint, Dimension dimension, char letter);
-        virtual ~GameTableLetterCube();
-    };
+    GameTableLetterCube::GameTableLetterCube(Point startPoint, Dimension dimension, char letter):
+        LetterCube(startPoint, dimension, letter){
+
+    }
+
+    GameTableLetterCube::~GameTableLetterCube() {
+
+    }
     
 }
-    
+
+
