@@ -20,6 +20,7 @@
 #pragma once
 
 #include "glcube.h"
+#include <string>
 
 #ifdef __APPLE__
     #include <OpenGL/gl.h>
@@ -35,20 +36,20 @@ namespace WordGL {
         Cube(Point startPoint, Dimension dimension);
         virtual ~Cube();
         virtual void draw();
-        void setTopTextureId(GLuint textureId);
-        void setBottomTextureId(GLuint textureId);
-        void setLeftTextureId(GLuint textureId);
-        void setRightTextureId(GLuint textureId);
-        void setFrontTextureId(GLuint textureId);
-        void setBackTextureId(GLuint textureId);
+        void setTopTextureId(std::string textureId);
+        void setBottomTextureId(std::string textureId);
+        void setLeftTextureId(std::string textureId);
+        void setRightTextureId(std::string textureId);
+        void setFrontTextureId(std::string textureId);
+        void setBackTextureId(std::string textureId);
 
     private:
-        GLuint topTextureId;
-        GLuint bottomTextureId;
-        GLuint leftTextureId;
-        GLuint rightTextureId;
-        GLuint frontTextureId;
-        GLuint backTextureId;
+        std::string topTextureId;
+        std::string bottomTextureId;
+        std::string leftTextureId;
+        std::string rightTextureId;
+        std::string frontTextureId;
+        std::string backTextureId;
         bool topTexture;
         bool bottomTexture;
         bool leftTexture;

@@ -19,12 +19,8 @@
 #pragma once
 
 #include "globject.h"
+#include <string>
 
-#ifdef __APPLE__
-    #include <OpenGL/gl.h>
-#else
-    #include <GL/gl.h>
-#endif
 
 namespace WordGL {
 
@@ -36,17 +32,17 @@ namespace WordGL {
 
     protected:
         void drawBottom();
-        void drawBottom(GLuint textureId);
+        void drawBottom(std::string textureFileName);
         void drawTop();
-        void drawTop(GLuint textureId);
+        void drawTop(std::string textureFileName);
         void drawFrontSide();
-        void drawFrontSide(GLuint textureId);
+        void drawFrontSide(std::string textureFileName);
         void drawRightSide();
-        void drawRightSide(GLuint textureId);
+        void drawRightSide(std::string textureFileName);
         void drawBackSide();
-        void drawBackSide(GLuint textureId);
+        void drawBackSide(std::string textureFileName);
         void drawLeftSide();
-        void drawLeftSide(GLuint textureId);
+        void drawLeftSide(std::string textureFileName);
     };
    
 }

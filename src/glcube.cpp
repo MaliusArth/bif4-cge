@@ -19,6 +19,7 @@
 
 
 #include "glcube.h"
+#include <string>
 
 #ifdef __APPLE__
     #include <OpenGL/gl.h>
@@ -32,7 +33,7 @@ namespace WordGL {
 
     }
 
-    void GLCube::drawBottom(GLuint textureId) {
+    void GLCube::drawBottom(std::string textureFileName) {
         this->drawBottom();
     }
     
@@ -45,7 +46,7 @@ namespace WordGL {
         glEnd();
     }
 
-    void GLCube::drawTop(GLuint textureId) {
+    void GLCube::drawTop(std::string textureFileName) {
         // TODO: set texture
         this->drawTop();
     }
@@ -59,7 +60,7 @@ namespace WordGL {
         glEnd();
     }
 
-    void GLCube::drawFrontSide(GLuint textureId) {
+    void GLCube::drawFrontSide(std::string textureFileName) {
         // TODO: set texture
         this->drawFrontSide();
     }
@@ -73,11 +74,12 @@ namespace WordGL {
         glEnd();
     }
 
-    void GLCube::drawBackSide(GLuint textureId) {
+    void GLCube::drawBackSide(std::string textureFileName) {
         // TODO: set texture
         this->drawBackSide();
     }
 
+    
     void GLCube::drawBackSide() {
         glBegin(GL_QUADS);
         glVertex3f(0.0f, 0.0f, this->depth);
@@ -87,7 +89,7 @@ namespace WordGL {
         glEnd();
     }
 
-    void GLCube::drawLeftSide(GLuint textureId) {
+    void GLCube::drawLeftSide(std::string textureFileName) {
         // TODO: set texture
         this->drawLeftSide();
     }
@@ -101,7 +103,7 @@ namespace WordGL {
         glEnd();
     }
 
-    void GLCube::drawRightSide(GLuint textureId) {
+    void GLCube::drawRightSide(std::string textureFileName) {
         // TODO: set texture
         this->drawRightSide();
     }
