@@ -74,11 +74,10 @@ namespace WordGL {
         
         // initialize rendering	
         glEnable(GL_DEPTH_TEST);
-        glEnable(GL_LIGHTING);
-        glEnable(GL_LIGHT0);
+        //glEnable(GL_LIGHTING);
+        //glEnable(GL_LIGHT0);
         glEnable(GL_NORMALIZE);
         glEnable(GL_COLOR_MATERIAL);
-        glEnable(GL_TEXTURE_2D);
 
         // get window refresh rate and interval
         this->windowRefreshRate = glutGameModeGet(GLUT_GAME_MODE_REFRESH_RATE);
