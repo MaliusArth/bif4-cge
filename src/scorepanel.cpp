@@ -23,7 +23,8 @@
 #include "lettercube.h"
 #include "settings.h"
 #include <vector>
-#include <cstdlib>
+#include <iostream>
+#include <sstream>
 
 namespace WordGL {
     
@@ -32,20 +33,10 @@ namespace WordGL {
 		cubeDimension(Dimension(dimension.getWidth()/WORD_MAX_LENGTH, dimension.getWidth()/WORD_MAX_LENGTH, 0.5f)) {
 			this->setScore(0);
 			
-			//Calculate the number of required objects for representing the score 
-			int number = MAX_SCORE;
-			int num_digits = 0;
-			if (number < 0)
-			    number = -number;
-			while(number > 0) {
-			    num_digits++;
-			    number/=10;
-			}
-			
 			Point currentPoint(this->startX, this->startY, this->startZ);
 			
-			//For each digit one LetterCube
-			for(int i=0; i < num_digits; i++){
+			//For each digit one LetterCube from left to right
+			for(int i=0; i < MAX_SCORE_DISPLAY; i++){
 				this->cubes.push_back(new LetterCube(currentPoint, this->cubeDimension, '0'));
 				currentPoint.setXCoord(currentPoint.getXCoord() + this->cubeDimension.getWidth());
 			}
@@ -63,7 +54,21 @@ namespace WordGL {
 		this->score = score;
 		
 		//Update the letter represented by the score-cubes
+		std::stringstream ss;
+		ss << score;
 		
+		std::string scoreString = ss.str();
+		size_t score_len = scoreString.size();
+		
+		//Go this loop backwards (work the score from right to left)
+		for(unsigned int i = this->cubes.size(); i > 0; i--){
+			if(score_len >= i){
+				this->cubes[i]->setLetter(scoreString[i]);
+			}
+			else{
+				this->cubes[i]->setLetter('0');
+			}
+		}
     }
 
     void ScorePanel::addScore ( int score ) {

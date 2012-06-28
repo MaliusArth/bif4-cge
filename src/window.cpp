@@ -139,7 +139,7 @@ namespace WordGL {
     * @param y The y position where the key was pressed
     */
     void Window::keyPressed(unsigned char key, int x, int y){
-        usleep(100);
+        usleep(1000);
 
         if(key == 27){
             glutDestroyWindow(this->window);

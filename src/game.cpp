@@ -49,6 +49,7 @@ namespace WordGL {
 		if(character >= 97 && character <= 122){
             character -= 32;
         }
+
 		if(character >= 65 && character <= 90){
 			this->letterShelf.push(character);
 		}

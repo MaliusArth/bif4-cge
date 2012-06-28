@@ -23,8 +23,6 @@
 #include "settings.h"
 #include "lettercube.h"
 
-#include <iostream>
-
 #ifdef __APPLE__
     #include <OpenGL/gl.h>
 #else
@@ -57,7 +55,6 @@ namespace WordGL {
 		}
 		else{
 			GLfloat currentX = this->currentPoint.getXCoord();
-			std::cout << "X: " << currentX << "CubeWidth: " << this->cubeDimension.getWidth() << std::endl;
 			this->currentPoint.setXCoord(currentX + cubeDimension.getWidth());
 		}
 		

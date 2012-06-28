@@ -31,6 +31,7 @@
 
 //ScorePanel values
 #define MAX_SCORE 999999
+#define MAX_SCORE_DISPLAY 6
 #define MIN_SCORE 0
 
 // points for letters
