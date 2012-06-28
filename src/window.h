@@ -44,12 +44,14 @@ namespace WordGL {
         void resize ( int width, int height );
         void keyPressed(unsigned char key, int x, int y);
         void display();
+        void redisplayTimer(int value);
         static Window* getInstance();
 
     private:
         int window;
         int width;
         int height;
+        double windowRefreshRate;
         const char* title;
         Game game;
         static Window* windowInstance;

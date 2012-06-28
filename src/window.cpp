@@ -78,11 +78,12 @@ namespace WordGL {
         glEnable(GL_NORMALIZE);
         glEnable(GL_COLOR_MATERIAL);
         glEnable(GL_TEXTURE_2D);
-	
+
+        this->windowRefreshRate = glutGameModeGet(GLUT_GAME_MODE_REFRESH_RATE);
         glutDisplayFunc(&display_wrapper);
         glutReshapeFunc(&resize_wrapper);
         glutKeyboardFunc(&keyPressed_wrapper);
-        glutIdleFunc(&display_wrapper);
+        glutTimerFunc(1000/this->windowRefreshRate, &timer_wrapper, 1);
         glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
         glClearDepth(1.0);
         glDepthFunc(GL_LESS);
@@ -140,6 +141,12 @@ namespace WordGL {
         this->game.input(key);
     }
 
+    void Window::redisplayTimer(int value) { 
+        glutPostRedisplay();
+        glutTimerFunc(1000/this->windowRefreshRate, &timer_wrapper, value);
+    }
+
+    
     /**
     * Returns a static instance of the window. Used for wrapper functions for OpenGL
     * @return The window instance

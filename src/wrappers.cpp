@@ -37,4 +37,8 @@ namespace WordGL {
         Window::getInstance()->keyPressed(key, x, y);
     }
 
+    void timer_wrapper(int value) {
+        Window::getInstance()->redisplayTimer(value);
+    }
+    
 }
