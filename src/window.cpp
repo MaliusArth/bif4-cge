@@ -123,8 +123,8 @@ namespace WordGL {
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
         glMatrixMode(GL_MODELVIEW);
         glLoadIdentity();
-        gluLookAt( 3.0f, 12.0f, -2.0f,
-                   3.0f, 0.0f, -3.5f,
+        gluLookAt( 3.0f, 13.0f, 7.0f,
+                   3.0f, 0.0f, -6.0f,
                    0, 1.0f, -1.0f);
         // draw game objects
         this->game.update();
@@ -138,7 +138,7 @@ namespace WordGL {
     * @param y The y position where the key was pressed
     */
     void Window::keyPressed(unsigned char key, int x, int y){
-        usleep(100);
+        usleep(1000);
 
         if(key == 27){
             glutDestroyWindow(this->window);

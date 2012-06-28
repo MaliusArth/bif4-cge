@@ -16,34 +16,44 @@
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+#ifdef __APPLE__
+    #include <OpenGL/gl.h>
+#else
+    #include <GL/gl.h>
+#endif
 
-#pragma once
-
+#include "gametablelettercube.h"
+#include "lettercube.h"
 #include "point.h"
 #include "dimension.h"
-#include "glcube.h"
-#include <vector>
-#include "lettercube.h"
 
-namespace WordGL{
+namespace WordGL {
+
+    GameTableLetterCube::GameTableLetterCube(Point startPoint, Dimension dimension, char letter, GLfloat cubeUnit):
+        LetterCube(startPoint, dimension, letter){
+        this->column = 0;
+        this->row = 0;
+        this->cubeUnit = cubeUnit;
+    }
+
+    unsigned int GameTableLetterCube::getColumn() {
+        return this->column;
+    }
+
+    unsigned int GameTableLetterCube::getRow() {
+        return this->row;
+    }
     
-    class ScorePanel: public GLCube {
+    void GameTableLetterCube::incrementRow() {
+        this->row += 1;
+        this->startZ += this->cubeUnit;
+    }
 
-    public:
-        ScorePanel(Point startPoint, Dimension dimension);
-        virtual ~ScorePanel();
-        void draw();
-        void setScore(int score);
-        void addScore(int score);
-        int getScore();
-        
-    private:
-        int score;
-		Dimension cubeDimension;
-		std::vector<LetterCube*> cubes;
-    };
+    
+    GameTableLetterCube::~GameTableLetterCube() {
+
+    }
     
 }
-
 
 

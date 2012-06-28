@@ -33,43 +33,58 @@ namespace WordGL {
 	
     LetterShelf::LetterShelf(Point startPoint, Dimension dimension):
 								GLCube(startPoint,dimension),
-								cubeDimension(Dimension(dimension.getWidth()/WORD_MAX_LENGTH, dimension.getDepth(), 0.5f)),
+								cubeDimension(Dimension(dimension.getWidth()/WORD_MAX_LENGTH, dimension.getWidth()/WORD_MAX_LENGTH, 0.5f)),
 								currentPoint(startPoint)
 								{
-		this->max_letters = WORD_MAX_LENGTH;
-		this->currentPoint.setYCoord(+0.05f);
+		this->currentPoint.setYCoord(0.02f);
     }
 
 	LetterShelf::~LetterShelf() {
 
     }
-	
+	  
 	void LetterShelf::push(char character){
-		unsigned int cubeNumber = this->cubes.size();
 		//If the lettershelf is full, don't do anything
-		if(cubeNumber + 1 >= this->max_letters) {
+		if(this->cubes.size() >= WORD_MAX_LENGTH) {
 			return;
 		}
 		
-		if(cubeNumber > 0){
-			int currentX = this->currentPoint.getXCoord();
+		//The first cube gets on the initial-position of the lettershelf
+		if(this->cubes.empty()){
+			this->currentPoint.setXCoord(startX);
+		}
+		else{
+			GLfloat currentX = this->currentPoint.getXCoord();
 			this->currentPoint.setXCoord(currentX + cubeDimension.getWidth());
 		}
 		
-		
 		//LetterCube cube erstellen
-		this->cubes.push_back(LetterCube(this->currentPoint, this->cubeDimension, character));
+		this->cubes.push_back(new LetterCube(this->currentPoint, this->cubeDimension, character));
 	}
 	
-	void LetterShelf::pop(){
+	void LetterShelf::pop(){	
+		if(this->cubes.empty()){
+			this->currentPoint.setXCoord(startX);
+		}
+		else{
+			GLfloat currentX = this->currentPoint.getXCoord();
+			this->currentPoint.setXCoord(currentX - cubeDimension.getWidth());
+			this->cubes.pop_back();
+		}
 		
 	}	
 	
 	std::vector<char> LetterShelf::clear(){
 		std::vector<char> ret;
 		for(unsigned int i = 0; i < this->cubes.size(); i++){
-			ret.push_back(this->cubes[i].getLetter());
+			ret.push_back(this->cubes[i]->getLetter());
 		}
+		
+		//Clear the cube-vector
+		this->cubes.clear();
+		
+		//Reset position-marker
+		this->currentPoint.setXCoord(this->startX);
 		
 		return ret;
 	}
@@ -84,7 +99,7 @@ namespace WordGL {
 
 		//Draw the input-cubes
 		for(unsigned int i = 0 ; i < this->cubes.size(); i++){
-			this->cubes[i].draw();
+			this->cubes[i]->draw();
 		}
 		
         glPopMatrix();

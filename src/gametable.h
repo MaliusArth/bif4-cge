@@ -18,9 +18,16 @@
 
 #pragma once
 
+#ifdef __APPLE__
+    #include <OpenGL/gl.h>
+#else
+    #include <GL/gl.h>
+#endif
+
 #include "point.h"
 #include "dimension.h"
 #include "glcube.h"
+#include "gametablelettercube.h"
 #include <vector>
 
 namespace WordGL {
@@ -34,10 +41,15 @@ namespace WordGL {
         bool isGameOver();
         void addNewLine();
         bool containsCharacters(std::vector<char> characters);
+        char getRandomCharacter();
+        void removeWord(std::vector<char> characters);
         
     private:
+        GLfloat rowUnit;
         unsigned int columns;
         unsigned int rows;
+        std::vector<GameTableLetterCube*> letterCubes;
+        bool longerThanMaximum;
         
     };
 

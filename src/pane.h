@@ -24,14 +24,14 @@
 namespace WordGL {
     
     class Pane: public GLCube {
-
-    public:
-        Pane(Point startPoint, Dimension dimension);
-        void draw();
-        virtual ~Pane();
-    };
-
-    
+		
+		public:
+			Pane(Point startPoint, Dimension dimension);
+			void draw();
+			virtual ~Pane();
+			virtual void texturize(std::string textureName);
+		};
+	
 }
 
 

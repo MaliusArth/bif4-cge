@@ -66,7 +66,6 @@ namespace WordGL {
     std::string Dictionary::getRandomWord(){
         int size = this->database.size();
         if(size > 0){
-            srand( time(NULL) );
             int randomNumber = rand() % size;
             return this->database[randomNumber];
         } else {

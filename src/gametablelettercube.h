@@ -16,16 +16,36 @@
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "window.h"
-#include "textureloader.h"
-#include <ctime>
 
-int main(int argc, char **argv) {
-    // initalize the random number generator
-    srand( time(NULL) );
+#pragma once
+
+#ifdef __APPLE__
+    #include <OpenGL/gl.h>
+#else
+    #include <GL/gl.h>
+#endif
+
+#include "lettercube.h"
+#include "dimension.h"
+#include "point.h"
+
+
+namespace WordGL {
     
-    // create and launch window
-    WordGL::Window window(&argc, argv, "WORD GL", 640, 480);
-    window.init();
-    return 0;
+    class GameTableLetterCube: public LetterCube {
+
+    public:
+        GameTableLetterCube(Point startPoint, Dimension dimension, char letter, GLfloat cubeUnit);
+        virtual ~GameTableLetterCube();
+        unsigned int getColumn();
+        unsigned int getRow();
+        void incrementRow();
+
+    private:
+        int column;
+        int row;
+        GLfloat cubeUnit;
+    };
+    
 }
+    

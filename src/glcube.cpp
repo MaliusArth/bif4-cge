@@ -16,12 +16,12 @@
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-
-
-#include "glcube.h"
+#include <iostream>		//debug: cout
 #include <string>
+
 #include "dimension.h"
 #include "point.h"
+#include "glcube.h"
 
 #ifdef __APPLE__
     #include <OpenGL/gl.h>
@@ -44,50 +44,65 @@ namespace WordGL {
     void GLCube::draw() {
         glPushMatrix();
         this->move(this->startX, this->startY, this->startZ);
-
-        // top and bottom
+		
+        // top
+		glPushMatrix();
         this->setColor(0.3f, 1.0f, 1.0f);
         if(this->topTexture){
-            this->drawTop();
-        } else {
             this->drawTop(this->topTextureName);
-        }
-
-        if(this->bottomTexture){
-            this->drawBottom();
         } else {
-            this->drawTop(this->bottomTextureName);
+            this->drawTop();
         }
-
-        // left and right
+        glPopMatrix();
+		
+		// bottom
+		glPushMatrix();
+		this->setColor(0.3f, 1.0f, 1.0f);
+        if(this->bottomTexture){
+            this->drawBottom(this->bottomTextureName);
+        } else {
+            this->drawTop();
+		}
+        glPopMatrix();
+		
+		// left
+        glPushMatrix();
         this->setColor(0.5f, 1.0f, 1.0f);
         if(this->leftTexture){
-            this->drawLeftSide();
-        } else {
             this->drawLeftSide(this->leftTextureName);
+        } else {
+            this->drawLeftSide();
         }
-
+        glPopMatrix();
+		
+		// right
+		glPushMatrix();
         this->setColor(0.5f, 1.0f, 1.0f);
         if(this->rightTexture){
-            this->drawRightSide();
-        } else {
             this->drawRightSide(this->rightTextureName);
+        } else {
+            this->drawRightSide();
         }
-
-        // front and back
+        glPopMatrix();
+		
+		// front
+		glPushMatrix();
         this->setColor(0.0f, 1.0f, 1.0f);
         if(this->frontTexture){
-            this->drawFrontSide();
-        } else {
             this->drawFrontSide(this->frontTextureName);
-        }
-
-        if(this->backTexture){
-            this->drawBackSide();
         } else {
-            this->drawBackSide(this->backTextureName);
+            this->drawFrontSide();
         }
+        glPopMatrix();
 
+		//back
+		glPushMatrix();
+        this->setColor(0.0f, 1.0f, 1.0f);
+        if(this->backTexture){
+            this->drawBackSide(this->backTextureName);
+        } else {
+            this->drawBackSide();
+        }
         glPopMatrix();
     }
 
@@ -122,24 +137,54 @@ namespace WordGL {
         this->leftTextureName = textureName;
     }
     
-    void GLCube::drawBottom(std::string textureName) {
+    void GLCube::drawBottom(std::string textureName) {		//TODO draws bottom with textures
         this->texturize(textureName);
-        this->drawBottom();
+        this->drawBottom();		//set boolean for textures
     }
 
     void GLCube::texturize ( std::string textureName ) {
         TextureLoader* textureLoader = TextureLoader::getInstance();
         GLuint textureId = textureLoader->getTextureId(textureName);
+		
+		glEnable(GL_TEXTURE_2D);
+		glBindTexture(GL_TEXTURE_2D, textureId);
+		//glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+		//glTexParameteri(GL_TEXTURE_2D,
+		//				GL_TEXTURE_MIN_FILTER,
+		//				GL_LINEAR_MIPMAP_LINEAR);
     }
 
     
-    void GLCube::drawBottom() {
-        glBegin(GL_QUADS);
-        glVertex3f(0.0f, 0.0f, this->depth);
-        glVertex3f(0.0f, 0.0f, 0.0f);
-        glVertex3f(this->width, 0.0f, 0.0f);
-        glVertex3f(this->width, 0.0f, this->depth);
+    void GLCube::drawBottom() {	//boolean for if (set_bool) glTexCoord2f(...);
+// 		float _pos = 0.0f;		//The forward position relative to the floor
+// 		const float FLOOR_TEXTURE_SIZE = this->depth - _pos; //The size of each "tile"
+
+		glBegin(GL_QUADS);
+		//x... rechts, y...rauf; z... vor
+		glNormal3f(0.0f, 1.0f, 0.0f);
+		glTexCoord2f(0.0f, 1.0f); glVertex3f(0.0f, 0.0f, 0.0f);
+		
+		glTexCoord2f(0.0f, 0.0f); glVertex3f(0.0f, 0.0f, this->depth);
+		
+		glTexCoord2f(1.0f, 0.0f); glVertex3f(this->width, 0.0f, this->depth);
+		
+		glTexCoord2f(1.0f, 1.0f); glVertex3f(this->width, 0.0f, 0.0f);
+		
+// 		glNormal3f(0.0f, 1.0f, 0.0f);
+// 		glTexCoord2f(2000 / FLOOR_TEXTURE_SIZE, _pos / FLOOR_TEXTURE_SIZE);
+// 		glVertex3f(0.0f, 0.0f, 0.0f);
+// 		
+// 		glTexCoord2f(2000 / FLOOR_TEXTURE_SIZE, (2000 + _pos) / FLOOR_TEXTURE_SIZE);
+// 		glVertex3f(0.0f, 0.0f, this->depth);
+// 		
+// 		glTexCoord2f(0.0f, (2000 + _pos) / FLOOR_TEXTURE_SIZE);
+// 		glVertex3f(this->width, 0.0f, this->depth);
+// 		
+// 		glTexCoord2f(0.0f, _pos / FLOOR_TEXTURE_SIZE);
+// 		glVertex3f(this->width, 0.0f, 0.0f);
+		
         glEnd();
+		glDisable(GL_TEXTURE_2D);
     }
 
     void GLCube::drawTop(std::string textureName) {

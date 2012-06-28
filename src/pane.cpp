@@ -17,6 +17,7 @@
  */
 
 #include <string>
+#include <iostream>		//debug: cout
 
 #include "pane.h"
 #include "dimension.h"
@@ -40,5 +41,20 @@ namespace WordGL {
     Pane::~Pane() {
 
     }
+    
+    void Pane::texturize(std::string textureName){
+		TextureLoader* textureLoader = TextureLoader::getInstance();
+        GLuint textureId = textureLoader->getTextureId(textureName);
+		
+		glEnable(GL_TEXTURE_2D);
+ 		glBindTexture(GL_TEXTURE_2D, textureId);
+// 		//glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+// 		//glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+// 		
+// 		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+// 		glTexParameteri(GL_TEXTURE_2D,
+// 						GL_TEXTURE_MIN_FILTER,
+// 						GL_LINEAR_MIPMAP_LINEAR);
+	}
 
 }
