@@ -92,32 +92,32 @@ namespace WordGL {
     }
 
 
-    void GLCube::setTopTextureId ( std::string textureName ) {
+    void GLCube::setTopTexture ( std::string textureName ) {
         this->topTexture = true;
         this->topTextureName = textureName;
     }
 
-    void GLCube::setBottomTextureId ( std::string textureName ) {
+    void GLCube::setBottomTexture ( std::string textureName ) {
         this->bottomTexture = true;
         this->bottomTextureName = textureName;
     }
 
-    void GLCube::setBackTextureId ( std::string textureName ) {
+    void GLCube::setBackTexture ( std::string textureName ) {
         this->backTexture = true;
         this->backTextureName = textureName;
     }
 
-    void GLCube::setFrontTextureId ( std::string textureName ) {
+    void GLCube::setFrontTexture ( std::string textureName ) {
         this->frontTexture = true;
         this->frontTextureName = textureName;
     }
 
-    void GLCube::setRightTextureId ( std::string textureName ) {
+    void GLCube::setRightTexture ( std::string textureName ) {
         this->rightTexture = true;
         this->rightTextureName = textureName;
     }
 
-    void GLCube::setLeftTextureId ( std::string textureName ) {
+    void GLCube::setLeftTexture ( std::string textureName ) {
         this->leftTexture = true;
         this->leftTextureName = textureName;
     }
