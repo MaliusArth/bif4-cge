@@ -83,7 +83,7 @@ namespace WordGL {
     void ScorePanel::draw() {
 		glPushMatrix();
 		
-		glRotatef(-20, 1,0,0);
+		//glRotatef(-20, 1,0,0);
 		
 		//Draw the panel itself
         this->move(this->startX, this->startY, this->startZ);

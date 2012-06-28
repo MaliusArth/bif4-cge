@@ -92,8 +92,6 @@ namespace WordGL {
     void LetterShelf::draw() {
 		glPushMatrix();
 		
-		glRotatef(-10, 1,0,0);
-		
 		//Draw the panel itself
         this->move(this->startX, this->startY, this->startZ);
         this->setColor(1.0f, 1.0f, 1.0f);
