@@ -20,29 +20,51 @@
 
 #include "globject.h"
 #include <string>
-
+#include "dimension.h"
+#include "point.h"
 
 namespace WordGL {
 
     class GLCube : public GLObject {
 
     public:
-        GLCube();
+        GLCube(Point startPoint, Dimension dimension);
         virtual ~GLCube();
+        virtual void draw();
+        virtual void setTopTextureId(std::string textureName);
+        virtual void setBottomTextureId(std::string textureName);
+        virtual void setLeftTextureId(std::string textureName);
+        virtual void setRightTextureId(std::string textureName);
+        virtual void setFrontTextureId(std::string textureName);
+        virtual void setBackTextureId(std::string textureName);
 
     protected:
-        void drawBottom();
-        void drawBottom(std::string textureFileName);
-        void drawTop();
-        void drawTop(std::string textureFileName);
-        void drawFrontSide();
-        void drawFrontSide(std::string textureFileName);
-        void drawRightSide();
-        void drawRightSide(std::string textureFileName);
-        void drawBackSide();
-        void drawBackSide(std::string textureFileName);
-        void drawLeftSide();
-        void drawLeftSide(std::string textureFileName);
+        virtual void drawBottom();
+        virtual void drawBottom(std::string textureName);
+        virtual void drawTop();
+        virtual void drawTop(std::string textureName);
+        virtual void drawFrontSide();
+        virtual void drawFrontSide(std::string textureName);
+        virtual void drawRightSide();
+        virtual void drawRightSide(std::string textureName);
+        virtual void drawBackSide();
+        virtual void drawBackSide(std::string textureName);
+        virtual void drawLeftSide();
+        virtual void drawLeftSide(std::string textureName);
+
+    private:
+        std::string topTextureName;
+        std::string bottomTextureName;
+        std::string leftTextureName;
+        std::string rightTextureName;
+        std::string frontTextureName;
+        std::string backTextureName;
+        bool topTexture;
+        bool bottomTexture;
+        bool leftTexture;
+        bool rightTexture;
+        bool frontTexture;
+        bool backTexture;
     };
    
 }

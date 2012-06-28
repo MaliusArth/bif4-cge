@@ -33,29 +33,12 @@ namespace WordGL {
     class Cube : public GLCube {
 
     public:
-        Cube(Point startPoint, Dimension dimension);
+        Cube();
         virtual ~Cube();
-        virtual void draw();
-        void setTopTextureId(std::string textureId);
-        void setBottomTextureId(std::string textureId);
-        void setLeftTextureId(std::string textureId);
-        void setRightTextureId(std::string textureId);
-        void setFrontTextureId(std::string textureId);
-        void setBackTextureId(std::string textureId);
+
 
     private:
-        std::string topTextureId;
-        std::string bottomTextureId;
-        std::string leftTextureId;
-        std::string rightTextureId;
-        std::string frontTextureId;
-        std::string backTextureId;
-        bool topTexture;
-        bool bottomTexture;
-        bool leftTexture;
-        bool rightTexture;
-        bool frontTexture;
-        bool backTexture;
+
     };
     
 }

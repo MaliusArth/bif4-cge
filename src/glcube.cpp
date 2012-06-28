@@ -20,6 +20,8 @@
 
 #include "glcube.h"
 #include <string>
+#include "dimension.h"
+#include "point.h"
 
 #ifdef __APPLE__
     #include <OpenGL/gl.h>
@@ -29,13 +31,100 @@
 
 namespace WordGL {
 
-    GLCube::GLCube() {
-
+    GLCube::GLCube(Point startPoint, Dimension dimension) {
+        this->setCoordsDimension(startPoint, dimension);
+        this->topTexture = false;
+        this->bottomTexture = false;
+        this->rightTexture = false;
+        this->leftTexture = false;
+        this->frontTexture = false;
+        this->backTexture = false;
     }
 
-    void GLCube::drawBottom(std::string textureFileName) {
+    void Cube::draw() {
+        glPushMatrix();
+        this->move(this->startX, this->startY, this->startZ);
+
+        // top and bottom
+        this->setColor(0.3f, 1.0f, 1.0f);
+        if(this->topTexture){
+            this->drawTop();
+        } else {
+            this->drawTop(this->topTextureName);
+        }
+
+        if(this->bottomTexture){
+            this->drawBottom();
+        } else {
+            this->drawTop(this->bottomTextureName);
+        }
+
+        // left and right
+        this->setColor(0.5f, 1.0f, 1.0f);
+        if(this->leftTexture){
+            this->drawLeftSide();
+        } else {
+            this->drawLeftSide(this->leftTextureName);
+        }
+
+        this->setColor(0.5f, 1.0f, 1.0f);
+        if(this->rightTexture){
+            this->drawRightSide();
+        } else {
+            this->drawRightSide(this->rightTextureName);
+        }
+
+        // front and back
+        this->setColor(0.0f, 1.0f, 1.0f);
+        if(this->frontTexture){
+            this->drawFrontSide();
+        } else {
+            this->drawFrontSide(this->frontTextureName);
+        }
+
+        if(this->backTexture){
+            this->drawBackSide();
+        } else {
+            this->drawBackSide(this->backTextureName);
+        }
+
+        glPopMatrix();
+    }
+
+
+    void Cube::setTopTextureId ( std::string textureName ) {
+        this->topTexture = true;
+        this->topTextureName = textureName;
+    }
+
+    void Cube::setBottomTextureId ( std::string textureName ) {
+        this->bottomTexture = true;
+        this->bottomTextureName = textureName;
+    }
+
+    void Cube::setBackTextureId ( std::string textureName ) {
+        this->backTexture = true;
+        this->backTextureName = textureName;
+    }
+
+    void Cube::setFrontTextureId ( std::string textureName ) {
+        this->frontTexture = true;
+        this->frontTextureName = textureName;
+    }
+
+    void Cube::setRightTextureId ( std::string textureName ) {
+        this->rightTexture = true;
+        this->rightTextureName = textureName;
+    }
+
+    void Cube::setLeftTextureId ( std::string textureName ) {
+        this->leftTexture = true;
+        this->leftTextureName = textureName;
+    }
+    
+    void GLCube::drawBottom(std::string textureName) {
         TextureLoader* textureLoader = TextureLoader::getInstance();
-        GLuint textureId = textureLoader->getTextureId(textureFileName);
+        GLuint textureId = textureLoader->getTextureId(textureName);
         this->drawBottom();
     }
     
@@ -48,7 +137,7 @@ namespace WordGL {
         glEnd();
     }
 
-    void GLCube::drawTop(std::string textureFileName) {
+    void GLCube::drawTop(std::string textureName) {
         // TODO: set texture
         this->drawTop();
     }
@@ -62,7 +151,7 @@ namespace WordGL {
         glEnd();
     }
 
-    void GLCube::drawFrontSide(std::string textureFileName) {
+    void GLCube::drawFrontSide(std::string textureName) {
         // TODO: set texture
         this->drawFrontSide();
     }
@@ -76,7 +165,7 @@ namespace WordGL {
         glEnd();
     }
 
-    void GLCube::drawBackSide(std::string textureFileName) {
+    void GLCube::drawBackSide(std::string textureName) {
         // TODO: set texture
         this->drawBackSide();
     }
@@ -91,7 +180,7 @@ namespace WordGL {
         glEnd();
     }
 
-    void GLCube::drawLeftSide(std::string textureFileName) {
+    void GLCube::drawLeftSide(std::string textureName) {
         // TODO: set texture
         this->drawLeftSide();
     }
@@ -105,7 +194,7 @@ namespace WordGL {
         glEnd();
     }
 
-    void GLCube::drawRightSide(std::string textureFileName) {
+    void GLCube::drawRightSide(std::string textureName) {
         // TODO: set texture
         this->drawRightSide();
     }
