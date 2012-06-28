@@ -44,6 +44,7 @@ namespace WordGL {
 		
     private:
 		unsigned int max_letters;
+		Dimension cubeDimension;
 		std::vector<LetterCube> cubes;
 		Point currentPoint;
     };

@@ -31,7 +31,11 @@
 
 namespace WordGL {
 	
-    LetterShelf::LetterShelf(Point startPoint, Dimension dimension):GLCube(startPoint,dimension),currentPoint(0.0f,0.0f,0.0f){
+    LetterShelf::LetterShelf(Point startPoint, Dimension dimension):
+								GLCube(startPoint,dimension),
+								cubeDimension(Dimension(dimension.getWidth()/WORD_MAX_LENGTH, dimension.getDepth(), 0.5f)),
+								currentPoint(startPoint)
+								{
 		this->max_letters = WORD_MAX_LENGTH;
     }
 
@@ -46,7 +50,7 @@ namespace WordGL {
 		}
 		
 		//LetterCube cube erstellen
-		
+		//this->cubes.push_back(LetterCube());
 	}
 	
 	void LetterShelf::pop(){
