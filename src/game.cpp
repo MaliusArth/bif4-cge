@@ -35,8 +35,8 @@ namespace WordGL {
         dict(WORD_MIN_LENGTH, WORD_MAX_LENGTH),
         backGround(Point(-32.0f, -0.01f, -32.0f), Dimension(64.0f, 64.0f, 64.0f)),
         gameTable(Point(0.0f, 0.0f, -8.0f), Dimension(6.0f, 8.0f, 0.5f)),
-        scorePanel(Point(0.0f, 0.0f, -8.0f), Dimension(6.0f, 8.0f, 0.5f)),
-        letterShelf(Point(0.0f, 0.0f, -0.5f), Dimension(6.0f, 8.0f, 0.5f))
+        scorePanel(Point(0.0f, 0.0f, -9.0f), Dimension(6.0f, 1.0f, 0.5f)),
+        letterShelf(Point(0.0f, 0.0f, -0.5f), Dimension(6.0f, 1.0f, 0.5f))
         {
         this->dict.load(DICTIONARY_PATH);
         this->newLineInterval = newLineInterval;
@@ -45,8 +45,11 @@ namespace WordGL {
     }
 	
 	void Game::input(char character){
-		// append to lettershelf if ASCII letter
-		if((character >= 65 && character <= 90) || (character >= 97 && character <= 122)){
+        // convert upper to lowercase characters
+		if(character >= 97 && character <= 122){
+            character -= 32;
+        }
+		if(character >= 65 && character <= 90){
 			this->letterShelf.push(character);
 		}
         
@@ -78,6 +81,7 @@ namespace WordGL {
         }
             
         if(valid){
+            this->gameTable.removeWord(characters);
             this->scorePanel.addScore(this->calculateScore(characters));
         } else {
             this->scorePanel.addScore(-this->calculateScore(characters));
@@ -106,7 +110,7 @@ namespace WordGL {
      * the index from 0-25 for any given char
      * @param letter The character which is mapped to 0-25
      * @return The index of the character between 0 and 25, if its not a valid character
-     *         it defaults to 0
+     *         it defaults to the letter entered
      */
     int Game::getLetterIndex(char letter) {
         if(letter >= 65 && letter <= 90){
@@ -114,7 +118,7 @@ namespace WordGL {
         } else if(letter >= 97 && letter <= 122){
             return letter - 97;
         } else {
-            return 0;
+            return letter;
         }
     }
 

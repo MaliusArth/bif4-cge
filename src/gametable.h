@@ -21,6 +21,7 @@
 #include "point.h"
 #include "dimension.h"
 #include "glcube.h"
+#include "gametablelettercube.h"
 #include <vector>
 
 namespace WordGL {
@@ -34,10 +35,14 @@ namespace WordGL {
         bool isGameOver();
         void addNewLine();
         bool containsCharacters(std::vector<char> characters);
+        char getRandomCharacter();
+        void removeWord(std::vector<char> characters);
         
     private:
         unsigned int columns;
         unsigned int rows;
+        std::vector<GameTableLetterCube*> letterCubes;
+        bool longerThanMaximum;
         
     };
 
