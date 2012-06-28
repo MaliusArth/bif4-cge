@@ -59,10 +59,10 @@ namespace WordGL {
         }
 
         while ((dirp = readdir(dp)) != NULL) {
-            std::string filename = std::string(dirp->d_name);
-	    std::cout << filename.substr(0,1) << std::endl;
+            std::string file = std::string(dirp->d_name);
+	    std::string filename = file.substr(0,filename.length() - EXT_LEN);
             std::string filepath = path + std::string(dirp->d_name);
-            if ((filename.length() > 3) && filename.substr(filename.length() - EXT_LEN, std::string::npos) == EXT)
+            if ((std::string(dirp->d_name).length() > 3) && file.substr(file.length() - EXT_LEN, std::string::npos) == EXT)
             {
             Image* image = loadBMP(filepath);
             loadMipmappedTexture(image, filename);
