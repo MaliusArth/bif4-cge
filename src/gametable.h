@@ -45,7 +45,7 @@ namespace WordGL {
         void removeWord(std::vector<char> characters);
         
     private:
-        GLfloat rowUnit;
+        GLfloat cubeUnit;
         unsigned int columns;
         unsigned int rows;
         std::vector<GameTableLetterCube*> letterCubes;

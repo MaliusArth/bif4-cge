@@ -36,7 +36,7 @@ namespace WordGL {
     GameTable::GameTable ( Point startPoint, Dimension dimension ): GLCube(startPoint, dimension){
         this->columns = GAMETABLE_COLUMNS_NUM;
         this->rows = GAMETABLE_ROWS_NUM;
-        this->rowUnit = this->width / this->rows;
+        this->cubeUnit = this->width / this->columns;
         this->longerThanMaximum = false;
     }
 
@@ -64,10 +64,10 @@ namespace WordGL {
 
         // create new row
         for(unsigned int i=0; i<this->columns; i++){
-            Point startPoint(i*this->rowUnit, 0.1f, 0.0f);
-            Dimension dimension(this->rowUnit, this->rowUnit, 0.5f);
+            Point startPoint(i*this->cubeUnit, 0.1f, 0.0f);
+            Dimension dimension(this->cubeUnit, this->cubeUnit, 0.5f);
             GameTableLetterCube* letterCube =
-                new GameTableLetterCube(startPoint, dimension, this->getRandomCharacter(), this->rowUnit);
+            new GameTableLetterCube(startPoint, dimension, this->getRandomCharacter(), this->cubeUnit);
             this->letterCubes.push_back(letterCube);
         }
         
