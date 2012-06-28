@@ -50,8 +50,8 @@ namespace WordGL {
 			this->letterShelf.push(character);
 		}
         
-		//if backspace was pressed
-		if(character == 127){
+		//if backspace or entf was pressed
+		if(character == 127 || character == 8){
 			this->letterShelf.pop();
 		}
 		
