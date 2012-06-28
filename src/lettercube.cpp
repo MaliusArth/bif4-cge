@@ -29,8 +29,7 @@
 
 namespace WordGL {
 
-    LetterCube::LetterCube ( Point startPoint, Dimension dimension, char letter): GLCube(startPoint,dimension) {	
-		
+    LetterCube::LetterCube (Point startPoint, Dimension dimension, char letter): GLCube(startPoint,dimension) {	
 		this->setTopTexture(std::string(letter));		
 		this->letter = letter;
     }

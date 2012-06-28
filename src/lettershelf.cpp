@@ -45,9 +45,9 @@ namespace WordGL {
 		if(this->cubes.size() + 1 >= this->max_letters) {
 			return;
 		}
-	
 		
 		//LetterCube cube erstellen
+		
 	}
 	
 	void LetterShelf::pop(){
