@@ -20,11 +20,35 @@
 #include "point.h"
 #include "dimension.h"
 #include "glcube.h"
+#include "lettercube.h"
+#include "settings.h"
+#include <vector>
+#include <cstdlib>
 
 namespace WordGL {
     
-    ScorePanel::ScorePanel(Point startPoint, Dimension dimension): GLCube(startPoint, dimension) {
-        this->score = 0;
+    ScorePanel::ScorePanel(Point startPoint, Dimension dimension): 
+		GLCube(startPoint,dimension),
+		cubeDimension(Dimension(dimension.getWidth()/WORD_MAX_LENGTH, dimension.getWidth()/WORD_MAX_LENGTH, 0.5f)) {
+			this->setScore(0);
+			
+			//Calculate the number of required objects for representing the score 
+			int number = MAX_SCORE;
+			int num_digits = 0;
+			if (number < 0)
+			    number = -number;
+			while(number > 0) {
+			    num_digits++;
+			    number/=10;
+			}
+			
+			Point currentPoint(this->startX, this->startY, this->startZ);
+			
+			//For each digit one LetterCube
+			for(int i=0; i < num_digits; i++){
+				this->cubes.push_back(new LetterCube(currentPoint, this->cubeDimension, '0'));
+				currentPoint.setXCoord(currentPoint.getXCoord() + this->cubeDimension.getWidth());
+			}
     }
 
     ScorePanel::~ScorePanel() {
@@ -32,11 +56,18 @@ namespace WordGL {
     }
 
     void ScorePanel::setScore ( int score ) {
-        this->score = score;
+        if(score > MAX_SCORE){
+			score = MAX_SCORE;
+		}
+		
+		this->score = score;
+		
+		//Update the letter represented by the score-cubes
+		
     }
 
     void ScorePanel::addScore ( int score ) {
-        this->score += score;
+		this->addScore(this->score + score);
     }
 
     int ScorePanel::getScore() {
@@ -45,7 +76,21 @@ namespace WordGL {
 
     
     void ScorePanel::draw() {
+		glPushMatrix();
+		
+		glRotatef(-20, 1,0,0);
+		
+		//Draw the panel itself
+        this->move(this->startX, this->startY, this->startZ);
+        this->setColor(1.0f, 1.0f, 1.0f);
+        this->drawBottom();
 
+		//Draw the score-cubes
+		for(unsigned int i = 0 ; i < this->cubes.size(); i++){
+			this->cubes[i]->draw();
+		}
+		
+        glPopMatrix();
     }
 
 }

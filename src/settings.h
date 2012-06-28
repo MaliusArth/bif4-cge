@@ -28,6 +28,11 @@
 #define GAMETABLE_ROWS_NUM 12
 #define GAMETABLE_COLUMNS_NUM 8
 
+
+//ScorePanel values
+#define MAX_SCORE 999999
+#define MIN_SCORE 0
+
 // points for letters
 #define POINTS_A 1
 #define POINTS_B 1

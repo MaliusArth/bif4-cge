@@ -35,7 +35,7 @@ namespace WordGL {
         LetterCube(Point startPoint, Dimension dimension, char letter);
 		char getLetter();
         virtual ~LetterCube();
-    
+		void setLetter(char letter);
 	private:
 		char letter;
 		

@@ -30,12 +30,16 @@
 namespace WordGL {
 
     LetterCube::LetterCube (Point startPoint, Dimension dimension, char letter): GLCube(startPoint,dimension) {	
-		this->setTopTexture(std::string(&letter));		
-		this->letter = letter;
+		this->setLetter(letter);
     }
 
 	char LetterCube::getLetter(){
 		return this->letter;
+	}
+	
+	void LetterCube::setLetter(char letter){
+		this->setTopTexture(std::string(&letter));
+		this->letter = letter;
 	}
 
     LetterCube::~LetterCube() {

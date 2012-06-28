@@ -22,6 +22,8 @@
 #include "point.h"
 #include "dimension.h"
 #include "glcube.h"
+#include <vector>
+#include "lettercube.h"
 
 namespace WordGL{
     
@@ -37,6 +39,8 @@ namespace WordGL{
         
     private:
         int score;
+		Dimension cubeDimension;
+		std::vector<LetterCube*> cubes;
     };
     
 }
