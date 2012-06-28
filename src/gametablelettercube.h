@@ -29,6 +29,12 @@ namespace WordGL {
     public:
         GameTableLetterCube(Point startPoint, Dimension dimension, char letter);
         virtual ~GameTableLetterCube();
+        unsigned int getColumn();
+        void incrementRow();
+
+    private:
+        int column;
+        int row;
     };
     
 }

@@ -18,6 +18,12 @@
 
 #pragma once
 
+#ifdef __APPLE__
+    #include <OpenGL/gl.h>
+#else
+    #include <GL/gl.h>
+#endif
+
 #include "point.h"
 #include "dimension.h"
 #include "glcube.h"
@@ -39,6 +45,7 @@ namespace WordGL {
         void removeWord(std::vector<char> characters);
         
     private:
+        GLfloat rowUnit;
         unsigned int columns;
         unsigned int rows;
         std::vector<GameTableLetterCube*> letterCubes;

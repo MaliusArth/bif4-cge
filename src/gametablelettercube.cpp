@@ -26,9 +26,21 @@ namespace WordGL {
 
     GameTableLetterCube::GameTableLetterCube(Point startPoint, Dimension dimension, char letter):
         LetterCube(startPoint, dimension, letter){
+        this->column = 0;
+        this->row = 0;
 
     }
 
+    unsigned int GameTableLetterCube::getColumn() {
+        return this->column;
+    }
+
+    void GameTableLetterCube::incrementRow() {
+        this->row += 1;
+        // TODO: adjust coords
+    }
+
+    
     GameTableLetterCube::~GameTableLetterCube() {
 
     }

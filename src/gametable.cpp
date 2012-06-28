@@ -32,6 +32,7 @@ namespace WordGL {
     GameTable::GameTable ( Point startPoint, Dimension dimension ): GLCube(startPoint, dimension){
         this->columns = GAMETABLE_COLUMNS_NUM;
         this->rows = GAMETABLE_ROWS_NUM;
+        this->rowUnit = this->width / this->rows;
         this->longerThanMaximum = false;
     }
 
@@ -42,17 +43,31 @@ namespace WordGL {
         glPushMatrix();
         this->move(this->startX, this->startY, this->startZ);
         this->drawBottom("checkerboard");
+        for(unsigned int i=0; i<this->letterCubes.size(); i++){
+            this->letterCubes[i]->draw();
+        }
         glPopMatrix();
     }
 
     void GameTable::addNewLine() {
-        // check if we move longer than maximum
-        for(unsigned int i=0; i<this->columns; i++){
-            //Point ;
-            //GameTableLetterCube* letterCube = new LetterCube();
-            //this->letterCubes.push_back(letterCube);
+        // move all lettercubes one level down
+        for(unsigned int i=0; i<this->letterCubes.size(); i++){
+            this->letterCubes[i]->incrementRow();
         }
-        // TODO: move all lettercubes one level down
+
+        // create new row
+        for(unsigned int i=0; i<this->columns; i++){
+            Point startPoint(i*this->rowUnit, 0.0f, i*this->rowUnit);
+            Dimension dimension(this->rowUnit, this->rowUnit, 0.5f);
+            GameTableLetterCube* letterCube = new GameTableLetterCube(startPoint, dimension, this->getRandomCharacter());
+            this->letterCubes.push_back(letterCube);
+        }
+        
+
+        // check if the oldest element exceeds the maximum length
+        if(this->letterCubes[0]->getColumn() >= this->columns){
+            this->longerThanMaximum = true;
+        }
     }
 
     /**
