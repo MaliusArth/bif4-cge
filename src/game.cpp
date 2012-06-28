@@ -121,7 +121,7 @@ namespace WordGL {
     int Game::calculateScore ( std::vector< char > letters ) {
         int score = 0;
         for(unsigned int i=0; i<letters.size(); i++){
-            int letterIndex = this->getLetterIndex(letters[i]);
+            int letterIndex = Game::getLetterIndex(letters[i]);
             int letterScore = this->charPoints[letterIndex];
             // if the word is longer than 3 characters, give a special bonus
             // for every following character

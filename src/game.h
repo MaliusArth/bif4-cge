@@ -41,7 +41,7 @@ namespace WordGL {
 
     private:
         void processInput();
-        int getLetterIndex(char letter);
+        static int getLetterIndex(char letter);
         void showGameOverScreen();
         void initLetterPoints();
         int calculateScore(std::vector<char> letters);
