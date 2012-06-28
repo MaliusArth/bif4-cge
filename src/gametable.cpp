@@ -64,7 +64,7 @@ namespace WordGL {
 
         // create new row
         for(unsigned int i=0; i<this->columns; i++){
-            Point startPoint(i*this->rowUnit, 0.0f, 0.0f);
+            Point startPoint(i*this->rowUnit, 0.1f, 0.0f);
             Dimension dimension(this->rowUnit, this->rowUnit, 0.5f);
             GameTableLetterCube* letterCube =
                 new GameTableLetterCube(startPoint, dimension, this->getRandomCharacter(), this->rowUnit);
@@ -108,9 +108,9 @@ namespace WordGL {
         letterFrequency[19] = 0.0905;
         letterFrequency[20] = 0.0275;
         letterFrequency[21] = 0.0103;
-        letterFrequency[22] = 0.0246;
+        letterFrequency[22] = 0.0236;
         letterFrequency[23] = 0.0015;
-        letterFrequency[24] = 0.0197;
+        letterFrequency[24] = 0.0187;
         letterFrequency[25] = 0.0007;
         
         int randomNumber = rand() % 10000;
