@@ -41,7 +41,7 @@ namespace WordGL {
         this->backTexture = false;
     }
 
-    void Cube::draw() {
+    void GLCube::draw() {
         glPushMatrix();
         this->move(this->startX, this->startY, this->startZ);
 
@@ -92,32 +92,32 @@ namespace WordGL {
     }
 
 
-    void Cube::setTopTextureId ( std::string textureName ) {
+    void GLCube::setTopTextureId ( std::string textureName ) {
         this->topTexture = true;
         this->topTextureName = textureName;
     }
 
-    void Cube::setBottomTextureId ( std::string textureName ) {
+    void GLCube::setBottomTextureId ( std::string textureName ) {
         this->bottomTexture = true;
         this->bottomTextureName = textureName;
     }
 
-    void Cube::setBackTextureId ( std::string textureName ) {
+    void GLCube::setBackTextureId ( std::string textureName ) {
         this->backTexture = true;
         this->backTextureName = textureName;
     }
 
-    void Cube::setFrontTextureId ( std::string textureName ) {
+    void GLCube::setFrontTextureId ( std::string textureName ) {
         this->frontTexture = true;
         this->frontTextureName = textureName;
     }
 
-    void Cube::setRightTextureId ( std::string textureName ) {
+    void GLCube::setRightTextureId ( std::string textureName ) {
         this->rightTexture = true;
         this->rightTextureName = textureName;
     }
 
-    void Cube::setLeftTextureId ( std::string textureName ) {
+    void GLCube::setLeftTextureId ( std::string textureName ) {
         this->leftTexture = true;
         this->leftTextureName = textureName;
     }
