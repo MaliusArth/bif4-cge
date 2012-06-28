@@ -39,6 +39,7 @@ namespace WordGL {
         virtual void setBackTexture(std::string textureName);
 
     protected:
+        virtual void texturize(std::string textureName);
         virtual void drawBottom();
         virtual void drawBottom(std::string textureName);
         virtual void drawTop();

@@ -123,10 +123,15 @@ namespace WordGL {
     }
     
     void GLCube::drawBottom(std::string textureName) {
-        TextureLoader* textureLoader = TextureLoader::getInstance();
-        GLuint textureId = textureLoader->getTextureId(textureName);
+        this->texturize(textureName);
         this->drawBottom();
     }
+
+    void GLCube::texturize ( std::string textureName ) {
+        TextureLoader* textureLoader = TextureLoader::getInstance();
+        GLuint textureId = textureLoader->getTextureId(textureName);
+    }
+
     
     void GLCube::drawBottom() {
         glBegin(GL_QUADS);
@@ -138,7 +143,7 @@ namespace WordGL {
     }
 
     void GLCube::drawTop(std::string textureName) {
-        // TODO: set texture
+        this->texturize(textureName);
         this->drawTop();
     }
     
@@ -152,7 +157,7 @@ namespace WordGL {
     }
 
     void GLCube::drawFrontSide(std::string textureName) {
-        // TODO: set texture
+        this->texturize(textureName);
         this->drawFrontSide();
     }
     
@@ -166,7 +171,7 @@ namespace WordGL {
     }
 
     void GLCube::drawBackSide(std::string textureName) {
-        // TODO: set texture
+        this->texturize(textureName);
         this->drawBackSide();
     }
 
@@ -181,7 +186,7 @@ namespace WordGL {
     }
 
     void GLCube::drawLeftSide(std::string textureName) {
-        // TODO: set texture
+        this->texturize(textureName);
         this->drawLeftSide();
     }
     
@@ -195,7 +200,7 @@ namespace WordGL {
     }
 
     void GLCube::drawRightSide(std::string textureName) {
-        // TODO: set texture
+        this->texturize(textureName);
         this->drawRightSide();
     }
     
