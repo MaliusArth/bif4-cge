@@ -36,7 +36,7 @@ namespace WordGL {
     GameTable::GameTable ( Point startPoint, Dimension dimension ): GLCube(startPoint, dimension){
         this->columns = GAMETABLE_COLUMNS_NUM;
         this->rows = GAMETABLE_ROWS_NUM;
-        this->rowUnit = this->width / this->rows;
+        this->cubeUnit = this->width / this->columns;
         this->longerThanMaximum = false;
     }
 
@@ -64,10 +64,10 @@ namespace WordGL {
 
         // create new row
         for(unsigned int i=0; i<this->columns; i++){
-            Point startPoint(i*this->rowUnit, 0.0f, 0.0f);
-            Dimension dimension(this->rowUnit, this->rowUnit, 0.5f);
+            Point startPoint(i*this->cubeUnit, 0.1f, 0.0f);
+            Dimension dimension(this->cubeUnit, this->cubeUnit, 0.5f);
             GameTableLetterCube* letterCube =
-                new GameTableLetterCube(startPoint, dimension, this->getRandomCharacter(), this->rowUnit);
+            new GameTableLetterCube(startPoint, dimension, this->getRandomCharacter(), this->cubeUnit);
             this->letterCubes.push_back(letterCube);
         }
         
@@ -108,9 +108,9 @@ namespace WordGL {
         letterFrequency[19] = 0.0905;
         letterFrequency[20] = 0.0275;
         letterFrequency[21] = 0.0103;
-        letterFrequency[22] = 0.0246;
+        letterFrequency[22] = 0.0236;
         letterFrequency[23] = 0.0015;
-        letterFrequency[24] = 0.0197;
+        letterFrequency[24] = 0.0187;
         letterFrequency[25] = 0.0007;
         
         int randomNumber = rand() % 10000;
@@ -134,31 +134,30 @@ namespace WordGL {
      * Check if the gametable contains the letters we entered
      */
     bool GameTable::containsCharacters ( std::vector<char> characters ) {
-        std::vector<char> charactersCopy(characters);
+        //std::vector<char> charactersCopy(characters);
         // check each lettercube we got if the current character matches it
-        for(unsigned int i=0; i<this->letterCubes.size(); i++){
-            for(unsigned int j=0; j<charactersCopy.size(); j++){
-                if(charactersCopy[j] == '0'){
-                    continue;
-                }
-                if(charactersCopy[j] == this->letterCubes[i]->getLetter()){
-                    charactersCopy[j] = '0';
+        /*unsigned int found = 0;
+        std::cout << charactersCopy.size() << std::endl;
+        for(unsigned int i=charactersCopy.size()-1; i>=0; i--){
+            
+            std::cout << "checking letter " << charactersCopy[i] << std::endl;
+            
+            for(unsigned int j=0; j<this->letterCubes.size(); j++){
+                std::cout << "checking letter from cube" << charactersCopy[j] << std::endl;
+                std::cout << "checking letter nr " << j << std::endl;
+                /*if(charactersCopy[i] == this->letterCubes[j]->getLetter()){
+                    std::cout << "found letter on board" << std::endl;
                 }
             }
         }
+       
 
-        unsigned int found = 0;
-        for(unsigned int i=0; i<charactersCopy.size(); i++){
-            if(charactersCopy[i] == '0'){
-                found++;
-            }
-        }
-        if(characters.size() == found){
+        if(charactersCopy.size() == 0){
             return true;
         } else {
             return false;
-        }
-        
+    }*/
+        return false;
     }
 
     /**

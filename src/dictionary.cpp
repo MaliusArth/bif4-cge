@@ -84,7 +84,7 @@ namespace WordGL {
             wordIterator != this->database.end();
             ++wordIterator){
             std::string dictWord = *wordIterator;
-            std::transform(dictWord.begin(), dictWord.end(), dictWord.begin(), ::toupper);
+            std::transform(dictWord.begin(), dictWord.end(), dictWord.begin(), ::tolower);
             if(dictWord.compare(word) == 0){
                 std::cout << word << " is in the dictionary" << std::endl;
                 return true;
