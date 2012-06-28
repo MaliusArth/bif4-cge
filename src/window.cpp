@@ -81,6 +81,9 @@ namespace WordGL {
         glEnable(GL_TEXTURE_2D);
 
         this->windowRefreshRate = glutGameModeGet(GLUT_GAME_MODE_REFRESH_RATE);
+        if(this->windowRefreshRate <= 0){
+            this->windowRefreshRate = 60;
+        }
         this->windowRefreshInterval = (int) floor(1000/this->windowRefreshRate);
         
         glutDisplayFunc(&display_wrapper);
