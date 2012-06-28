@@ -40,9 +40,8 @@ namespace WordGL {
         void draw();
         bool isGameOver();
         void addNewLine();
-        bool containsCharacters(std::vector<char> characters);
+        bool ifContainsCharactersRemove(std::vector<char> characters);
         char getRandomCharacter();
-        void removeWord(std::vector<char> characters);
         
     private:
         GLfloat cubeUnit;

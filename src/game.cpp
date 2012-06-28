@@ -80,14 +80,12 @@ namespace WordGL {
             valid = false;
         }
         
-        if(!this->gameTable.containsCharacters(characters)){
+        if(!this->gameTable.ifContainsCharactersRemove(characters)){
             valid = false;
             std::cout << "gametable does not contain " << word << std::endl;
         }
         
         if(valid){
-            //this->gameTable.removeWord(characters);
-            
             //this->scorePanel.addScore(this->calculateScore(characters));
         } else {
             //this->scorePanel.addScore(-this->calculateScore(characters));

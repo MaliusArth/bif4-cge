@@ -133,55 +133,56 @@ namespace WordGL {
     /**
      * Check if the gametable contains the letters we entered
      */
-    bool GameTable::containsCharacters ( std::vector<char> characters ) {
-        //std::vector<char> charactersCopy(characters);
-        // check each lettercube we got if the current character matches it
-        /*unsigned int found = 0;
-        std::cout << charactersCopy.size() << std::endl;
-        for(unsigned int i=charactersCopy.size()-1; i>=0; i--){
-            
-            std::cout << "checking letter " << charactersCopy[i] << std::endl;
-            
+    bool GameTable::ifContainsCharactersRemove ( std::vector<char> characters ) {
+        std::vector<unsigned int> alreadyFound;
+        bool allowed;
+        unsigned int matched = 0;
+        for(unsigned int i=0; i<characters.size(); i++){
             for(unsigned int j=0; j<this->letterCubes.size(); j++){
-                std::cout << "checking letter from cube" << charactersCopy[j] << std::endl;
-                std::cout << "checking letter nr " << j << std::endl;
-                /*if(charactersCopy[i] == this->letterCubes[j]->getLetter()){
-                    std::cout << "found letter on board" << std::endl;
+                allowed = true;
+                // check if we are allowed to check this position
+                for(unsigned int foundCounter=0; foundCounter<alreadyFound.size(); foundCounter++){
+                    if(j == alreadyFound[foundCounter]){
+                        allowed = false;
+                        std::cout << "skipping letter nr " <<j << std::endl;
+                    }
                 }
+                // if we didnt check that letter yet
+                if(allowed){
+                    if(this->letterCubes[j]->getLetter() == characters[i]){
+                        matched++;
+                        alreadyFound.push_back(j);
+                    }
+                }
+
             }
         }
-       
+        std::cout << matched << std::endl;
+        std::cout << alreadyFound.size() << std::endl;
 
-        if(charactersCopy.size() == 0){
+        // if matched remove matched letters from the gametable
+        if(matched == characters.size()){
+            bool drop;
+            std::vector<GameTableLetterCube*> letterCubeCopy;
+            for(unsigned int i=0; i<this->letterCubes.size(); i++){
+                bool drop = false;
+                for(unsigned int foundCounter=0; foundCounter<alreadyFound.size(); foundCounter++){
+                    if(i == alreadyFound[foundCounter]){
+                        drop = true;
+                    }
+                }
+                if(!drop){
+                    letterCubeCopy.push_back(this->letterCubes[i]);
+                } else {
+                    delete letterCubes[i];
+                }
+            }
             return true;
         } else {
             return false;
-    }*/
-        return false;
+        }
     }
 
-    /**
-     * Removes the word from the gametable
-     */
-    void GameTable::removeWord ( std::vector< char > characters ) {
-        std::vector<GameTableLetterCube*> letterCubeCopy(this->letterCubes);
-        std::vector<int> positionsToDelete;
-        
-        // the oldest letter is in the beginning
-        for(unsigned int i=this->letterCubes.size()-1; i>=0; i--){
-            for(unsigned int j=0; j<characters.size(); j++){
-                if(characters[j] == this->letterCubes[i]->getLetter()){
-                    positionsToDelete.push_back(i);
-                }
-            }
-        }
-
-        // delete from the back to not fuck up positions
-        for(unsigned int i=positionsToDelete.size()-1; i>=0; i--){
-            letterCubeCopy.erase(letterCubeCopy.begin()+i);
-        }
-        this->letterCubes = letterCubeCopy;
-    }
 
     
     GameTable::~GameTable() {
