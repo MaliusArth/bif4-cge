@@ -86,7 +86,7 @@ namespace WordGL {
             this->windowRefreshRate = 60;
         }
         this->windowRefreshInterval = (int) floor(1000/this->windowRefreshRate);
-        std::cout << "Rendering with " << this->windowRefreshRate << "hz" << std::endl;
+        std::cout << "Rendering with " << this->windowRefreshRate << " hz" << std::endl;
         
         glutDisplayFunc(&display_wrapper);
         glutReshapeFunc(&resize_wrapper);
