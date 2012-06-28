@@ -34,6 +34,8 @@ namespace WordGL {
     }
 
     void GLCube::drawBottom(std::string textureFileName) {
+        TextureLoader* textureLoader = TextureLoader::getInstance();
+        GLuint textureId = textureLoader->getTextureId(textureFileName);
         this->drawBottom();
     }
     
