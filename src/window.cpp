@@ -34,7 +34,7 @@
 #include "game.h"
 #include "wrappers.h"
 #include "settings.h"
-
+#include <cmath>
 
 
 namespace WordGL {
@@ -81,7 +81,7 @@ namespace WordGL {
         glEnable(GL_TEXTURE_2D);
 
         this->windowRefreshRate = glutGameModeGet(GLUT_GAME_MODE_REFRESH_RATE);
-        this->windowRefreshInterval = 1000/this->windowRefreshRate;
+        this->windowRefreshInterval = (int) floor(1000/this->windowRefreshRate);
         
         glutDisplayFunc(&display_wrapper);
         glutReshapeFunc(&resize_wrapper);

@@ -51,8 +51,8 @@ namespace WordGL {
         int window;
         int width;
         int height;
-        double windowRefreshRate;
-        double windowRefreshInterval;
+        int windowRefreshRate;
+        int windowRefreshInterval;
         const char* title;
         Game game;
         static Window* windowInstance;
