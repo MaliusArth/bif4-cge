@@ -29,6 +29,7 @@
 #include <string>
 #include <iostream>
 #include <utility>
+#include <cstring>
 
 #include "textureloader.h"
 #include "imageloader.h"
@@ -59,6 +60,7 @@ namespace WordGL {
 
         while ((dirp = readdir(dp)) != NULL) {
             std::string filename = std::string(dirp->d_name);
+	    std::cout << filename.substr(0,1) << std::endl;
             std::string filepath = path + std::string(dirp->d_name);
             if ((filename.length() > 3) && filename.substr(filename.length() - EXT_LEN, std::string::npos) == EXT)
             {
@@ -82,19 +84,15 @@ namespace WordGL {
         GLuint textureId;
         glGenTextures(1, &textureId);
         glBindTexture(GL_TEXTURE_2D, textureId);
-
-        if(image->pixels == NULL){
-            std::cout << "hi" << std::endl;
-	}
-	    std::cout << sizeof(image->pixels) << std::endl;
+	
 	//Segmentation fault
-        /*gluBuild2DMipmaps(GL_TEXTURE_2D,
+        gluBuild2DMipmaps(GL_TEXTURE_2D,
 					  GL_RGB,
 					  image->width, image->height,
 					  GL_RGB,
 					  GL_UNSIGNED_BYTE,
 					  image->pixels);
-        */
+        
         // push filename and id into vector
         //TODO:uncomment: typedef std::pair<std::string, GLuint> stringIdPair;
         //TODO:uncomment: this->textureIds.insert(stringIdPair(filename, textureId));
