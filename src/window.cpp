@@ -80,11 +80,13 @@ namespace WordGL {
         glEnable(GL_COLOR_MATERIAL);
         glEnable(GL_TEXTURE_2D);
 
+        // get window refresh rate and interval
         this->windowRefreshRate = glutGameModeGet(GLUT_GAME_MODE_REFRESH_RATE);
         if(this->windowRefreshRate <= 0){
             this->windowRefreshRate = 60;
         }
         this->windowRefreshInterval = (int) floor(1000/this->windowRefreshRate);
+        std::cout << "Rendering with " << this->windowRefreshRate << "hz" << std::endl;
         
         glutDisplayFunc(&display_wrapper);
         glutReshapeFunc(&resize_wrapper);
@@ -126,9 +128,7 @@ namespace WordGL {
                    3.0f, 0.0f, -3.5f,
                    0, 1.0f, -1.0f);
         // draw game objects
-        std::cout << "before update " << this->windowRefreshInterval << " " << this->windowRefreshRate << std::endl;
         this->game.update();
-        std::cout << "after udpate" << std::endl;
         glutSwapBuffers();
     }
 
