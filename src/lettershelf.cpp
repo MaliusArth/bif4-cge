@@ -37,6 +37,7 @@ namespace WordGL {
 								currentPoint(startPoint)
 								{
 		this->max_letters = WORD_MAX_LENGTH;
+		this->currentPoint.setYCoord(+0.05f);
     }
 
 	LetterShelf::~LetterShelf() {
@@ -44,13 +45,20 @@ namespace WordGL {
     }
 	
 	void LetterShelf::push(char character){
+		unsigned int cubeNumber = this->cubes.size();
 		//If the lettershelf is full, don't do anything
-		if(this->cubes.size() + 1 >= this->max_letters) {
+		if(cubeNumber + 1 >= this->max_letters) {
 			return;
 		}
 		
+		if(cubeNumber > 0){
+			int currentX = this->currentPoint.getXCoord();
+			this->currentPoint.setXCoord(currentX + cubeDimension.getWidth());
+		}
+		
+		
 		//LetterCube cube erstellen
-		//this->cubes.push_back(LetterCube());
+		this->cubes.push_back(LetterCube(this->currentPoint, this->cubeDimension, character));
 	}
 	
 	void LetterShelf::pop(){
@@ -68,9 +76,17 @@ namespace WordGL {
 
     void LetterShelf::draw() {
 		glPushMatrix();
+		
+		//Draw the panel itself
         this->move(this->startX, this->startY, this->startZ);
         this->setColor(1.0f, 1.0f, 1.0f);
         this->drawBottom();
+
+		//Draw the input-cubes
+		for(unsigned int i = 0 ; i < this->cubes.size(); i++){
+			this->cubes[i].draw();
+		}
+		
         glPopMatrix();
     }
 }
