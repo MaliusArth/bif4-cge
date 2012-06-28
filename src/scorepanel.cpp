@@ -73,7 +73,7 @@ namespace WordGL {
     }
 
     void ScorePanel::addScore ( int score ) {
-		this->addScore(this->score + score);
+		this->score += score;
     }
 
     int ScorePanel::getScore() {

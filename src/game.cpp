@@ -87,12 +87,14 @@ namespace WordGL {
             valid = false;
             std::cout << "gametable does not contain " << word << std::endl;
         }
-        
+
+        int scoreAdd;
         if(valid){
-            //this->scorePanel.addScore(this->calculateScore(characters));
+            scoreAdd = this->calculateScore(characters);
         } else {
-            //this->scorePanel.addScore(-this->calculateScore(characters));
+            scoreAdd = -this->calculateScore(characters);
         }
+        this->scorePanel.addScore(scoreAdd);
 	}
 
     void Game::update() {
