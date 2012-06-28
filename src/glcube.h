@@ -31,12 +31,12 @@ namespace WordGL {
         GLCube(Point startPoint, Dimension dimension);
         virtual ~GLCube();
         virtual void draw();
-        virtual void setTopTextureId(std::string textureName);
-        virtual void setBottomTextureId(std::string textureName);
-        virtual void setLeftTextureId(std::string textureName);
-        virtual void setRightTextureId(std::string textureName);
-        virtual void setFrontTextureId(std::string textureName);
-        virtual void setBackTextureId(std::string textureName);
+        virtual void setTopTexture(std::string textureName);
+        virtual void setBottomTexture(std::string textureName);
+        virtual void setLeftTexture(std::string textureName);
+        virtual void setRightTexture(std::string textureName);
+        virtual void setFrontTexture(std::string textureName);
+        virtual void setBackTexture(std::string textureName);
 
     protected:
         virtual void drawBottom();
