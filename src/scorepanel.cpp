@@ -24,6 +24,7 @@
 namespace WordGL {
     
     ScorePanel::ScorePanel(Point startPoint, Dimension dimension): GLCube(startPoint, dimension) {
+        this->score = 0;
     }
 
     ScorePanel::~ScorePanel() {
