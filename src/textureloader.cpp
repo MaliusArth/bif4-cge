@@ -37,7 +37,6 @@
 #define EXT_LEN 4
 #define EXT ".bmp"
 
-
 namespace WordGL {
 
     TextureLoader* TextureLoader::loaderInstance = NULL;
@@ -84,9 +83,10 @@ namespace WordGL {
         glGenTextures(1, &textureId);
         glBindTexture(GL_TEXTURE_2D, textureId);
 
-        if(image->pixels == NULL)
-            std::cout << "hi";
-        
+        if(image->pixels == NULL){
+            std::cout << "hi" << std::endl;
+	}
+	    std::cout << sizeof(image->pixels) << std::endl;
 	//Segmentation fault
         /*gluBuild2DMipmaps(GL_TEXTURE_2D,
 					  GL_RGB,

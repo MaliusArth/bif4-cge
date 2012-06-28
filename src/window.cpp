@@ -86,7 +86,7 @@ namespace WordGL {
         glutDisplayFunc(&display_wrapper);
         glutReshapeFunc(&resize_wrapper);
         glutKeyboardFunc(&keyPressed_wrapper);
-        glutTimerFunc(this->windowRefreshInterval, &timer_wrapper, 1);
+        //glutTimerFunc(this->windowRefreshInterval, &timer_wrapper, 1);
         glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
         glClearDepth(1.0);
         glDepthFunc(GL_LESS);
