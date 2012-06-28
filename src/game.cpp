@@ -33,10 +33,11 @@ namespace WordGL {
     */
     Game::Game(unsigned int newLineInterval):
         dict(WORD_MIN_LENGTH, WORD_MAX_LENGTH),
-        backGround(Point(-32.0f, -0.01f, -32.0f), Dimension(64.0f, 64.0f, 64.0f)),
-        gameTable(Point(0.0f, 0.0f, -8.0f), Dimension(6.0f, 8.0f, 0.5f)),
-        scorePanel(Point(0.0f, 0.0f, -9.0f), Dimension(6.0f, 1.0f, 0.5f)),
-        letterShelf(Point(0.0f, 0.0f, -0.5f), Dimension(6.0f, 1.0f, 0.5f))
+        //                horiz   vert    vorne            breite tiefe  hoehe
+        backGround(Point(-32.0f, -0.2f, -32.0f), Dimension(64.0f, 64.0f, 0.0f)),	//point(x, y, z), Dimension(x, z , y)
+        gameTable(Point(0.0f, -0.1f, 0.0f), Dimension(6.0f, 8.0f, 0.5f)),
+        scorePanel(Point(0.0f, -0.1f, -9.0f), Dimension(6.0f, 1.0f, 0.5f)),
+        letterShelf(Point(0.0f, -0.1f, -0.5f), Dimension(6.0f, 1.0f, 0.5f))
         {
         this->dict.load(DICTIONARY_PATH);
         this->newLineInterval = newLineInterval;

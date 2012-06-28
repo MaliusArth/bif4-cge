@@ -156,21 +156,46 @@ namespace WordGL {
 
     
     void GLCube::drawBottom() {	//boolean for if (set_bool) glTexCoord2f(...);
-// 		float _pos = 0.0f;		//The forward position relative to the floor
-// 		const float FLOOR_TEXTURE_SIZE = this->depth - _pos; //The size of each "tile"
-
 		glBegin(GL_QUADS);
 		//x... rechts, y...rauf; z... vor
 		glNormal3f(0.0f, 1.0f, 0.0f);
-		glTexCoord2f(0.0f, 1.0f); glVertex3f(0.0f, 0.0f, 0.0f);
 		
-		glTexCoord2f(0.0f, 0.0f); glVertex3f(0.0f, 0.0f, this->depth);
+		glVertex3f(0.0f, 0.0f+this->height, this->depth);
+        glVertex3f(0.0f, 0.0f+this->height, 0.0f);
+        glVertex3f(this->width, 0.0f+this->height, 0.0f);
+        glVertex3f(this->width, 0.0f+this->height, this->depth);
 		
-		glTexCoord2f(1.0f, 0.0f); glVertex3f(this->width, 0.0f, this->depth);
+		glTexCoord2f(1.0f, 1.0f); glVertex3f(0.0f, 0.0f, 0.0f);
 		
-		glTexCoord2f(1.0f, 1.0f); glVertex3f(this->width, 0.0f, 0.0f);
+		glTexCoord2f(0.0f, 1.0f); glVertex3f(this->width, 0.0f, 0.0f);
 		
-// 		glNormal3f(0.0f, 1.0f, 0.0f);
+		glTexCoord2f(0.0f, 0.0f); glVertex3f(this->width, 0.0f, this->depth);
+		
+		glTexCoord2f(1.0f, 0.0f); glVertex3f(0.0f, 0.0f, this->depth);
+		
+        glEnd();
+		glDisable(GL_TEXTURE_2D);
+    }
+
+    void GLCube::drawTop(std::string textureName) {
+        this->texturize(textureName);
+        this->drawTop();
+    }
+    
+    void GLCube::drawTop() {
+// 		float _pos = 0.0f;		//The forward position relative to the floor
+// 		const float FLOOR_TEXTURE_SIZE = this->depth - _pos; //The size of each "tile"
+        glBegin(GL_QUADS);
+		
+		glTexCoord2f(0.0f, 1.0f); glVertex3f(0.0f, this->height, 0.0f);
+		
+		glTexCoord2f(0.0f, 0.0f); glVertex3f(0.0f, this->height, this->depth);
+		
+		glTexCoord2f(1.0f, 0.0f); glVertex3f(this->width, this->height, this->depth);
+		
+		glTexCoord2f(1.0f, 1.0f); glVertex3f(this->width, this->height, 0.0f);
+		
+		// 		glNormal3f(0.0f, 1.0f, 0.0f);
 // 		glTexCoord2f(2000 / FLOOR_TEXTURE_SIZE, _pos / FLOOR_TEXTURE_SIZE);
 // 		glVertex3f(0.0f, 0.0f, 0.0f);
 // 		
@@ -187,20 +212,6 @@ namespace WordGL {
 		glDisable(GL_TEXTURE_2D);
     }
 
-    void GLCube::drawTop(std::string textureName) {
-        this->texturize(textureName);
-        this->drawTop();
-    }
-    
-    void GLCube::drawTop() {
-        glBegin(GL_QUADS);
-        glVertex3f(0.0f, 0.0f+this->height, this->depth);
-        glVertex3f(0.0f, 0.0f+this->height, 0.0f);
-        glVertex3f(this->width, 0.0f+this->height, 0.0f);
-        glVertex3f(this->width, 0.0f+this->height, this->depth);
-        glEnd();
-    }
-
     void GLCube::drawFrontSide(std::string textureName) {
         this->texturize(textureName);
         this->drawFrontSide();
@@ -208,11 +219,17 @@ namespace WordGL {
     
     void GLCube::drawFrontSide() {
         glBegin(GL_QUADS);
-        glVertex3f(0.0f, 0.0f, 0.0f);
-        glVertex3f(this->width, this->height, 0.0f);
-        glVertex3f(0.0f, this->height, 0.0f);
-        glVertex3f(this->width, 0.0f, 0.0f);
+		
+		glTexCoord2f(0.0f, 0.0f); glVertex3f(0.0f, 0.0f, this->depth);
+		
+		glTexCoord2f(1.0f, 0.0f); glVertex3f(this->width, 0.0f, this->depth);
+		
+		glTexCoord2f(1.0f, 1.0f); glVertex3f(this->width, this->height, this->depth);
+		
+		glTexCoord2f(0.0f, 1.0f); glVertex3f(0.0f, this->height, this->depth);
+		
         glEnd();
+		glDisable(GL_TEXTURE_2D);
     }
 
     void GLCube::drawBackSide(std::string textureName) {
@@ -223,11 +240,17 @@ namespace WordGL {
     
     void GLCube::drawBackSide() {
         glBegin(GL_QUADS);
-        glVertex3f(0.0f, 0.0f, this->depth);
-        glVertex3f(this->width, this->height, this->depth);
-        glVertex3f(0.0f, this->height, this->depth);
-        glVertex3f(this->width, 0.0f, this->depth);
-        glEnd();
+        
+		glTexCoord2f(1.0f, 0.0f); glVertex3f(0.0f, 0.0f, 0.0f);
+		
+		glTexCoord2f(1.0f, 1.0f); glVertex3f(0.0f, this->height, 0.0f);
+		
+		glTexCoord2f(0.0f, 1.0f); glVertex3f(this->width, this->height, 0.0f);
+		
+		glTexCoord2f(0.0f, 0.0f); glVertex3f(this->width, 0.0f, 0.0f);
+		
+		glEnd();
+		glDisable(GL_TEXTURE_2D);
     }
 
     void GLCube::drawLeftSide(std::string textureName) {
@@ -237,11 +260,17 @@ namespace WordGL {
     
     void GLCube::drawLeftSide() {
         glBegin(GL_QUADS);
-        glVertex3f(0.0f, 0.0f, 0.0f);
-        glVertex3f(0.0f, 0.0f, this->depth);
-        glVertex3f(0.0f, this->height, this->depth);
-        glVertex3f(0.0f, this->height, 0.0f);
+		
+		glTexCoord2f(0.0f, 0.0f); glVertex3f(0.0f, 0.0f, 0.0f);
+		
+		glTexCoord2f(1.0f, 0.0f); glVertex3f(0.0f, 0.0f, this->depth);
+		
+		glTexCoord2f(1.0f, 1.0f); glVertex3f(0.0f, this->height, this->depth);
+		
+		glTexCoord2f(0.0f, 1.0f); glVertex3f(0.0f, this->height, 0.0f);
+		
         glEnd();
+		glDisable(GL_TEXTURE_2D);
     }
 
     void GLCube::drawRightSide(std::string textureName) {
@@ -251,11 +280,17 @@ namespace WordGL {
     
     void GLCube::drawRightSide() {
         glBegin(GL_QUADS);
-        glVertex3f(this->width, 0.0f, 0.0f);
-        glVertex3f(this->width, 0.0f, this->depth);
-        glVertex3f(this->width, this->height, this->depth);
-        glVertex3f(this->width, this->height, 0.0f);
+		
+		glTexCoord2f(1.0f, 0.0f); glVertex3f(this->width, 0.0f, 0.0f);
+		
+		glTexCoord2f(1.0f, 1.0f); glVertex3f(this->width, this->height, 0.0f);
+		
+		glTexCoord2f(0.0f, 1.0f); glVertex3f(this->width, this->height, this->depth);
+		
+		glTexCoord2f(0.0f, 0.0f); glVertex3f(this->width, 0.0f, this->depth);
+		
         glEnd();
+		glDisable(GL_TEXTURE_2D);
     }
 
     GLCube::~GLCube() {

@@ -34,7 +34,7 @@ namespace WordGL {
     void Pane::draw() {
         glPushMatrix();
         this->move(this->startX, this->startY, this->startZ);
-        this->drawBottom(std::string("background"));
+        this->drawTop(std::string("background"));
         glPopMatrix();
     }
 

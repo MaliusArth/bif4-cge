@@ -87,9 +87,10 @@ namespace WordGL {
 		
 		//Draw the panel itself
         this->move(this->startX, this->startY, this->startZ);
-        this->setColor(1.0f, 1.0f, 1.0f);
-        this->drawBottom();
-
+        glPushMatrix();
+		this->setColor(1.0f, 1.0f, 1.0f);
+        this->drawTop();
+		glPopMatrix();
 		//Draw the score-cubes
 		for(unsigned int i = 0 ; i < this->cubes.size(); i++){
 			this->cubes[i]->draw();

@@ -46,8 +46,10 @@ namespace WordGL {
     void GameTable::draw() {
         glPushMatrix();
         this->move(this->startX, this->startY, this->startZ);
+		glPushMatrix();
         //this->setColor(1.0f, 0.0f, 0.0f);
-		this->drawBottom(std::string("checkerboard"));
+		this->drawTop(std::string("checkerboard"));
+		glPopMatrix();
         for(unsigned int i=0; i<this->letterCubes.size(); i++){
             this->letterCubes[i]->draw();
         }
