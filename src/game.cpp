@@ -70,22 +70,23 @@ namespace WordGL {
         std::vector<char> characters = this->letterShelf.clear();
         std::string word("");
         for(unsigned int i=0; i<characters.size(); i++){
-            word.append(&characters[i]);
+            word += characters[i];
         }
-
+        
         bool valid = true;
-        if(!this->dict.containsWord(word.c_str())){
+        if(!this->dict.containsWord(word)){
             valid = false;
         }
         if(!this->gameTable.containsCharacters(characters)){
             valid = false;
         }
-            
+        
         if(valid){
             this->gameTable.removeWord(characters);
-            this->scorePanel.addScore(this->calculateScore(characters));
+            
+            //this->scorePanel.addScore(this->calculateScore(characters));
         } else {
-            this->scorePanel.addScore(-this->calculateScore(characters));
+            //this->scorePanel.addScore(-this->calculateScore(characters));
         }
 	}
 

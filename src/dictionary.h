@@ -30,7 +30,7 @@ namespace WordGL {
         Dictionary(int minLength, int maxLength);
         ~Dictionary();
         void load(const char* path);
-        bool containsWord(const char* word);
+        bool containsWord(std::string word);
         std::string getRandomWord();
 
     private:
