@@ -43,7 +43,7 @@ namespace WordGL {
 	LetterShelf::~LetterShelf() {
 
     }
-	
+	  
 	void LetterShelf::push(char character){
 		unsigned int cubeNumber = this->cubes.size();
 		//If the lettershelf is full, don't do anything
