@@ -31,7 +31,7 @@
 
 namespace WordGL {
 	
-    LetterShelf::LetterShelf(Point startPoint, Dimension dimension):currentPoint(0.0f,0.0f,0.0f){
+    LetterShelf::LetterShelf(Point startPoint, Dimension dimension):GLCube(startPoint,dimension),currentPoint(0.0f,0.0f,0.0f){
         this->setCoordsDimension(startPoint, dimension);
 		this->max_letters = WORD_MAX_LENGTH;
     }
@@ -42,7 +42,7 @@ namespace WordGL {
 	
 	void LetterShelf::push(char character){
 		//If the lettershelf is full, don't do anything
-		if(this->cubes.size()+1 >= this->max_letters) {
+		if(this->cubes.size() + 1 >= this->max_letters) {
 			return;
 		}
 	

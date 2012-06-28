@@ -19,7 +19,7 @@
 
 #pragma once
 
-#include "cube.h"
+#include "glcube.h"
 
 #ifdef __APPLE__
     #include <OpenGL/gl.h>
@@ -29,10 +29,10 @@
 
 namespace WordGL {
     
-    class LetterCube: public Cube {
+    class LetterCube: public GLCube {
 
     public:
-        LetterCube(Point startPoint, Dimension dimension, GLuint textureId, char letter);
+        LetterCube(Point startPoint, Dimension dimension, char letter);
 		char getLetter();
         virtual ~LetterCube();
     

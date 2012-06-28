@@ -17,7 +17,9 @@
  */
 
 
+#include "glcube.h"
 #include "lettercube.h"
+#include <string>
 
 #ifdef __APPLE__
     #include <OpenGL/gl.h>
@@ -27,8 +29,9 @@
 
 namespace WordGL {
 
-    LetterCube::LetterCube ( Point startPoint, Dimension dimension, GLuint textureId, char letter): Cube(startPoint,dimension) {
-		this->setTopTextureId(textureId);
+    LetterCube::LetterCube ( Point startPoint, Dimension dimension, char letter): GLCube(startPoint,dimension) {	
+		
+		this->setTopTexture(std::string(letter));		
 		this->letter = letter;
     }
 
