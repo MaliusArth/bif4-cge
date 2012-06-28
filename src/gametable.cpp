@@ -135,6 +135,7 @@ namespace WordGL {
      */
     bool GameTable::ifContainsCharactersRemove ( std::vector<char> characters ) {
         std::vector<unsigned int> alreadyFound;
+
         bool allowed;
         unsigned int matched = 0;
         for(unsigned int i=0; i<characters.size(); i++){
@@ -144,7 +145,6 @@ namespace WordGL {
                 for(unsigned int foundCounter=0; foundCounter<alreadyFound.size(); foundCounter++){
                     if(j == alreadyFound[foundCounter]){
                         allowed = false;
-                        std::cout << "skipping letter nr " <<j << std::endl;
                     }
                 }
                 // if we didnt check that letter yet
@@ -152,30 +152,30 @@ namespace WordGL {
                     if(this->letterCubes[j]->getLetter() == characters[i]){
                         matched++;
                         alreadyFound.push_back(j);
+                        break;
                     }
                 }
 
             }
         }
-        std::cout << matched << std::endl;
-        std::cout << alreadyFound.size() << std::endl;
 
         // if matched remove matched letters from the gametable
         if(matched == characters.size()){
+            unsigned int dropId = 0;
             bool drop;
-            std::vector<GameTableLetterCube*> letterCubeCopy;
-            for(unsigned int i=0; i<this->letterCubes.size(); i++){
-                bool drop = false;
+            for(std::vector<GameTableLetterCube*>::iterator it=this->letterCubes.begin(); it!=this->letterCubes.end();){
+                drop = false;
                 for(unsigned int foundCounter=0; foundCounter<alreadyFound.size(); foundCounter++){
-                    if(i == alreadyFound[foundCounter]){
+                    if(dropId == alreadyFound[foundCounter]){
                         drop = true;
                     }
                 }
-                if(!drop){
-                    letterCubeCopy.push_back(this->letterCubes[i]);
+                if(drop){
+                    it = this->letterCubes.erase(it);
                 } else {
-                    delete letterCubes[i];
+                    it++;
                 }
+                dropId++;
             }
             return true;
         } else {
