@@ -50,6 +50,11 @@ namespace WordGL {
 			this->letterShelf.push(character);
 		}
         
+		//if backspace was pressed
+		if(character == 127){
+			this->letterShelf.pop();
+		}
+		
         // if enter is pressed -> Process the word
         if(character == 13){
             this->processInput();

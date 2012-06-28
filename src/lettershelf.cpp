@@ -70,7 +70,7 @@ namespace WordGL {
 			this->currentPoint.setXCoord(startX);
 		}
 		else{
-			int currentX = this->currentPoint.getXCoord();
+			GLfloat currentX = this->currentPoint.getXCoord();
 			this->currentPoint.setXCoord(currentX - cubeDimension.getWidth());
 			this->cubes.pop_back();
 		}
