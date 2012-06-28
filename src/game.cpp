@@ -40,17 +40,17 @@ namespace WordGL {
         {
         this->dict.load(DICTIONARY_PATH);
         this->newLineInterval = newLineInterval;
-        this->addNewLine();
+        this->gameTable.addNewLine();
         this->initLetterPoints();
     }
 	
 	void Game::input(char character){
-		//If the input character is between aA-zZ
+		// append to lettershelf if ASCII letter
 		if((character >= 65 && character <= 90) || (character >= 97 && character <= 122)){
 			this->letterShelf.push(character);
 		}
         
-        //If character is a carriage return -> Process the word
+        // if enter is pressed -> Process the word
         if(character == 13){
             this->processInput();
         }
@@ -82,7 +82,7 @@ namespace WordGL {
     void Game::update() {
         if(this->timer.getTimeDiff() >= this->newLineInterval){
             this->timer.resetTimer();
-            this->addNewLine();
+            this->gameTable.addNewLine();
         }
         if(this->gameTable.isGameOver() || this->scorePanel.getScore() < 0){
             this->showGameOverScreen();
@@ -110,10 +110,6 @@ namespace WordGL {
         } else {
             return 0;
         }
-    }
-
-    void Game::addNewLine() {
-        this->gameTable.addNewLine();
     }
 
     void Game::showGameOverScreen() {

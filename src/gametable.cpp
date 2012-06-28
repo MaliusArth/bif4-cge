@@ -19,12 +19,16 @@
 
 #include "gametable.h"
 #include "textureloader.h"
+#include "settings.h"
+
 #include <vector>
 
 namespace WordGL {
 
     GameTable::GameTable ( Point startPoint, Dimension dimension ){
         this->setCoordsDimension(startPoint, dimension);
+        this->columns = GAMETABLE_COLUMNS_NUM;
+        this->rows = GAMETABLE_ROWS_NUM;
     }
 
     /**
@@ -46,7 +50,7 @@ namespace WordGL {
     bool GameTable::isGameOver() {
         // FIXME:
         return false;
-    }
+    }       
 
     bool GameTable::containsCharacters ( std::vector<char> characters ) {
         // FIXME

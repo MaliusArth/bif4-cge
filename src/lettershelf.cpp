@@ -20,6 +20,7 @@
 #include "lettershelf.h"
 #include "dimension.h"
 #include "point.h"
+#include "settings.h"
 
 #ifdef __APPLE__
     #include <OpenGL/gl.h>
@@ -31,7 +32,7 @@ namespace WordGL {
 	
     LetterShelf::LetterShelf(Point startPoint, Dimension dimension) {
         this->setCoordsDimension(startPoint, dimension);
-		this->max_letters = max_letters;
+		this->max_letters = WORD_MAX_LENGTH;
     }
 
 	LetterShelf::~LetterShelf() {

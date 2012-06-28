@@ -25,8 +25,8 @@
 #define WORD_MAX_LENGTH 8
 
 // rows and columns number on the game table
-#define GAMETABLE_ROWS_NUMBER 12
-#define GAMETABLE_COLUMNS_NUMBER 8
+#define GAMETABLE_ROWS_NUM 12
+#define GAMETABLE_COLUMNS_NUM 8
 
 // points for letters
 #define POINTS_A 1

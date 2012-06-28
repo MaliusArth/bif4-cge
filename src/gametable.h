@@ -36,7 +36,8 @@ namespace WordGL {
         bool containsCharacters(std::vector<char> characters);
         
     private:
-
+        unsigned int columns;
+        unsigned int rows;
         
     };
 
