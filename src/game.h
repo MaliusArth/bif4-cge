@@ -46,6 +46,7 @@ namespace WordGL {
         void updateInputQueue();
         void updateScore();
         void showGameOverScreen();
+        void initLetterPoints();
         int calculateScore(std::vector<char> letters);
         Timer timer;
         Dictionary dict;

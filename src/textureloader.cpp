@@ -32,9 +32,11 @@
 
 #include "textureloader.h"
 #include "imageloader.h"
+#include "settings.h"
 
 #define EXT_LEN 4
 #define EXT ".bmp"
+
 
 namespace WordGL {
 
@@ -42,7 +44,7 @@ namespace WordGL {
 
     TextureLoader* TextureLoader::getInstance(){
         if(TextureLoader::loaderInstance == NULL){
-            TextureLoader::loaderInstance = new TextureLoader(std::string("resources/textures/"));
+            TextureLoader::loaderInstance = new TextureLoader(std::string(TEXTURES_DIRECTORY));
         }
         return TextureLoader::loaderInstance;
     }

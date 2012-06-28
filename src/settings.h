@@ -17,4 +17,47 @@
  */
 
 
+// miliseconds until the next row appears
 #define LINE_UPDATE_INTERVAL 500000
+
+// min and max word length from the dictionary and typing
+#define WORD_MIN_LENGTH 3
+#define WORD_MAX_LENGTH 8
+
+// rows and columns number on the game table
+#define GAMETABLE_ROWS_NUMBER 12
+#define GAMETABLE_COLUMNS_NUMBER 8
+
+// points for letters
+#define POINTS_A 1
+#define POINTS_B 1
+#define POINTS_C 1
+#define POINTS_D 1
+#define POINTS_E 1
+#define POINTS_F 1
+#define POINTS_G 1
+#define POINTS_H 1
+#define POINTS_I 1
+#define POINTS_J 1
+#define POINTS_K 1
+#define POINTS_L 1
+#define POINTS_M 1
+#define POINTS_N 1
+#define POINTS_O 1
+#define POINTS_P 1
+#define POINTS_Q 1
+#define POINTS_R 1
+#define POINTS_S 1
+#define POINTS_T 1
+#define POINTS_U 1
+#define POINTS_V 1
+#define POINTS_W 1
+#define POINTS_X 1
+#define POINTS_Y 1
+#define POINTS_Z 1
+
+// dictionary filepath
+#define DICTIONARY_PATH "resources/dict/dictionary.txt"
+
+// textures directory
+#define TEXTURES_DIRECTORY "resources/textures/"

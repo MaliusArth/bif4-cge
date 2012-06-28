@@ -34,7 +34,7 @@ namespace WordGL {
     public:
         Cube(Point startPoint, Dimension dimension);
         virtual ~Cube();
-        void draw();
+        virtual void draw();
         void setTopTextureId(GLuint textureId);
         void setBottomTextureId(GLuint textureId);
         void setLeftTextureId(GLuint textureId);
