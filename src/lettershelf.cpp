@@ -96,7 +96,7 @@ namespace WordGL {
         this->move(this->startX, this->startY, this->startZ);
 		glPushMatrix();
         this->setColor(1.0f, 1.0f, 1.0f);
-        this->drawTop();
+        this->drawTop("wood");
 		glPopMatrix();
 		//Draw the input-cubes
 		for(unsigned int i = 0 ; i < this->cubes.size(); i++){

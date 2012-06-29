@@ -38,9 +38,6 @@ namespace WordGL {
         gameTable(Point(0.0f, -0.1f, -9.0f), Dimension(6.0f, 8.0f, 0.0f)),
         scorePanel(Point(0.0f, -0.1f, -10.0f), Dimension(6.0f, 1.0f, 0.0f)),
         letterShelf(Point(0.0f, -0.1f, -1.0f), Dimension(6.0f, 1.0f, 0.0f))
-        //gameTable(Point(0.0f, -0.1f, -10.0f), Dimension(6.0f, 8.0f, 0.5f)),
-        //scorePanel(Point(0.0f, -0.1f, -12.0f), Dimension(6.0f, 1.0f, 0.5f)),
-        //letterShelf(Point(0.0f, -0.1f, -0.5f), Dimension(6.0f, 1.0f, 0.5f))
         {
         this->dict.load(DICTIONARY_PATH);
         this->newLineInterval = newLineInterval;
@@ -112,6 +109,7 @@ namespace WordGL {
         this->gameTable.draw();
         this->scorePanel.draw();
         this->letterShelf.draw();
+		
     }
 
     /**
