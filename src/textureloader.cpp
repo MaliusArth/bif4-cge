@@ -16,6 +16,11 @@
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+/**
+ * This class is responsible for loading the textures in the textures directory
+ * and storing them for access
+ */
+
 #define EXTENSION ".bmp"
 
 #ifdef __APPLE__
@@ -40,8 +45,10 @@
 
 namespace WordGL {
 
+    /**
+     * Singleton archicture to only load textures once
+     */
     TextureLoader* TextureLoader::loaderInstance = NULL;
-
     TextureLoader* TextureLoader::getInstance(){
         if(TextureLoader::loaderInstance == NULL){
             TextureLoader::loaderInstance = new TextureLoader(std::string(TEXTURES_DIRECTORY));
@@ -54,7 +61,6 @@ namespace WordGL {
      * @param path the path to the texture directory
      */
     TextureLoader::TextureLoader(std::string path){
-        
         DIR *directoryHandle;
         struct dirent *currentDirectory;
 
@@ -125,6 +131,10 @@ namespace WordGL {
         this->textureIds.insert(stringIdPair(filename, textureId));
     }
 
+    /**
+     * Gets a texutreid based on its file name id. The id is the filename without
+     * the extension
+     */
     GLuint TextureLoader::getTextureId ( std::string key ) {
         return this->textureIds.find(key)->second;
     }

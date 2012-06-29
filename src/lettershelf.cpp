@@ -16,6 +16,11 @@
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+/**
+ * Represents the shelf were we input characters, also manages the input words
+ * and draws all elements that belong to it
+ */
+
 #ifdef __APPLE__
     #include <OpenGL/gl.h>
 #else
@@ -29,7 +34,11 @@
 #include "lettercube.h"
 
 namespace WordGL {
-	
+
+    /**
+     * @param startPoint the startPoint where the object should be drawn
+     * @param dimension the dimesions of the object
+     */
     LetterShelf::LetterShelf(Point startPoint, Dimension dimension):
 								GLCube(startPoint,dimension),
 								cubeDimension(Dimension(dimension.getWidth()/WORD_MAX_LENGTH, 
@@ -37,32 +46,32 @@ namespace WordGL {
 														dimension.getWidth()/WORD_MAX_LENGTH)),
 								currentPoint(startPoint)
 								{
-		this->currentPoint.setYCoord(0.02f);	//NOTICE TODO FIXME What does this float number mean?
+		this->currentPoint.setYCoord(0.02f);
     }
 
-	LetterShelf::~LetterShelf() {
-
-    }
-	  
+	
+	/**
+     * Add a new character to the shelf
+     */
 	void LetterShelf::push(char character){
 		//If the lettershelf is full, don't do anything
 		if(this->cubes.size() >= WORD_MAX_LENGTH) {
 			return;
 		}
-		
 		//The first cube gets on the initial-position of the lettershelf
 		if(this->cubes.empty()){
 			this->currentPoint.setXCoord(startX);
-		}
-		else{
+		} else{
 			GLfloat currentX = this->currentPoint.getXCoord();
 			this->currentPoint.setXCoord(currentX + cubeDimension.getWidth());
 		}
-		
 		//LetterCube cube erstellen
 		this->cubes.push_back(new LetterCube(this->currentPoint, this->cubeDimension, character));
 	}
-	
+
+	/**
+     * Removes the last character from the shelf
+     */
 	void LetterShelf::pop(){	
 		if(this->cubes.empty()){
 			this->currentPoint.setXCoord(startX);
@@ -72,9 +81,12 @@ namespace WordGL {
 			this->currentPoint.setXCoord(currentX - cubeDimension.getWidth());
 			this->cubes.pop_back();
 		}
-		
 	}	
-	
+
+	/**
+     * Removes all characters from the shelf
+     * @return the characters which were removed
+     */
 	std::vector<char> LetterShelf::clear(){
 		std::vector<char> ret;
 		for(unsigned int i = 0; i < this->cubes.size(); i++){
@@ -90,6 +102,9 @@ namespace WordGL {
 		return ret;
 	}
 
+	/**
+     * Draws the lettershelf and its components
+     */
     void LetterShelf::draw() {
 		glPushMatrix();
 		
@@ -106,5 +121,8 @@ namespace WordGL {
 		}
 		
         glPopMatrix();
+    }
+
+    LetterShelf::~LetterShelf() {
     }
 }

@@ -16,6 +16,10 @@
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+/**
+ * A pane represents a field. We use it to set the background below the gametable
+ */
+
 #include <string>
 #include <iostream>	
 
@@ -27,10 +31,16 @@
 
 namespace WordGL {
 
+    /**
+     * @param startPoint the startPoint where the object should be drawn
+     * @param dimension the dimesions of the object
+     */
     Pane::Pane ( Point startPoint, Dimension dimension ): GLCube(startPoint, dimension) {
     }
 
-    
+    /**
+     * Draws the pane
+     */
     void Pane::draw() {
         glPushMatrix();
         this->move(this->startX, this->startY, this->startZ);
@@ -38,21 +48,22 @@ namespace WordGL {
         glPopMatrix();
     }
 
-    Pane::~Pane() {
-
-    }
-    
+    /**
+     * Overwrites the texturize method for the pane
+     */
     void Pane::texturize(std::string textureName){
 		TextureLoader* textureLoader = TextureLoader::getInstance();
         GLuint textureId = textureLoader->getTextureId(textureName);
-		
-		glEnable(GL_TEXTURE_2D);
+
+        glEnable(GL_TEXTURE_2D);
  		glBindTexture(GL_TEXTURE_2D, textureId);
  		//glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
  		//glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-		
 		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
 	}
+
+	Pane::~Pane() {
+    }
 
 }

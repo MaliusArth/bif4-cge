@@ -16,6 +16,10 @@
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+/**
+ * This class keeps track of the score and is responsible for rendering it
+ */
+
 #include <vector>
 #include <iostream>
 #include <sstream>
@@ -32,52 +36,54 @@
 
 namespace WordGL {
     
+    /**
+     * @param startPoint the startPoint where the object should be drawn
+     * @param dimension the dimesions of the object
+     */
     ScorePanel::ScorePanel(Point startPoint, Dimension dimension): 
 		GLCube(startPoint,dimension),
 		cubeDimension(Dimension(dimension.getWidth()/WORD_MAX_LENGTH, 
 								dimension.getWidth()/WORD_MAX_LENGTH, 
 								dimension.getWidth()/WORD_MAX_LENGTH)) {
-			
-			//Startpoint at a position, so that all elements are centered on the pane
-			GLfloat centeredStartX = this->width - (MAX_SCORE_DISPLAY*this->cubeDimension.getWidth());
-			std::cout << centeredStartX << std::endl;
-			Point currentPoint(this->startX + centeredStartX/2, this->startY, this->startZ);
-			
-			//For each digit one LetterCube from left to right
-			for(int i=0; i < MAX_SCORE_DISPLAY; i++){
-				this->cubes.push_back(new LetterCube(currentPoint, this->cubeDimension, '0'));
-				currentPoint.setXCoord(currentPoint.getXCoord() + this->cubeDimension.getWidth());
-			}
-			
-			this->setScore(0);
+
+		//Startpoint at a position, so that all elements are centered on the pane
+		GLfloat centeredStartX = this->width - (MAX_SCORE_DISPLAY*this->cubeDimension.getWidth());
+		std::cout << centeredStartX << std::endl;
+		Point currentPoint(this->startX + centeredStartX/2, this->startY, this->startZ);
+        
+		//For each digit one LetterCube from left to right
+		for(int i=0; i < MAX_SCORE_DISPLAY; i++){
+            this->cubes.push_back(new LetterCube(currentPoint, this->cubeDimension, '0'));
+			currentPoint.setXCoord(currentPoint.getXCoord() + this->cubeDimension.getWidth());
+		}
+
+		this->setScore(0);
     }
 
-    ScorePanel::~ScorePanel() {
 
-    }
-
+    /**
+     * Sets the current score
+     * @param score the score
+     */
     void ScorePanel::setScore ( int score ) {
         if(score > MAX_SCORE){
 			score = MAX_SCORE;
 		}
-		
 		this->score = score;
-		
-		//Update the letter represented by the score-cubes
+
+        //Update the letter represented by the score-cubes
 		std::stringstream ss;
 		ss << score;
-		
-		std::string scoreString = ss.str();
+        std::string scoreString = ss.str();
 		size_t score_len = scoreString.size();
-		
-		scoreString.insert(0,abs(this->cubes.size() - score_len), '0');
-		
-		if(!this->cubes.empty()){
+
+        scoreString.insert(0,abs(this->cubes.size() - score_len), '0');
+
+        if(!this->cubes.empty()){
 			//Go this loop backwards (work the score from right to left)
 			for(unsigned int i = this->cubes.size()-1; i >= 0; i--){
 				//std::cout << "writing scoreletter ["<< i << "] -> "<< scoreString[i] << std::endl;
 				this->cubes[i]->setLetter(scoreString[i]);
-				
 				//This prevents that the for-loop doesn't decrement a unsigned 0
 				if(i == 0){
 					break;
@@ -86,15 +92,25 @@ namespace WordGL {
 		}
     }
 
+    /**
+     * Adds points to the current score
+     * @param score the new points to add
+     */
     void ScorePanel::addScore ( int score ) {
 		this->setScore(this->score + score);
     }
 
+    /**
+     * Returns the current score
+     * @return the current score
+     */
     int ScorePanel::getScore() {
         return this->score;
     }
 
-    
+    /**
+     * Draws the score and its letters
+     */
     void ScorePanel::draw() {
 		glPushMatrix();
 		//Draw the panel itself
@@ -106,8 +122,10 @@ namespace WordGL {
 		for(unsigned int i = 0 ; i < this->cubes.size(); i++){
 			this->cubes[i]->draw();
 		}
-		
         glPopMatrix();
+    }
+
+    ScorePanel::~ScorePanel() {
     }
 
 }

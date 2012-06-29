@@ -16,6 +16,11 @@
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+/**
+ * This class is responsible for setting up opengl and initializing the game,
+ * passing input to it and tell it to update
+ */
+
 #ifdef __APPLE__
     #include <GLUT/glut.h>
     #include <OpenGL/gl.h>
@@ -38,7 +43,7 @@
 
 namespace WordGL {
     
-    // initialize static member variable with null
+    // needed singleton for wrappers
     Window* Window::windowInstance = NULL;
     
     /**
@@ -64,7 +69,10 @@ namespace WordGL {
 		this->centerX = 3.0f;
 		this->centerY = 0.0f;
 		this->centerZ = -6.0f;
+<<<<<<< HEAD
 		
+=======
+>>>>>>> 1a415d37b9604104a14d2ed3defcefc799697e9b
         glutInit(argc, argv);
     }
 
@@ -96,10 +104,8 @@ namespace WordGL {
         glutDisplayFunc(&display_wrapper);
         glutReshapeFunc(&resize_wrapper);
         glutKeyboardFunc(&keyPressed_wrapper);
-		
 		//Arrow-Key functions
 		glutSpecialFunc(&keySpecial_wrapper);
-		
         glutTimerFunc(this->windowRefreshInterval, &timer_wrapper, 1);
         glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
         glClearDepth(1.0);
@@ -153,15 +159,16 @@ namespace WordGL {
     */
     void Window::keyPressed(unsigned char key, int x, int y){
         usleep(100);
-
         if(key == 27){
             glutDestroyWindow(this->window);
             exit(0);
         }
-        
         this->game.input(key);
     }
 
+    /**
+     * Checks for arrow keys
+     */
 	void Window::specialKeyPressed(int key, int x, int y){
 		switch(key){
 			case GLUT_KEY_UP:   if(this->eyeY > 4.0){
@@ -173,24 +180,24 @@ namespace WordGL {
 									this->eyeY += 0.5;
 								}
 								break;
-			
 			case GLUT_KEY_RIGHT: this->angle = fmod(this->angle + 5.0, 360.0);
-								break;
-			
+				break;
 			case GLUT_KEY_LEFT: this->angle = fmod(this->angle - 5.0, 360.0);
-								break;
-			
-			default: return;
+				break;
+			default:
+                return;
 		}
-	
 	}
-	
+
+	/**
+     * Redisplays the window and sets the timer to do it again
+     * @param value integer which can be passed
+     */
     void Window::redisplayTimer(int value) { 
         glutPostRedisplay();
         glutTimerFunc(this->windowRefreshInterval, &timer_wrapper, value);
     }
 
-    
     /**
     * Returns a static instance of the window. Used for wrapper functions for OpenGL
     * @return The window instance
@@ -200,7 +207,6 @@ namespace WordGL {
     }
 
     Window::~Window(){
-
     }
 
 }
