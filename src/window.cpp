@@ -69,10 +69,6 @@ namespace WordGL {
 		this->centerX = 3.0f;
 		this->centerY = 0.0f;
 		this->centerZ = -6.0f;
-<<<<<<< HEAD
-		
-=======
->>>>>>> 1a415d37b9604104a14d2ed3defcefc799697e9b
         glutInit(argc, argv);
     }
 

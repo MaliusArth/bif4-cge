@@ -48,7 +48,6 @@ namespace WordGL {
 
 		//Startpoint at a position, so that all elements are centered on the pane
 		GLfloat centeredStartX = this->width - (MAX_SCORE_DISPLAY*this->cubeDimension.getWidth());
-		std::cout << centeredStartX << std::endl;
 		Point currentPoint(this->startX + centeredStartX/2, this->startY, this->startZ);
         
 		//For each digit one LetterCube from left to right
