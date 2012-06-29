@@ -33,14 +33,13 @@
 namespace WordGL {
     
     class GameTableLetterCube: public LetterCube {
-
     public:
         GameTableLetterCube(Point startPoint, Dimension dimension, char letter, GLfloat cubeUnit);
         virtual ~GameTableLetterCube();
         unsigned int getColumn();
         unsigned int getRow();
         void incrementRow();
-
+        
     private:
         int column;
         int row;

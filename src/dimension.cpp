@@ -43,7 +43,6 @@ namespace WordGL {
         this->height = height;
     }
 
-
     GLfloat Dimension::getHeight() {
         return this->height;
     }
@@ -55,7 +54,6 @@ namespace WordGL {
     GLfloat Dimension::getWidth() {
         return this->width;
     }
-
 
     Dimension::~Dimension() {
 

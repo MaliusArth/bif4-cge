@@ -33,7 +33,7 @@
 #include "dimension.h"
 
 namespace WordGL {
-
+    
     /**
      * @param startPoint the startPoint where the object should be drawn
      * @param dimension the dimesions of the object
@@ -46,7 +46,7 @@ namespace WordGL {
         this->row = 0;
         this->cubeUnit = cubeUnit;
     }
-
+    
     /**
      * Returns the current colum of the block that it is in
      * @return its current column
@@ -54,7 +54,7 @@ namespace WordGL {
     unsigned int GameTableLetterCube::getColumn() {
         return this->column;
     }
-
+    
     /**
      * Returns the current row of the block that it is in
      * @return its current row
@@ -62,7 +62,7 @@ namespace WordGL {
     unsigned int GameTableLetterCube::getRow() {
         return this->row;
     }
-
+    
     /**
      * Mark the cubes row as one more down the gametable
      */
@@ -70,10 +70,9 @@ namespace WordGL {
         this->row += 1;
         this->startZ += this->cubeUnit;
     }
-
+    
     GameTableLetterCube::~GameTableLetterCube() {
+        
     }
-
+    
 }
-
-
