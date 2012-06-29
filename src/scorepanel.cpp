@@ -25,6 +25,7 @@
 #include <vector>
 #include <iostream>
 #include <sstream>
+#include <cmath>
 
 namespace WordGL {
     
@@ -34,7 +35,10 @@ namespace WordGL {
 								dimension.getWidth()/WORD_MAX_LENGTH, 
 								dimension.getWidth()/WORD_MAX_LENGTH)) {
 			
-			Point currentPoint(this->startX, this->startY, this->startZ);
+			//Startpoint at a position, so that all elements are centered on the pane
+			GLfloat centeredStartX = this->width - (MAX_SCORE_DISPLAY*this->cubeDimension.getWidth());
+			std::cout << centeredStartX << std::endl;
+			Point currentPoint(this->startX + centeredStartX/2, this->startY, this->startZ);
 			
 			//For each digit one LetterCube from left to right
 			for(int i=0; i < MAX_SCORE_DISPLAY; i++){
@@ -92,8 +96,9 @@ namespace WordGL {
 		glPushMatrix();
 		//Draw the panel itself
         this->move(this->startX, this->startY, this->startZ);
-		this->setColor(1.0f, 1.0f, 1.0f);
-        this->drawTop("wood");
+        this->setTexture("wood");
+		GLCube::draw();
+
 		//Draw the score-cubes
 		for(unsigned int i = 0 ; i < this->cubes.size(); i++){
 			this->cubes[i]->draw();
