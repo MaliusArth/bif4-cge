@@ -24,7 +24,7 @@
     #include <GL/gl.h>
 #endif
 #include <vector>
-// 
+
 #include "point.h"
 #include "dimension.h"
 #include "glcube.h"
