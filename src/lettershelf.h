@@ -18,17 +18,16 @@
 
 #pragma once
 
-#include "point.h"
-#include "dimension.h"
-#include "lettercube.h"
-#include <vector>
-
 #ifdef __APPLE__
     #include <OpenGL/gl.h>
 #else
     #include <GL/gl.h>
 #endif
+#include <vector>
 
+#include "point.h"
+#include "dimension.h"
+#include "lettercube.h"
 
 namespace WordGL {
         

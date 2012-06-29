@@ -27,10 +27,9 @@
     #include <GL/gl.h>
     #include <GL/glu.h>
 #endif
-
 #include <stdlib.h>
-#include "game.h"
 
+#include "game.h"
 #include "textureloader.h"
 
 namespace WordGL {

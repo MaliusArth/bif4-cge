@@ -16,9 +16,13 @@
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+/**
+ * Timer used for the gamelogic
+ */
+
+#include <ctime>
 
 #include "timer.h"
-#include <ctime>
 
 namespace WordGL {
 
@@ -43,12 +47,9 @@ namespace WordGL {
         this->lastTimeSnapshot = time(NULL) * 1000;
     }
 
-
-    
     Timer::~Timer() {
-        
     }
-    
+
 }
 
 
