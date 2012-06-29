@@ -30,7 +30,9 @@ namespace WordGL {
     
     ScorePanel::ScorePanel(Point startPoint, Dimension dimension): 
 		GLCube(startPoint,dimension),
-		cubeDimension(Dimension(dimension.getWidth()/WORD_MAX_LENGTH, dimension.getWidth()/WORD_MAX_LENGTH, 0.5f)) {
+		cubeDimension(Dimension(dimension.getWidth()/WORD_MAX_LENGTH, 
+								dimension.getWidth()/WORD_MAX_LENGTH, 
+								dimension.getWidth()/WORD_MAX_LENGTH)) {
 			this->setScore(0);
 			
 			Point currentPoint(this->startX, this->startY, this->startZ);

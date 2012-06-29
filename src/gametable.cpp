@@ -65,7 +65,7 @@ namespace WordGL {
         // create new row
         for(unsigned int i=0; i<this->columns; i++){
             Point startPoint(i*this->cubeUnit, 0.1f, 0.0f);
-            Dimension dimension(this->cubeUnit, this->cubeUnit, 0.5f);
+            Dimension dimension(this->cubeUnit, this->cubeUnit, this->cubeUnit);
             GameTableLetterCube* letterCube =
             new GameTableLetterCube(startPoint, dimension, this->getRandomCharacter(), this->cubeUnit);
             this->letterCubes.push_back(letterCube);

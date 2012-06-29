@@ -33,10 +33,12 @@ namespace WordGL {
 	
     LetterShelf::LetterShelf(Point startPoint, Dimension dimension):
 								GLCube(startPoint,dimension),
-								cubeDimension(Dimension(dimension.getWidth()/WORD_MAX_LENGTH, dimension.getWidth()/WORD_MAX_LENGTH, 0.5f)),
+								cubeDimension(Dimension(dimension.getWidth()/WORD_MAX_LENGTH, 
+														dimension.getWidth()/WORD_MAX_LENGTH, 
+														dimension.getWidth()/WORD_MAX_LENGTH)),
 								currentPoint(startPoint)
 								{
-		this->currentPoint.setYCoord(0.02f);
+		this->currentPoint.setYCoord(0.02f);	//NOTICE TODO FIXME What does this float number mean?
     }
 
 	LetterShelf::~LetterShelf() {

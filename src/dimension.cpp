@@ -27,7 +27,7 @@
 
 namespace WordGL {
 
-    Dimension::Dimension ( GLfloat width, GLfloat depth, GLfloat height ) {
+    Dimension::Dimension ( GLfloat width, GLfloat height, GLfloat depth ) {
         this->depth = depth;
         this->width = width;
         this->height = height;
