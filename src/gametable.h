@@ -45,6 +45,7 @@ namespace WordGL {
         
     private:
         GLfloat cubeUnit;
+        GLfloat cubePadding;
         unsigned int columns;
         unsigned int rows;
         std::vector<GameTableLetterCube*> letterCubes;
