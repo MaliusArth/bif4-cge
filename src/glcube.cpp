@@ -104,6 +104,8 @@ namespace WordGL {
             this->drawRightSide();
         }
         glPopMatrix();
+
+		glPopMatrix();
     }
 
 
@@ -149,7 +151,7 @@ namespace WordGL {
 		//				GL_LINEAR_MIPMAP_LINEAR);
     }
     
-        void GLCube::drawTop(std::string textureName) {
+    void GLCube::drawTop(std::string textureName) {
 		
 		this->texturize(textureName);
 // 		float _pos = 0.0f;		//The forward position relative to the floor
@@ -223,7 +225,9 @@ namespace WordGL {
 		
 		this->texturize(textureName);
 		
-		glNormal3f(0.0f, 0.0f, -1.0f);		//FIXME check if is set correctly
+		glBegin(GL_QUADS);
+		
+		glNormal3f(0.0f, 0.0f, 1.0f);		//FIXME check if is set correctly
 		
 		glTexCoord2f(0.0f, 0.0f); glVertex3f(0.0f, 0.0f, this->depth);
 		glTexCoord2f(1.0f, 0.0f); glVertex3f(this->width, 0.0f, this->depth);
@@ -249,7 +253,9 @@ namespace WordGL {
 		
 		this->texturize(textureName);
 		
-		glNormal3f(0.0f, 0.0f, 1.0f);		//FIXME check if is set correctly
+		glBegin(GL_QUADS);
+		
+		glNormal3f(0.0f, 0.0f, -1.0f);		//FIXME check if is set correctly
         
 		glTexCoord2f(1.0f, 0.0f); glVertex3f(0.0f, 0.0f, 0.0f);
 		glTexCoord2f(1.0f, 1.0f); glVertex3f(0.0f, this->height, 0.0f);
@@ -275,6 +281,8 @@ namespace WordGL {
     void GLCube::drawLeftSide(std::string textureName) {
 		
 		this->texturize(textureName);
+		
+		glBegin(GL_QUADS);
 		
 		glNormal3f(-1.0f, 0.0f, 0.0f);
 		
@@ -302,6 +310,8 @@ namespace WordGL {
 		
 		this->texturize(textureName);
 		
+		glBegin(GL_QUADS);
+		
 		glNormal3f(1.0f, 0.0f, 0.0f);
 		
 		glTexCoord2f(1.0f, 0.0f); glVertex3f(this->width, 0.0f, 0.0f);
@@ -324,6 +334,15 @@ namespace WordGL {
         glEnd();
     }
 
+	void GLCube::setTexture(std::string textureName){
+		this->setTopTexture(textureName);
+		this->setFrontTexture(textureName);
+		this->setBackTexture(textureName);
+		this->setBottomTexture(textureName);
+		this->setLeftTexture(textureName);
+		this->setRightTexture(textureName);
+	}
+	
     GLCube::~GLCube() {
 
     }

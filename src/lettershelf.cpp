@@ -96,10 +96,11 @@ namespace WordGL {
 		
 		//Draw the panel itself
         this->move(this->startX, this->startY, this->startZ);
-		glPushMatrix();
         this->setColor(1.0f, 1.0f, 1.0f);
-        this->drawTop("wood");
-		glPopMatrix();
+        this->setTexture("wood");
+
+		GLCube::draw();
+
 		//Draw the input-cubes
 		for(unsigned int i = 0 ; i < this->cubes.size(); i++){
 			this->cubes[i]->draw();
