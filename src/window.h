@@ -46,6 +46,7 @@ namespace WordGL {
         void display();
         void redisplayTimer(int value);
         static Window* getInstance();
+		void specialKeyPressed(int key, int x, int y);
 
     private:
         int window;
@@ -53,6 +54,13 @@ namespace WordGL {
         int height;
         int windowRefreshRate;
         int windowRefreshInterval;
+		GLdouble eyeX;
+		GLdouble eyeY;
+		GLdouble eyeZ;
+		GLdouble centerX;
+		GLdouble centerY;
+		GLdouble centerZ;
+		GLdouble angle;
         const char* title;
         Game game;
         static Window* windowInstance;

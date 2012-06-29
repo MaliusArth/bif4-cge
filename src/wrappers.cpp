@@ -29,6 +29,10 @@ namespace WordGL {
         Window::getInstance()->display();
     }
 
+	void keySpecial_wrapper(int key, int x, int y){
+		Window::getInstance()->specialKeyPressed(key, x, y);
+	}
+
     void resize_wrapper(int width, int height){
         Window::getInstance()->resize(width, height);
     }

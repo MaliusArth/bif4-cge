@@ -49,7 +49,7 @@ namespace WordGL {
     * @param height The height of the window
     */
     Window::Window (int* argc, char** argv, const char* title, int width, int height):
-        game(LINE_UPDATE_INTERVAL){
+		game(LINE_UPDATE_INTERVAL){
         Window::windowInstance = this;
         this->title = title;
         // prevent division by 0
@@ -59,6 +59,15 @@ namespace WordGL {
             this->height = height;
         }
         this->width = width;
+		this->eyeX = 3.0f;
+		this->eyeY = 13.0f;
+		this->eyeZ = 7.0f;
+		this->centerX = 3.0f;
+		this->centerY = 0.0f;
+		this->centerZ = -6.0f;
+
+
+		
         glutInit(argc, argv);
     }
 
@@ -90,6 +99,10 @@ namespace WordGL {
         glutDisplayFunc(&display_wrapper);
         glutReshapeFunc(&resize_wrapper);
         glutKeyboardFunc(&keyPressed_wrapper);
+		
+		//Arrow-Key functions
+		glutSpecialFunc(&keySpecial_wrapper);
+		
         glutTimerFunc(this->windowRefreshInterval, &timer_wrapper, 1);
         glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
         glClearDepth(1.0);
@@ -123,9 +136,13 @@ namespace WordGL {
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
         glMatrixMode(GL_MODELVIEW);
         glLoadIdentity();
-        gluLookAt( 3.0f, 13.0f, 7.0f,
-                   3.0f, 0.0f, -6.0f,
+		gluLookAt( this->eyeX, this->eyeY, this->eyeZ,
+                   this->centerX, this->centerY, this->centerZ,
                    0, 1.0f, -1.0f);
+		glTranslatef(this->centerX, this->centerY, this->centerZ);
+		glRotatef(this->angle, 0, 1.0, 0);
+		glTranslatef(this->centerX*(-1), this->centerY*(-1), this->centerZ*(-1));
+		
         // draw game objects
         this->game.update();
         glutSwapBuffers();
@@ -148,6 +165,25 @@ namespace WordGL {
         this->game.input(key);
     }
 
+	void Window::specialKeyPressed(int key, int x, int y){
+		switch(key){
+			case GLUT_KEY_UP: 	//Zoom in
+								break;
+			
+			case GLUT_KEY_DOWN: //Zoom out
+								break;
+			
+			case GLUT_KEY_RIGHT: this->angle = fmod(this->angle + 5.0, 360.0);
+								break;
+			
+			case GLUT_KEY_LEFT: this->angle = fmod(this->angle - 5.0, 360.0);
+								break;
+			
+			default: return;
+		}
+	
+	}
+	
     void Window::redisplayTimer(int value) { 
         glutPostRedisplay();
         glutTimerFunc(this->windowRefreshInterval, &timer_wrapper, value);
