@@ -32,7 +32,9 @@ the sixth gets 8 times its points and so on.
 # Controls
 * ESC - Quit
 * BACKSPACE - Remove last typed letter
-* ENTER - Confirm the word you typed in
+* ENTER - Confirm the word you typed in or restart game on gameover
+* LEFT ARROW, RIGHT ARROW - Rotate horizontally
+* UP ARROW, DOWN ARROW - Rotate vertically
 
 Words can only contain ASCII characters
 
