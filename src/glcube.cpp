@@ -171,9 +171,9 @@ namespace WordGL {
 	}
 	
 	/**
-	 * Initializes texturing
+	 * Initializes texturing and binds given texture
 	 */
-    void GLCube::texturize ( std::string textureName ) {
+	void GLCube::texturize ( std::string textureName ) {
 		TextureLoader* textureLoader = TextureLoader::getInstance();
 		GLuint textureId = textureLoader->getTextureId(textureName);
 		
@@ -183,13 +183,11 @@ namespace WordGL {
 		//glTexParameteri(GL_TEXTURE_2D,
 		//				GL_TEXTURE_MIN_FILTER,
 		//				GL_LINEAR_MIPMAP_LINEAR);
-    }
-    
-    void GLCube::drawTop(std::string textureName) {
+	}
+	
+	void GLCube::drawTop(std::string textureName) {
 		
 		this->texturize(textureName);
-// 		float _pos = 0.0f;		//The forward position relative to the floor
-// 		const float FLOOR_TEXTURE_SIZE = this->depth - _pos; //The size of each "tile"
 		glBegin(GL_QUADS);
 		
 		glNormal3f(0.0f, 1.0f, 0.0f);
@@ -198,8 +196,14 @@ namespace WordGL {
 		glTexCoord2f(0.0f, 0.0f); glVertex3f(0.0f, this->height, this->depth);
 		glTexCoord2f(1.0f, 0.0f); glVertex3f(this->width, this->height, this->depth);
 		glTexCoord2f(1.0f, 1.0f); glVertex3f(this->width, this->height, 0.0f);
-
+		
+// 		float _pos = 0.0f;		//The forward position relative to the floor
+// 		const float FLOOR_TEXTURE_SIZE = this->depth - _pos; //The size of each "tile"
+// 		
+// 		glBegin(GL_QUADS);
+// 		
 // 		glNormal3f(0.0f, 1.0f, 0.0f);
+// 		
 // 		glTexCoord2f(2000 / FLOOR_TEXTURE_SIZE, _pos / FLOOR_TEXTURE_SIZE);
 // 		glVertex3f(0.0f, 0.0f, 0.0f);
 // 		
@@ -212,10 +216,10 @@ namespace WordGL {
 // 		glTexCoord2f(0.0f, _pos / FLOOR_TEXTURE_SIZE);
 // 		glVertex3f(this->width, 0.0f, 0.0f);
 		
-        glEnd();
+		glEnd();
 		glDisable(GL_TEXTURE_2D);
-    }
-    
+	}
+	
     void GLCube::drawTop() {
         glBegin(GL_QUADS);
 		

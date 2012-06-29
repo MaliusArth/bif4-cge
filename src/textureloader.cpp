@@ -44,64 +44,64 @@
 #include "settings.h"
 
 namespace WordGL {
-
-    /**
-     * Singleton archicture to only load textures once
-     */
-    TextureLoader* TextureLoader::loaderInstance = NULL;
-    TextureLoader* TextureLoader::getInstance(){
-        if(TextureLoader::loaderInstance == NULL){
-            TextureLoader::loaderInstance = new TextureLoader(std::string(TEXTURES_DIRECTORY));
-        }
-        return TextureLoader::loaderInstance;
-    }
-
-    /**
-     * Loads all bmps in a directory
-     * @param path the path to the texture directory
-     */
-    TextureLoader::TextureLoader(std::string path){
-        DIR *directoryHandle;
-        struct dirent *currentDirectory;
-
-        // check if path exists
-        if((directoryHandle  = opendir(path.c_str())) == NULL) {
-          std::cerr << "Error(" << errno << ") opening " << path << std::endl;
-          exit(1);
-        }
-
-        // open directory 
-        while ((currentDirectory = readdir(directoryHandle)) != NULL) {
-            std::string file = std::string(currentDirectory->d_name);
-            if(file.length() > 4){
-                std::string fileWithoutExtension = file.substr(0, file.length() - strlen(EXTENSION));
-                std::string fileExtension = file.substr(file.length() - strlen(EXTENSION), file.length());
-                std::string filepath = path + std::string(currentDirectory->d_name);
-                // check if extension is bmp
-                if (fileExtension.compare(EXTENSION) == 0){
-                    Image* image = loadBMP(filepath);
-                    loadMipmappedTexture(image, fileWithoutExtension);
-                    delete image;
-                }
-            }
-
-        }
-        closedir(directoryHandle);
-    }
-
-    /**
-     * Turns the image into a mipmapped texture, then the textureid is stored in a vector
-     * @param *image
-     */
-    void TextureLoader::loadMipmappedTexture(Image *image, std::string filename) {
-        GLuint textureId;
-        glGenTextures(1, &textureId);
-        glBindTexture(GL_TEXTURE_2D, textureId);
+	
+	/**
+	 * Singleton archicture to only load textures once
+	 */
+	TextureLoader* TextureLoader::loaderInstance = NULL;
+	TextureLoader* TextureLoader::getInstance(){
+		if(TextureLoader::loaderInstance == NULL){
+			TextureLoader::loaderInstance = new TextureLoader(std::string(TEXTURES_DIRECTORY));
+		}
+		return TextureLoader::loaderInstance;
+	}
+	
+	/**
+	 * Loads all bmps in a directory
+	 * @param path the path to the texture directory
+	 */
+	TextureLoader::TextureLoader(std::string path){
+		DIR *directoryHandle;
+		struct dirent *currentDirectory;
+		
+		// check if path exists
+		if((directoryHandle  = opendir(path.c_str())) == NULL) {
+			std::cerr << "Error(" << errno << ") opening " << path << std::endl;
+			exit(1);
+		}
+		
+		// open directory 
+		while ((currentDirectory = readdir(directoryHandle)) != NULL) {
+			std::string file = std::string(currentDirectory->d_name);
+			if(file.length() > 4){
+				std::string fileWithoutExtension = file.substr(0, file.length() - strlen(EXTENSION));
+				std::string fileExtension = file.substr(file.length() - strlen(EXTENSION), file.length());
+				std::string filepath = path + std::string(currentDirectory->d_name);
+				
+				// check if extension is bmp
+				if (fileExtension.compare(EXTENSION) == 0){
+					Image* image = loadBMP(filepath);
+					loadMipmappedTexture(image, fileWithoutExtension);
+					delete image;
+				}
+			}
+		}
+		closedir(directoryHandle);
+	}
+	
+	/**
+	 * Turns the image into a mipmapped texture, then the textureid is stored in a vector
+	 * @param *image
+	 */
+	void TextureLoader::loadMipmappedTexture(Image *image, std::string filename) {
+		GLuint textureId;
+		glGenTextures(1, &textureId);
+		glBindTexture(GL_TEXTURE_2D, textureId);
 		
 		//set texture environment parameters
 		//glTexEnvf( GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_DECAL );	// default is GL_MODULATE
 		
-
+		
 		glTexParameterf( GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR_MIPMAP_LINEAR );
 		glTexParameterf( GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR );
 		
@@ -118,30 +118,28 @@ namespace WordGL {
 		//GL_CLAMP
 		//GL_CLAMP_TO_EDGE
 		//NOTICE: additionally, YOU have to set glTexCoords relatively!!!
-
-        gluBuild2DMipmaps(GL_TEXTURE_2D,
+		
+		gluBuild2DMipmaps(GL_TEXTURE_2D,
 					GL_RGB,
 					image->width, image->height,
 					GL_RGB,
 					GL_UNSIGNED_BYTE,
 					image->pixels);
+		
+		// push filename and id into vector
+		typedef std::pair<std::string, GLuint> stringIdPair;
+		this->textureIds.insert(stringIdPair(filename, textureId));
+	}
 	
-        // push filename and id into vector
-        typedef std::pair<std::string, GLuint> stringIdPair;
-        this->textureIds.insert(stringIdPair(filename, textureId));
-    }
-
-    /**
-     * Gets a texutreid based on its file name id. The id is the filename without
-     * the extension
-     */
-    GLuint TextureLoader::getTextureId ( std::string key ) {
-        return this->textureIds.find(key)->second;
-    }
-
-
-    TextureLoader::~TextureLoader(){
-
-    }
-
+	/**
+	 * Gets a texutreid based on its file name id. The id is the filename without
+	 * the extension
+	 */
+	GLuint TextureLoader::getTextureId ( std::string key ) {
+		return this->textureIds.find(key)->second;
+	}
+	
+	TextureLoader::~TextureLoader(){
+		
+	}
 }
