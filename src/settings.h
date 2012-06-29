@@ -28,6 +28,8 @@
 #define GAMETABLE_ROWS_NUM 11
 #define GAMETABLE_COLUMNS_NUM 8
 
+// how much space there should between cubes
+#define CUBE_PADDING 0.1
 
 //ScorePanel values
 #define MAX_SCORE 999999

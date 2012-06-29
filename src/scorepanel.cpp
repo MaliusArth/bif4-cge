@@ -26,6 +26,7 @@
 #include <iostream>
 #include <sstream>
 #include <cmath>
+#include <cstdlib>
 
 namespace WordGL {
     
