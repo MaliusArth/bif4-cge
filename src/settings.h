@@ -36,31 +36,31 @@
 
 // points for letters
 #define POINTS_A 1
-#define POINTS_B 1
-#define POINTS_C 1
-#define POINTS_D 1
+#define POINTS_B 3
+#define POINTS_C 3
+#define POINTS_D 2
 #define POINTS_E 1
-#define POINTS_F 1
-#define POINTS_G 1
-#define POINTS_H 1
+#define POINTS_F 4
+#define POINTS_G 2
+#define POINTS_H 4
 #define POINTS_I 1
-#define POINTS_J 1
-#define POINTS_K 1
+#define POINTS_J 8
+#define POINTS_K 5
 #define POINTS_L 1
-#define POINTS_M 1
+#define POINTS_M 3
 #define POINTS_N 1
 #define POINTS_O 1
-#define POINTS_P 1
-#define POINTS_Q 1
+#define POINTS_P 3
+#define POINTS_Q 10
 #define POINTS_R 1
 #define POINTS_S 1
 #define POINTS_T 1
 #define POINTS_U 1
-#define POINTS_V 1
-#define POINTS_W 1
-#define POINTS_X 1
-#define POINTS_Y 1
-#define POINTS_Z 1
+#define POINTS_V 4
+#define POINTS_W 4
+#define POINTS_X 8
+#define POINTS_Y 3
+#define POINTS_Z 10
 
 // dictionary filepath
 #define DICTIONARY_PATH "resources/dict/dictionary.txt"
