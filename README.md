@@ -2,8 +2,8 @@
 
 To build it, you require
 
-* [[http://www.cmake.org/cmake/resources/software.html|CMake]]
-* [[http://freeglut.sourceforge.net/index.php#download|Glut/FreeGlut]]
+* [CMake](http://www.cmake.org/cmake/resources/software.html)
+* [Glut/FreeGlut](http://freeglut.sourceforge.net/index.php#download)
 * OpenGL
 
 After installation, run
