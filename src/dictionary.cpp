@@ -27,10 +27,9 @@
 #include <fstream>
 #include <iostream>
 #include <cstdlib>
-#include <time.h>
+#include <ctime>
 #include <cstring>
 #include <algorithm>
-
 
 #include "dictionary.h"
 

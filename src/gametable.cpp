@@ -16,6 +16,11 @@
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+#include <ctime>
+#include <cstdlib>
+#include <cmath>
+#include <vector>
+#include <iostream>
 
 #include "gametable.h"
 #include "textureloader.h"
@@ -24,12 +29,6 @@
 #include "point.h"
 #include "dimension.h"
 #include "gametablelettercube.h"
-
-#include <ctime>
-#include <cstdlib>
-#include <cmath>
-#include <vector>
-#include <iostream>
 
 namespace WordGL {
 

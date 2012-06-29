@@ -23,12 +23,12 @@
 #else
     #include <GL/gl.h>
 #endif
-
+#include <vector>
+// 
 #include "point.h"
 #include "dimension.h"
 #include "glcube.h"
 #include "gametablelettercube.h"
-#include <vector>
 
 namespace WordGL {
         
