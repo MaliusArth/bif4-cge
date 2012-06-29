@@ -33,7 +33,6 @@ namespace WordGL {
 		cubeDimension(Dimension(dimension.getWidth()/WORD_MAX_LENGTH, 
 								dimension.getWidth()/WORD_MAX_LENGTH, 
 								dimension.getWidth()/WORD_MAX_LENGTH)) {
-			this->setScore(0);
 			
 			Point currentPoint(this->startX, this->startY, this->startZ);
 			
@@ -42,6 +41,8 @@ namespace WordGL {
 				this->cubes.push_back(new LetterCube(currentPoint, this->cubeDimension, '0'));
 				currentPoint.setXCoord(currentPoint.getXCoord() + this->cubeDimension.getWidth());
 			}
+			
+			this->setScore(0);
     }
 
     ScorePanel::~ScorePanel() {
@@ -62,20 +63,24 @@ namespace WordGL {
 		std::string scoreString = ss.str();
 		size_t score_len = scoreString.size();
 		
-		//Go this loop backwards (work the score from right to left)
-        /* SEGFAULTS
-		for(unsigned int i = this->cubes.size(); i > 0; i--){
-			if(score_len >= i){
+		scoreString.insert(0,abs(this->cubes.size() - score_len), '0');
+		
+		if(!this->cubes.empty()){
+			//Go this loop backwards (work the score from right to left)
+			for(unsigned int i = this->cubes.size()-1; i >= 0; i--){
+				//std::cout << "writing scoreletter ["<< i << "] -> "<< scoreString[i] << std::endl;
 				this->cubes[i]->setLetter(scoreString[i]);
+				
+				//This prevents that the for-loop doesn't decrement a unsigned 0
+				if(i == 0){
+					break;
+				}
 			}
-			else{
-				this->cubes[i]->setLetter('0');
-			}
-		}*/
+		}
     }
 
     void ScorePanel::addScore ( int score ) {
-		this->score += score;
+		this->setScore(this->score + score);
     }
 
     int ScorePanel::getScore() {
@@ -85,11 +90,9 @@ namespace WordGL {
     
     void ScorePanel::draw() {
 		glPushMatrix();
-		
-		//glRotatef(-20, 1,0,0);
-		
 		//Draw the panel itself
         this->move(this->startX, this->startY, this->startZ);
+
         glPushMatrix();
 		this->setColor(1.0f, 1.0f, 1.0f);
         this->drawTop();
