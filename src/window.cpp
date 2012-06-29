@@ -64,8 +64,6 @@ namespace WordGL {
 		this->centerX = 3.0f;
 		this->centerY = 0.0f;
 		this->centerZ = -6.0f;
-
-
 		
         glutInit(argc, argv);
     }
@@ -137,7 +135,7 @@ namespace WordGL {
         glLoadIdentity();
 		gluLookAt( this->eyeX, this->eyeY, this->eyeZ,
                    this->centerX, this->centerY, this->centerZ,
-                   0, 1.0f, -1.0f);
+                   0, 0.0f, -1.0f);
 		glTranslatef(this->centerX, this->centerY, this->centerZ);
 		glRotatef(this->angle, 0, 1.0, 0);
 		glTranslatef(this->centerX*(-1), this->centerY*(-1), this->centerZ*(-1));
@@ -166,10 +164,14 @@ namespace WordGL {
 
 	void Window::specialKeyPressed(int key, int x, int y){
 		switch(key){
-			case GLUT_KEY_UP: 	//Zoom in
+			case GLUT_KEY_UP:   if(this->eyeY > 4.0){
+									this->eyeY -= 0.5;
+								}
 								break;
 			
-			case GLUT_KEY_DOWN: //Zoom out
+			case GLUT_KEY_DOWN: if(this->eyeY < 20.0){
+									this->eyeY += 0.5;
+								}
 								break;
 			
 			case GLUT_KEY_RIGHT: this->angle = fmod(this->angle + 5.0, 360.0);
