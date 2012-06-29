@@ -36,7 +36,7 @@ namespace WordGL {
 
     /**
      * @param startPoint the startPoint where the object should be drawn
-     * @param dimension the dimesions of the gametable
+     * @param dimension the dimesions of the object
      * @param letter the texture id for the top
      * @param cubeUnit the width and depth
      */
