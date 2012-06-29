@@ -32,6 +32,11 @@
 
 namespace WordGL {
 
+    /**
+     * @param width the width of the object
+     * @param height the height of the object
+     * @param depth the depth of the object
+     */
     Dimension::Dimension ( GLfloat width, GLfloat height, GLfloat depth ) {
         this->depth = depth;
         this->width = width;
