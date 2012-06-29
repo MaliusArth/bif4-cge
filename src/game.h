@@ -19,14 +19,14 @@
 
 #pragma once
 
+#include <vector>
+
 #include "dictionary.h"
 #include "scorepanel.h"
 #include "lettershelf.h"
 #include "gametable.h"
 #include "pane.h"
 #include "timer.h"
-
-#include <vector>
 
 namespace WordGL {
     

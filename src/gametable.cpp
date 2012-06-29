@@ -16,6 +16,16 @@
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+/**
+ * This class represents the gameboard/gametable where the characters are being
+ * produced
+ */
+
+#include <ctime>
+#include <cstdlib>
+#include <cmath>
+#include <vector>
+#include <iostream>
 
 #include "gametable.h"
 #include "textureloader.h"
@@ -25,14 +35,12 @@
 #include "dimension.h"
 #include "gametablelettercube.h"
 
-#include <ctime>
-#include <cstdlib>
-#include <cmath>
-#include <vector>
-#include <iostream>
-
 namespace WordGL {
 
+    /**
+     * @param startPoint the startPoint where the object should be drawn
+     * @param dimension the dimesions of the gametable
+     */
     GameTable::GameTable ( Point startPoint, Dimension dimension ): GLCube(startPoint, dimension){
         this->columns = GAMETABLE_COLUMNS_NUM;
         this->rows = GAMETABLE_ROWS_NUM;
@@ -57,6 +65,9 @@ namespace WordGL {
         glPopMatrix();
     }
 
+    /**
+     * Adds a new line to the gametable
+     */
     void GameTable::addNewLine() {
         // move all lettercubes one level down
         for(unsigned int i=0; i<this->letterCubes.size(); i++){
@@ -65,14 +76,12 @@ namespace WordGL {
 
         // create new row
         for(unsigned int i=0; i<this->columns; i++){
-            
             Point startPoint(i*this->cubeUnit+this->cubePadding, 0.1f+this->cubePadding, 0.0f+this->cubePadding);
-            Dimension dimension(this->cubeUnit-2*this->cubePadding, this->cubeUnit-2*this->cubePadding, this->cubeUnit-2*this->cubePadding);
+            Dimension dimension(this->cubeUnit-2*this->cubePadding, 0.3f-2*this->cubePadding, this->cubeUnit-2*this->cubePadding);
             GameTableLetterCube* letterCube =
             new GameTableLetterCube(startPoint, dimension, this->getRandomCharacter(), this->cubeUnit);
             this->letterCubes.push_back(letterCube);
         }
-        
 
         // check if the oldest element exceeds the maximum length
         if(this->letterCubes[0]->getRow() >= this->rows){
@@ -82,6 +91,7 @@ namespace WordGL {
 
     /**
      * Get a random character based on the probability of the letter
+     * @return a randomly generated character
      */
     char GameTable::getRandomCharacter() {
         // default random character
@@ -125,15 +135,23 @@ namespace WordGL {
                 break;
             }
         }
+        
         return randomChar;
     }
 
+    /**
+     * Returns if the game is over (if the maximum rows have been exceeded)
+     * @return true if its over
+     */
     bool GameTable::isGameOver() {
         return this->longerThanMaximum;
-    }       
+    }
 
     /**
-     * Check if the gametable contains the letters we entered
+     * Check if the gametable contains the letters we entered. If it exists,
+     * delete it from the gametable
+     * @param characters the word we want to check
+     * @return true if it exists on the gametable
      */
     bool GameTable::ifContainsCharactersRemove ( std::vector<char> characters ) {
         std::vector<unsigned int> alreadyFound;
@@ -186,9 +204,7 @@ namespace WordGL {
     }
 
 
-    
     GameTable::~GameTable() {
-
     }
 
 }

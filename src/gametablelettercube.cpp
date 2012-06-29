@@ -16,6 +16,11 @@
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+/**
+ * This class represents a lettercube which is on the gametable. We have to
+ * store columns and rows additionally
+ */
+
 #ifdef __APPLE__
     #include <OpenGL/gl.h>
 #else
@@ -29,6 +34,12 @@
 
 namespace WordGL {
 
+    /**
+     * @param startPoint the startPoint where the object should be drawn
+     * @param dimension the dimesions of the object
+     * @param letter the texture id for the top
+     * @param cubeUnit the width and depth
+     */
     GameTableLetterCube::GameTableLetterCube(Point startPoint, Dimension dimension, char letter, GLfloat cubeUnit):
         LetterCube(startPoint, dimension, letter){
         this->column = 0;
@@ -36,24 +47,33 @@ namespace WordGL {
         this->cubeUnit = cubeUnit;
     }
 
+    /**
+     * Returns the current colum of the block that it is in
+     * @return its current column
+     */
     unsigned int GameTableLetterCube::getColumn() {
         return this->column;
     }
 
+    /**
+     * Returns the current row of the block that it is in
+     * @return its current row
+     */
     unsigned int GameTableLetterCube::getRow() {
         return this->row;
     }
-    
+
+    /**
+     * Mark the cubes row as one more down the gametable
+     */
     void GameTableLetterCube::incrementRow() {
         this->row += 1;
         this->startZ += this->cubeUnit;
     }
 
-    
     GameTableLetterCube::~GameTableLetterCube() {
-
     }
-    
+
 }
 
 

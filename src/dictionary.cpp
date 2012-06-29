@@ -16,16 +16,20 @@
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+/**
+ * This class is responsible for loading the dictionary file and checking if
+ * a word is in the dictionary
+ *
+ */
 
 #include <vector>
 #include <string>
 #include <fstream>
 #include <iostream>
 #include <cstdlib>
-#include <time.h>
+#include <ctime>
 #include <cstring>
 #include <algorithm>
-
 
 #include "dictionary.h"
 

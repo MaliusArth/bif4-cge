@@ -16,21 +16,31 @@
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <iostream>		//debug: cout
-#include <string>
-
-#include "dimension.h"
-#include "point.h"
-#include "glcube.h"
+/**
+ * This class provides texturing and drawing for cube like objects. You dont
+ * have to set textures for all side, also you dont have to draw all sides.
+ * All methods can be overwritten to fit the needs of the childclass
+ */
 
 #ifdef __APPLE__
     #include <OpenGL/gl.h>
 #else
     #include <GL/gl.h>
 #endif
+#include <iostream>
+#include <string>
+
+#include "dimension.h"
+#include "point.h"
+#include "glcube.h"
+
 
 namespace WordGL {
 
+    /**
+     * @param startPoint the startPoint where the object should be drawn
+     * @param dimension the dimesions of the object
+     */
     GLCube::GLCube(Point startPoint, Dimension dimension) {
         this->setCoordsDimension(startPoint, dimension);
         this->topTexture = false;
@@ -41,6 +51,10 @@ namespace WordGL {
         this->backTexture = false;
     }
 
+    /**
+     * Draws all sides of the cube and texturizes the ones where textures have
+     * been set
+     */
     void GLCube::draw() {
         glPushMatrix();
         this->move(this->startX, this->startY, this->startZ);

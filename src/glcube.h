@@ -18,8 +18,9 @@
 
 #pragma once
 
-#include "globject.h"
 #include <string>
+
+#include "globject.h"
 #include "dimension.h"
 #include "point.h"
 

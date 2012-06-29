@@ -16,8 +16,11 @@
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-
-#include "dimension.h"
+/**
+ * This class represents a structure of dimensions (width, height, depth) that
+ * is used to pass it to globjects to tell them where and how they have to be
+ * drawn
+ */
 
 #ifdef __APPLE__
     #include <OpenGL/gl.h>
@@ -25,8 +28,15 @@
     #include <GL/gl.h>
 #endif
 
+#include "dimension.h"
+
 namespace WordGL {
 
+    /**
+     * @param width the width of the object
+     * @param height the height of the object
+     * @param depth the depth of the object
+     */
     Dimension::Dimension ( GLfloat width, GLfloat height, GLfloat depth ) {
         this->depth = depth;
         this->width = width;

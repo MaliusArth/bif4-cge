@@ -19,10 +19,11 @@
 
 #pragma once
 
+#include <vector>
+
 #include "point.h"
 #include "dimension.h"
 #include "glcube.h"
-#include <vector>
 #include "lettercube.h"
 
 namespace WordGL{

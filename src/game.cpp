@@ -16,20 +16,28 @@
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+/**
+ * This class manages the game logic. How many points you get, what with input
+ * and what has to be redrawn/checked every redisplay
+ * 
+ */
+
 #include <iostream>
+#include <cstdlib>
+#include <cmath>
 
 #include "game.h"
 #include "settings.h"
 #include "gametable.h"
 #include "pane.h"
 #include "textureloader.h"
-#include <cstdlib>
-#include <cmath>
 
 namespace WordGL {
 
     /**
     * Initalizes the game
+    * @param newLineInterval The time in miliseconds, when a new line of letters
+    *                        should be created on the gametable
     */
     Game::Game(unsigned int newLineInterval):
         dict(WORD_MIN_LENGTH, WORD_MAX_LENGTH),
@@ -44,109 +52,10 @@ namespace WordGL {
         this->gameTable.addNewLine();
         this->initLetterPoints();
     }
-	
-	void Game::input(char character){
-        // convert upper to lowercase characters
-		if(character >= 97 && character <= 122){
-            this->letterShelf.push(character);
-            
-        }
-
-		if(character >= 65 && character <= 90){
-            character += 32;
-		}
-        
-		//if backspace or entf was pressed
-		if(character == 127 || character == 8){
-			this->letterShelf.pop();
-		}
-		
-        // if enter is pressed -> Process the word
-        if(character == 13){
-            this->processInput();
-        }
-		
-	}
-	
-	void Game::processInput(){
-        std::vector<char> characters = this->letterShelf.clear();
-        std::string word("");
-        for(unsigned int i=0; i<characters.size(); i++){
-            word += characters[i];
-        }
-        
-        bool valid = true;
-        if(!this->dict.containsWord(word)){
-            valid = false;
-        } else if(!this->gameTable.ifContainsCharactersRemove(characters)){
-            valid = false;
-            std::cout << "gametable does not contain " << word << std::endl;
-        }
-
-        int scoreAdd;
-        if(valid){
-            scoreAdd = this->calculateScore(characters);
-        } else {
-            scoreAdd = -this->calculateScore(characters);
-        }
-        this->scorePanel.addScore(scoreAdd);
-	}
-
-    void Game::update() {
-        this->gameTable.getRandomCharacter();
-        if(this->timer.getTimeDiff() >= this->newLineInterval){
-            this->timer.resetTimer();
-            this->gameTable.addNewLine();
-        }
-        // game over happens when there are more rows than maximum, or score is below 0
-        if(this->gameTable.isGameOver() || this->scorePanel.getScore() < 0){
-            this->showGameOverScreen();
-        }
-        // draw objects
-        this->backGround.draw();
-        this->gameTable.draw();
-        this->scorePanel.draw();
-        this->letterShelf.draw();
-		
-    }
 
     /**
-     * Ascii chars can be upper or lower case and are mapped from 65-90 and
-     * from 97-122. We only look at lower case letters though. This method returns
-     * the index from 0-25 for any given char
-     * @param letter The character which is mapped to 0-25
-     * @return The index of the character between 0 and 25, if its not a valid character
-     *         it defaults to the letter entered
+     * Write points from the settings into the points array
      */
-    int Game::getLetterIndex(char letter) {
-        if(letter >= 65 && letter <= 90){
-            return letter - 65;
-        } else if(letter >= 97 && letter <= 122){
-            return letter - 97;
-        } else {
-            return letter;
-        }
-    }
-
-    void Game::showGameOverScreen() {
-        exit(0);
-    }
-
-    int Game::calculateScore ( std::vector< char > letters ) {
-        int score = 0;
-        for(unsigned int i=0; i<letters.size(); i++){
-            int letterIndex = Game::getLetterIndex(letters[i]);
-            int letterScore = this->charPoints[letterIndex];
-            // if the word is longer than 3 characters, give a special bonus
-            // for every following character
-            if(i >= 3){
-                letterScore *= (int) pow(2, i-2);
-            }
-            score += letterScore;
-        }
-        return score;
-    }
-
     void Game::initLetterPoints() {
         this->charPoints[0] = POINTS_A;
         this->charPoints[1] = POINTS_B;
@@ -175,7 +84,124 @@ namespace WordGL {
         this->charPoints[24] = POINTS_Y;
         this->charPoints[25] = POINTS_Z;
     }
+    
+	/**
+     * Manages the input. Valid characters are pushed onto the lettershelf,
+     * backspace pops the last one off the lettershelf and enter commits
+     * @param char character the character which was put in
+     */
+	void Game::input(char character){
+        // convert upper to lowercase characters
+        if(character >= 65 && character <= 90){
+            character += 32;
+        }
+        // valid ascii character
+        if(character >= 97 && character <= 122){
+            this->letterShelf.push(character);
+        }
+		// if backspace or del was pressed
+		if(character == 127 || character == 8){
+			this->letterShelf.pop();
+		}
+        // if enter is pressed -> Process the word
+        if(character == 13){
+            this->processInput();
+        }
+	}
 
+	/**
+     * Checks the word after enter was pressed: is it in the dictionairy, is
+     * it on the gameboard? If so, calculate the points for it and add/substract
+     * it from the score
+     */
+	void Game::processInput(){
+        std::vector<char> characters = this->letterShelf.clear();
+        std::string word("");
+        for(unsigned int i=0; i<characters.size(); i++){
+            word += characters[i];
+        }
+        
+        bool valid = true;
+        if(!this->dict.containsWord(word)){
+            valid = false;
+        } else if(!this->gameTable.ifContainsCharactersRemove(characters)){
+            valid = false;
+            std::cout << "gametable does not contain " << word << std::endl;
+        }
+
+        int scoreAdd;
+        if(valid){
+            scoreAdd = this->calculateScore(characters);
+        } else {
+            scoreAdd = -this->calculateScore(characters);
+        }
+        this->scorePanel.addScore(scoreAdd);
+	}
+
+	/**
+     * This is called every time a redisplay is called. Used to check game boundaries,
+     * red rawand to change the state of the game
+     */
+    void Game::update() {
+        this->gameTable.getRandomCharacter();
+        if(this->timer.getTimeDiff() >= this->newLineInterval){
+            this->timer.resetTimer();
+            this->gameTable.addNewLine();
+        }
+        // game over happens when there are more rows than maximum, or score is below 0
+        if(this->gameTable.isGameOver() || this->scorePanel.getScore() < 0){
+            this->showGameOverScreen();
+        }
+        // draw objects
+        this->backGround.draw();
+        this->gameTable.draw();
+        this->scorePanel.draw();
+        this->letterShelf.draw();
+    }
+
+    /**
+     * Ascii chars can be upper or lower case and are mapped from 65-90 and
+     * from 97-122. We only look at lower case letters though. This method returns
+     * the index from 0-25 for any given char
+     * @param letter The character which is mapped to 0-25
+     * @return The index of the character between 0 and 25, if its not a valid character
+     *         it defaults to the letter entered
+     */
+    int Game::getLetterIndex(char letter) {
+        if(letter >= 65 && letter <= 90){
+            return letter - 65;
+        } else if(letter >= 97 && letter <= 122){
+            return letter - 97;
+        } else {
+            return letter;
+        }
+    }
+
+    /**
+     * Handles the game over event
+     */
+    void Game::showGameOverScreen() {
+        exit(0);
+    }
+
+    /**
+     * Calculates the points for a word
+     * @param letters the word for which we calculate the points
+     */
+    int Game::calculateScore ( std::vector< char > letters ) {
+        int score = 0;
+        for(unsigned int i=0; i<letters.size(); i++){
+            int letterIndex = Game::getLetterIndex(letters[i]);
+            int letterScore = this->charPoints[letterIndex];
+            // if the word is longer than 3 characters, give a special bonus
+            // for every following character
+            if(i >= 3){
+                letterScore *= (int) pow(2, i-2);
+            }
+            score += letterScore;
+        }
+        return score;
+    }
 
     Game::~Game(){
 
