@@ -126,6 +126,7 @@ namespace WordGL {
     }
 
     ScorePanel::~ScorePanel() {
+        this->cubes.clear();
     }
 
 }

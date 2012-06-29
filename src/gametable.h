@@ -42,6 +42,8 @@ namespace WordGL {
         void addNewLine();
         bool ifContainsCharactersRemove(std::vector<char> characters);
         char getRandomCharacter();
+        void showGameOverScreen();
+        void restart();
         
     private:
         GLfloat cubeUnit;

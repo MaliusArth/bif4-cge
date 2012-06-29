@@ -203,7 +203,23 @@ namespace WordGL {
         }
     }
 
-    GameTable::~GameTable() {
+    /**
+     * Writes game over on the gametable
+     */
+    void GameTable::showGameOverScreen() {
         
+    }
+
+    /**
+     * Restarts the game
+     */
+    void GameTable::restart() {
+        this->letterCubes.clear();
+        this->longerThanMaximum = false;
+    }
+
+
+    GameTable::~GameTable() {
+        this->letterCubes.clear();
     }
 }

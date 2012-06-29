@@ -124,5 +124,6 @@ namespace WordGL {
     }
 
     LetterShelf::~LetterShelf() {
+        this->cubes.clear();
     }
 }
