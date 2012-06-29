@@ -16,17 +16,19 @@
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+#include <vector>
+#include <iostream>
+#include <sstream>
+#include <cmath>
+#include <cstdlib>
+
 #include "scorepanel.h"
 #include "point.h"
 #include "dimension.h"
 #include "glcube.h"
 #include "lettercube.h"
 #include "settings.h"
-#include <vector>
-#include <iostream>
-#include <sstream>
-#include <cmath>
-#include <cstdlib>
+
 
 namespace WordGL {
     

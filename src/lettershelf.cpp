@@ -16,18 +16,17 @@
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+#ifdef __APPLE__
+    #include <OpenGL/gl.h>
+#else
+    #include <GL/gl.h>
+#endif
 
 #include "lettershelf.h"
 #include "dimension.h"
 #include "point.h"
 #include "settings.h"
 #include "lettercube.h"
-
-#ifdef __APPLE__
-    #include <OpenGL/gl.h>
-#else
-    #include <GL/gl.h>
-#endif
 
 namespace WordGL {
 	

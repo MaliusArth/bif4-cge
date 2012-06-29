@@ -17,7 +17,7 @@
  */
 
 #include <string>
-#include <iostream>		//debug: cout
+#include <iostream>	
 
 #include "pane.h"
 #include "dimension.h"

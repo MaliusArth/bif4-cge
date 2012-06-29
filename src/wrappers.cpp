@@ -16,15 +16,16 @@
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+/**
+ * Create wrapper functions for the object because we can not pass methods to
+ * glut
+ */
 
 #include "wrappers.h"
 #include "window.h"
 
 namespace WordGL {
-    
-    /**
-    * Create wrapper functions for the object
-    */
+
     void display_wrapper(){
         Window::getInstance()->display();
     }

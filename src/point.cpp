@@ -16,17 +16,20 @@
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-
-#include "point.h"
+/**
+ * This class represents a Point. Its used to be passed to objects to set the
+ * origin from where we draw
+ */
 
 #ifdef __APPLE__
     #include <OpenGL/gl.h>
 #else
     #include <GL/gl.h>
 #endif
+#include "point.h"
 
 namespace WordGL {
-    
+
     Point::Point(GLfloat xCoord, GLfloat yCoord, GLfloat zCoord) {
         this->xCoord = xCoord;
         this->yCoord = yCoord;

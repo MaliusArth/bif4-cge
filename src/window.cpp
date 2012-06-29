@@ -25,17 +25,16 @@
     #include <GL/gl.h>
     #include <GL/glu.h>
 #endif
-
-#include <stdlib.h>
-#include <unistd.h>
+#include <cstdlib>
 #include <iostream>
+#include <cmath>
+
+#include <unistd.h>
 
 #include "window.h"
 #include "game.h"
 #include "wrappers.h"
 #include "settings.h"
-#include <cmath>
-
 
 namespace WordGL {
     

@@ -16,15 +16,14 @@
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+#define EXTENSION ".bmp"
+
 #ifdef __APPLE__
     #include <OpenGL/glu.h>
 #else
     #include <GL/glu.h>
 #endif
-
-#include <sys/types.h>
-#include <dirent.h>
-#include <errno.h>
+#include <cerrno>
 #include <vector>
 #include <string>
 #include <iostream>
@@ -32,11 +31,12 @@
 #include <cstring>
 #include <cstdlib>
 
+#include <sys/types.h>
+#include <dirent.h>
+
 #include "textureloader.h"
 #include "imageloader.h"
 #include "settings.h"
-
-#define EXTENSION ".bmp"
 
 namespace WordGL {
 

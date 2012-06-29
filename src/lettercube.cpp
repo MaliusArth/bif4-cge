@@ -16,27 +16,42 @@
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-
-#include "glcube.h"
-#include "lettercube.h"
-#include <string>
+/**
+ * Represents a cube with a header texture
+ */
 
 #ifdef __APPLE__
     #include <OpenGL/gl.h>
 #else
     #include <GL/gl.h>
 #endif
+#include <string>
+
+#include "glcube.h"
+#include "lettercube.h"
 
 namespace WordGL {
-
+    
+    /**
+     * @param startPoint the startPoint where the object should be drawn
+     * @param dimension the dimesions of the object
+     * @param letter the texture id for the top
+     */
     LetterCube::LetterCube (Point startPoint, Dimension dimension, char letter): GLCube(startPoint,dimension) {	
 		this->setLetter(letter);
     }
 
+    /**
+     * Returns the letter from the header texture
+     * @return the letter which was set
+     */
 	char LetterCube::getLetter(){
 		return this->letter;
 	}
-	
+
+	/**
+     * sets a letter for the header texture
+     */
 	void LetterCube::setLetter(char letter){
         this->letter = letter;
         std::string textureName("");
@@ -45,7 +60,6 @@ namespace WordGL {
 	}
 
     LetterCube::~LetterCube() {
-
     }
 
 }
