@@ -18,7 +18,7 @@ The game builds on Mac OS X and Linux
 
 # Game description
 This game is a mix of Bubble Bobble and Scrabble. Every 5 seconds a new line of
-letters appears at the top of screen. The existing ones move down by one row.
+letters appears at the top of the creen. The existing ones move down by one row.
 
 When the row reaches more than 11 rows, you lose. You also lose when you go below 0
 points.
@@ -26,7 +26,7 @@ points.
 To remove the characters, type in words that are at between 3 and 8 characters.
 If this word is in the dictionary you get points for it and the letters are removed.
 When the word is longer than 3 characters you get a bonus for every following character.
-The fort character gets 2 times its points, the fifth gets 4 times its points,
+The fourth character gets 2 times its points, the fifth gets 4 times its points,
 the sixth gets 8 times its points and so on.
 
 # Controls

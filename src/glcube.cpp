@@ -91,68 +91,88 @@ namespace WordGL {
 
 		//back
 		glPushMatrix();
-        this->setColor(1.0f, 1.0f, 1.0f);
-        if(this->backTexture){
-            this->drawBackSide(this->backTextureName);
-        } else {
-            this->drawBackSide();
-        }
-        glPopMatrix();
+		this->setColor(1.0f, 1.0f, 1.0f);
+		if(this->backTexture){
+			this->drawBackSide(this->backTextureName);
+		} else {
+			this->drawBackSide();
+		}
+		glPopMatrix();
 		
 		// left
-        glPushMatrix();
-        this->setColor(1.0f, 1.0f, 1.0f);
-        if(this->leftTexture){
-            this->drawLeftSide(this->leftTextureName);
-        } else {
-            this->drawLeftSide();
-        }
-        glPopMatrix();
+		glPushMatrix();
+		this->setColor(1.0f, 1.0f, 1.0f);
+		if(this->leftTexture){
+			this->drawLeftSide(this->leftTextureName);
+		} else {
+			this->drawLeftSide();
+		}
+		glPopMatrix();
 		
 		// right
 		glPushMatrix();
-        this->setColor(1.0f, 1.0f, 1.0f);
-        if(this->rightTexture){
-            this->drawRightSide(this->rightTextureName);
+		this->setColor(1.0f, 1.0f, 1.0f);
+		if(this->rightTexture){
+			this->drawRightSide(this->rightTextureName);
         } else {
-            this->drawRightSide();
-        }
+			this->drawRightSide();
+		}
         glPopMatrix();
 
 		glPopMatrix();
     }
-
-
-    void GLCube::setTopTexture ( std::string textureName ) {
-        this->topTexture = true;
-        this->topTextureName = textureName;
-    }
-
-    void GLCube::setBottomTexture ( std::string textureName ) {
-        this->bottomTexture = true;
-        this->bottomTextureName = textureName;
-    }
-
-    void GLCube::setBackTexture ( std::string textureName ) {
-        this->backTexture = true;
-        this->backTextureName = textureName;
-    }
-
-    void GLCube::setFrontTexture ( std::string textureName ) {
-        this->frontTexture = true;
-        this->frontTextureName = textureName;
-    }
-
-    void GLCube::setRightTexture ( std::string textureName ) {
-        this->rightTexture = true;
-        this->rightTextureName = textureName;
-    }
-
-    void GLCube::setLeftTexture ( std::string textureName ) {
-        this->leftTexture = true;
-        this->leftTextureName = textureName;
-    }
     
+	/**
+	 * Saves the texture name for the top of the cube
+	 */
+    void GLCube::setTopTexture ( std::string textureName ) {
+		this->topTexture = true;
+		this->topTextureName = textureName;
+	}
+	
+	/**
+	 * Saves the texture name for the top surface of the cube
+	 */
+	void GLCube::setBottomTexture ( std::string textureName ) {
+		this->bottomTexture = true;
+		this->bottomTextureName = textureName;
+	}
+	
+	/**
+	 * Saves the texture name for the back surface of the cube
+	 */
+	void GLCube::setBackTexture ( std::string textureName ) {
+		this->backTexture = true;
+		this->backTextureName = textureName;
+	}
+	
+	/**
+	 * Saves the texture name for the front surface of the cube
+	 */
+	void GLCube::setFrontTexture ( std::string textureName ) {
+		this->frontTexture = true;
+		this->frontTextureName = textureName;
+	}
+	
+	/**
+	 * Saves the texture name for the right surface of the cube
+	 */
+	void GLCube::setRightTexture ( std::string textureName ) {
+		this->rightTexture = true;
+		this->rightTextureName = textureName;
+	}
+	
+	/**
+	 * Saves the texture name for the left surface of the cube
+	 */
+	void GLCube::setLeftTexture ( std::string textureName ) {
+		this->leftTexture = true;
+		this->leftTextureName = textureName;
+	}
+	
+	/**
+	 * Initializes texturing
+	 */
     void GLCube::texturize ( std::string textureName ) {
 		TextureLoader* textureLoader = TextureLoader::getInstance();
 		GLuint textureId = textureLoader->getTextureId(textureName);
@@ -224,7 +244,7 @@ namespace WordGL {
 		glDisable(GL_TEXTURE_2D);
     }
     
-    void GLCube::drawBottom() {	//boolean for if (set_bool) glTexCoord2f(...);
+    void GLCube::drawBottom() {
 		glBegin(GL_QUADS);
 		
 		glVertex3f(0.0f, 0.0f, 0.0f);
