@@ -43,12 +43,13 @@ namespace WordGL {
     ScorePanel::ScorePanel(Point startPoint, Dimension dimension): 
 		GLCube(startPoint,dimension),
 		cubeDimension(Dimension(dimension.getWidth()/WORD_MAX_LENGTH, 
-								dimension.getWidth()/WORD_MAX_LENGTH, 
+								(dimension.getWidth()/WORD_MAX_LENGTH)-dimension.getHeight(), 
 								dimension.getWidth()/WORD_MAX_LENGTH)) {
 
 		//Startpoint at a position, so that all elements are centered on the pane
 		GLfloat centeredStartX = this->width - (MAX_SCORE_DISPLAY*this->cubeDimension.getWidth());
 		Point currentPoint(this->startX + centeredStartX/2, this->startY, this->startZ);
+		currentPoint.setYCoord(this->height);
         
 		//For each digit one LetterCube from left to right
 		for(int i=0; i < MAX_SCORE_DISPLAY; i++){
