@@ -57,6 +57,12 @@ namespace WordGL {
         std::string textureName("");
         textureName += this->letter;
         this->setTopTexture(textureName);
+        std::string standardTexture("tile");
+        this->setBottomTexture(standardTexture);
+        this->setFrontTexture(standardTexture);
+        this->setBackTexture(standardTexture);
+        this->setLeftTexture(standardTexture);
+        this->setRightTexture(standardTexture);
     }
     
     LetterCube::~LetterCube() {
