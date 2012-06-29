@@ -37,6 +37,6 @@ the sixth gets 8 times its points and so on.
 Words can only contain ASCII characters
 
 # Authors
-* Bernhard Posselt
+* Bernhard Posselt: Window & OpenGL inits, basic classes, game logic, gametable
 * Patrick Stapfer
 * Viktor Was
