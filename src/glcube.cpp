@@ -185,6 +185,9 @@ namespace WordGL {
 		//				GL_LINEAR_MIPMAP_LINEAR);
 	}
 	
+	/**
+     * Draws the top surface of a cube with texture
+     */
 	void GLCube::drawTop(std::string textureName) {
 		
 		this->texturize(textureName);
@@ -220,6 +223,9 @@ namespace WordGL {
 		glDisable(GL_TEXTURE_2D);
 	}
 	
+	/**
+     * Draws the top surface of a cube
+     */
 	void GLCube::drawTop() {
 		glBegin(GL_QUADS);
 		
@@ -231,6 +237,9 @@ namespace WordGL {
 		glEnd();
 	}
 	
+	/**
+     * Draws the bottom surface of a cube with texture
+     */
 	void GLCube::drawBottom(std::string textureName) {	
 		
 		this->texturize(textureName);
@@ -249,6 +258,9 @@ namespace WordGL {
 		
 	}
 	
+	/**
+     * Draws the bottom surface of a cube
+     */
 	void GLCube::drawBottom() {
 		glBegin(GL_QUADS);
 		
@@ -260,6 +272,9 @@ namespace WordGL {
 		glEnd();
 	}
 	
+	/**
+     * Draws the front surface of a cube with texture
+     */
 	void GLCube::drawFrontSide(std::string textureName) {
 		
 		this->texturize(textureName);
@@ -277,6 +292,9 @@ namespace WordGL {
 		glDisable(GL_TEXTURE_2D);
 	}
 	
+	/**
+     * Draws the front surface of a cube
+     */
 	void GLCube::drawFrontSide() {
 		glBegin(GL_QUADS);
 		
@@ -288,6 +306,9 @@ namespace WordGL {
 		glEnd();
 	}
 	
+	/**
+     * Draws the back surface of a cube with texture
+     */
 	void GLCube::drawBackSide(std::string textureName) {
 		
 		this->texturize(textureName);
@@ -305,7 +326,9 @@ namespace WordGL {
 		glDisable(GL_TEXTURE_2D);
 	}
 	
-	
+	/**
+     * Draws the back surface of a cube
+     */
 	void GLCube::drawBackSide() {
 		glBegin(GL_QUADS);
 		
@@ -317,6 +340,9 @@ namespace WordGL {
 		glEnd();
 	}
 	
+	/**
+     * Draws the left surface of a cube with texture
+     */
 	void GLCube::drawLeftSide(std::string textureName) {
 		
 		this->texturize(textureName);
@@ -335,6 +361,9 @@ namespace WordGL {
 		
 	}
 	
+	/**
+     * Draws the left surface of a cube
+     */
 	void GLCube::drawLeftSide() {
 		glBegin(GL_QUADS);
 		
@@ -346,6 +375,9 @@ namespace WordGL {
 		glEnd();
 	}
 	
+	/**
+     * Draws the right surface of a cube with texture
+     */
 	void GLCube::drawRightSide(std::string textureName) {
 		
 		this->texturize(textureName);
@@ -363,6 +395,9 @@ namespace WordGL {
 		glDisable(GL_TEXTURE_2D);
 	}
 	
+	/**
+     * Draws the right surface of a cube
+     */
 	void GLCube::drawRightSide() {
 		glBegin(GL_QUADS);
 		
@@ -374,6 +409,9 @@ namespace WordGL {
 		glEnd();
 	}
 	
+	/**
+     * Sets given texture to all surfaces of a cube
+     */
 	void GLCube::setTexture(std::string textureName){
 		this->setTopTexture(textureName);
 		this->setFrontTexture(textureName);
