@@ -35,3 +35,8 @@ the sixth gets 8 times its points and so on.
 * ENTER - Confirm the word you typed in
 
 Words can only contain ASCII characters
+
+# Authors
+* Bernhard Posselt
+* Patrick Stapfer
+* Viktor Was
