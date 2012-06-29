@@ -167,19 +167,26 @@ namespace WordGL {
      */
 	void Window::specialKeyPressed(int key, int x, int y){
 		switch(key){
-			case GLUT_KEY_UP:   if(this->eyeY > 4.0){
-									this->eyeY -= 0.5;
-								}
-								break;
+			case GLUT_KEY_UP:
+                if(this->eyeY > 4.0){
+					this->eyeY -= 0.5;
+				}
+				break;
 			
-			case GLUT_KEY_DOWN: if(this->eyeY < 20.0){
-									this->eyeY += 0.5;
-								}
-								break;
-			case GLUT_KEY_RIGHT: this->angle = fmod(this->angle + 5.0, 360.0);
+			case GLUT_KEY_DOWN:
+                if(this->eyeY < 20.0){
+					this->eyeY += 0.5;
+				}
 				break;
-			case GLUT_KEY_LEFT: this->angle = fmod(this->angle - 5.0, 360.0);
+                
+			case GLUT_KEY_RIGHT:
+                this->angle = fmod(this->angle + 5.0, 360.0);
 				break;
+                
+			case GLUT_KEY_LEFT:
+                this->angle = fmod(this->angle - 5.0, 360.0);
+				break;
+                
 			default:
                 return;
 		}

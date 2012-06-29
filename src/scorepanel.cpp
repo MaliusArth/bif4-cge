@@ -117,7 +117,7 @@ namespace WordGL {
      * Restarts the score
      */
     void ScorePanel::restart() {
-        this->score = 0;
+        this->setScore(0);;
         this->scoreLowerThanZero = false;
     }
 
