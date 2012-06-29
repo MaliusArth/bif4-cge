@@ -24,8 +24,8 @@ The fort character gets 2 times its points, the fifth gets 4 times its points,
 the sixth gets 8 times its points and so on.
 
 # Controls
-ESC - Quit
-BACKSPACE - Remove last typed letter
-ENTER - Confirm the word you typed in
+* ESC - Quit
+* BACKSPACE - Remove last typed letter
+* ENTER - Confirm the word you typed in
 
 Words can only contain ASCII characters
