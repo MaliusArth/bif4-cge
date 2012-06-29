@@ -38,6 +38,7 @@ namespace WordGL {
         void start();
 		void input(char c);
         void update();
+        void restart();
 
     private:
         void processInput();

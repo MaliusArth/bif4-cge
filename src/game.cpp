@@ -103,9 +103,15 @@ namespace WordGL {
 		if(character == 127 || character == 8){
 			this->letterShelf.pop();
 		}
+		
         // if enter is pressed -> Process the word
         if(character == 13){
-            this->processInput();
+            // enter restarts the game
+            if(this->gameTable.isGameOver()){
+                this->restart();
+            } else {
+                this->processInput();
+            }
         }
 	}
 
@@ -202,6 +208,16 @@ namespace WordGL {
         }
         return score;
     }
+
+    /**
+     * Restarts the game
+     */
+    void Game::restart() {
+        this->gameTable.restart();
+        this->scorePanel.setScore(0);
+        this->letterShelf.clear();
+    }
+
 
     Game::~Game(){
 
