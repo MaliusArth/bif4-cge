@@ -1,6 +1,6 @@
 /**
  *  WordGL
- *  Copyright (C) 2012  Bernhard Posselt <bernhard.posselt@gmx.at>
+ *  Copyright (C) 2012  Bernhard Posselt <bernhard.posselt@gmx.at>, Viktor Was <viktor.was@technikum-wien.at>
  *
  *  This program is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -220,18 +220,18 @@ namespace WordGL {
 		glDisable(GL_TEXTURE_2D);
 	}
 	
-    void GLCube::drawTop() {
-        glBegin(GL_QUADS);
+	void GLCube::drawTop() {
+		glBegin(GL_QUADS);
 		
 		glVertex3f(0.0f, this->height, 0.0f);
 		glVertex3f(0.0f, this->height, this->depth);
 		glVertex3f(this->width, this->height, this->depth);
 		glVertex3f(this->width, this->height, 0.0f);
 		
-        glEnd();
-    }
-    
-    void GLCube::drawBottom(std::string textureName) {	
+		glEnd();
+	}
+	
+	void GLCube::drawBottom(std::string textureName) {	
 		
 		this->texturize(textureName);
 		
@@ -244,11 +244,12 @@ namespace WordGL {
 		glTexCoord2f(0.0f, 0.0f); glVertex3f(this->width, 0.0f, this->depth);
 		glTexCoord2f(1.0f, 0.0f); glVertex3f(0.0f, 0.0f, this->depth);
 		
-        glEnd();
+		glEnd();
 		glDisable(GL_TEXTURE_2D);
-    }
-    
-    void GLCube::drawBottom() {
+		
+	}
+	
+	void GLCube::drawBottom() {
 		glBegin(GL_QUADS);
 		
 		glVertex3f(0.0f, 0.0f, 0.0f);
@@ -256,10 +257,10 @@ namespace WordGL {
 		glVertex3f(this->width, 0.0f, this->depth);
 		glVertex3f(0.0f, 0.0f, this->depth);
 		
-        glEnd();
-    }
-
-    void GLCube::drawFrontSide(std::string textureName) {
+		glEnd();
+	}
+	
+	void GLCube::drawFrontSide(std::string textureName) {
 		
 		this->texturize(textureName);
 		
@@ -271,30 +272,30 @@ namespace WordGL {
 		glTexCoord2f(1.0f, 0.0f); glVertex3f(this->width, 0.0f, this->depth);
 		glTexCoord2f(1.0f, 1.0f); glVertex3f(this->width, this->height, this->depth);
 		glTexCoord2f(0.0f, 1.0f); glVertex3f(0.0f, this->height, this->depth);
-
+		
 		glEnd();
 		glDisable(GL_TEXTURE_2D);
-    }
-    
-    void GLCube::drawFrontSide() {
-        glBegin(GL_QUADS);
+	}
+	
+	void GLCube::drawFrontSide() {
+		glBegin(GL_QUADS);
 		
 		glVertex3f(0.0f, 0.0f, this->depth);
 		glVertex3f(this->width, 0.0f, this->depth);
 		glVertex3f(this->width, this->height, this->depth);
 		glVertex3f(0.0f, this->height, this->depth);
 		
-        glEnd();
-    }
-
-    void GLCube::drawBackSide(std::string textureName) {
+		glEnd();
+	}
+	
+	void GLCube::drawBackSide(std::string textureName) {
 		
 		this->texturize(textureName);
 		
 		glBegin(GL_QUADS);
 		
 		glNormal3f(0.0f, 0.0f, -1.0f);		//FIXME check if is set correctly
-        
+		
 		glTexCoord2f(1.0f, 0.0f); glVertex3f(0.0f, 0.0f, 0.0f);
 		glTexCoord2f(1.0f, 1.0f); glVertex3f(0.0f, this->height, 0.0f);
 		glTexCoord2f(0.0f, 1.0f); glVertex3f(this->width, this->height, 0.0f);
@@ -303,10 +304,10 @@ namespace WordGL {
 		glEnd();
 		glDisable(GL_TEXTURE_2D);
 	}
-
-    
-    void GLCube::drawBackSide() {
-        glBegin(GL_QUADS);
+	
+	
+	void GLCube::drawBackSide() {
+		glBegin(GL_QUADS);
 		
 		glVertex3f(0.0f, 0.0f, 0.0f);
 		glVertex3f(0.0f, this->height, 0.0f);
@@ -314,9 +315,9 @@ namespace WordGL {
 		glVertex3f(this->width, 0.0f, 0.0f);
 		
 		glEnd();
-    }
-
-    void GLCube::drawLeftSide(std::string textureName) {
+	}
+	
+	void GLCube::drawLeftSide(std::string textureName) {
 		
 		this->texturize(textureName);
 		
@@ -329,22 +330,23 @@ namespace WordGL {
 		glTexCoord2f(1.0f, 1.0f); glVertex3f(0.0f, this->height, this->depth);
 		glTexCoord2f(0.0f, 1.0f); glVertex3f(0.0f, this->height, 0.0f);
 		
-        glEnd();
+		glEnd();
 		glDisable(GL_TEXTURE_2D);
-    }
-    
-    void GLCube::drawLeftSide() {
-        glBegin(GL_QUADS);
+		
+	}
+	
+	void GLCube::drawLeftSide() {
+		glBegin(GL_QUADS);
 		
 		glVertex3f(0.0f, 0.0f, 0.0f);
 		glVertex3f(0.0f, 0.0f, this->depth);
 		glVertex3f(0.0f, this->height, this->depth);
 		glVertex3f(0.0f, this->height, 0.0f);
 		
-        glEnd();
-    }
-
-    void GLCube::drawRightSide(std::string textureName) {
+		glEnd();
+	}
+	
+	void GLCube::drawRightSide(std::string textureName) {
 		
 		this->texturize(textureName);
 		
@@ -357,21 +359,21 @@ namespace WordGL {
 		glTexCoord2f(0.0f, 1.0f); glVertex3f(this->width, this->height, this->depth);
 		glTexCoord2f(0.0f, 0.0f); glVertex3f(this->width, 0.0f, this->depth);
 		
-        glEnd();
+		glEnd();
 		glDisable(GL_TEXTURE_2D);
-    }
-    
-    void GLCube::drawRightSide() {
-        glBegin(GL_QUADS);
+	}
+	
+	void GLCube::drawRightSide() {
+		glBegin(GL_QUADS);
 		
 		glVertex3f(this->width, 0.0f, 0.0f);
 		glVertex3f(this->width, this->height, 0.0f);
 		glVertex3f(this->width, this->height, this->depth);
 		glVertex3f(this->width, 0.0f, this->depth);
 		
-        glEnd();
-    }
-
+		glEnd();
+	}
+	
 	void GLCube::setTexture(std::string textureName){
 		this->setTopTexture(textureName);
 		this->setFrontTexture(textureName);
@@ -381,9 +383,7 @@ namespace WordGL {
 		this->setRightTexture(textureName);
 	}
 	
-    GLCube::~GLCube() {
-
-    }
-
-    
+	GLCube::~GLCube() {
+		
+	}
 }

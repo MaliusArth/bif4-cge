@@ -37,29 +37,30 @@ namespace WordGL {
      * @param dimension the dimesions of the object
      * @param letter the texture id for the top
      */
-    LetterCube::LetterCube (Point startPoint, Dimension dimension, char letter): GLCube(startPoint,dimension) {	
-		this->setLetter(letter);
+    LetterCube::LetterCube (Point startPoint, Dimension dimension, char letter): GLCube(startPoint,dimension) {
+        this->setLetter(letter);
     }
-
+    
     /**
      * Returns the letter from the header texture
      * @return the letter which was set
      */
-	char LetterCube::getLetter(){
-		return this->letter;
-	}
-
-	/**
+    char LetterCube::getLetter(){
+        return this->letter;
+    }
+    
+    /**
      * sets a letter for the header texture
      */
-	void LetterCube::setLetter(char letter){
+    void LetterCube::setLetter(char letter){
         this->letter = letter;
         std::string textureName("");
         textureName += this->letter;
-		this->setTopTexture(textureName);
-	}
-
-    LetterCube::~LetterCube() {
+        this->setTopTexture(textureName);
     }
-
+    
+    LetterCube::~LetterCube() {
+        
+    }
+    
 }
