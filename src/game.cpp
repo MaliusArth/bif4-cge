@@ -107,7 +107,7 @@ namespace WordGL {
         // if enter is pressed -> Process the word
         if(character == 13){
             // enter restarts the game
-            if(this->gameTable.isGameOver()){
+            if(this->gameTable.isGameOver() || this->scorePanel.isGameOver()){
                 this->restart();
             } else {
                 this->processInput();
@@ -155,7 +155,7 @@ namespace WordGL {
             this->gameTable.addNewLine();
         }
         // game over happens when there are more rows than maximum, or score is below 0
-        if(this->gameTable.isGameOver() || this->scorePanel.getScore() < 0){
+        if(this->gameTable.isGameOver() || this->scorePanel.isGameOver()){
             this->showGameOverScreen();
         }
         // draw objects
@@ -187,7 +187,7 @@ namespace WordGL {
      * Handles the game over event
      */
     void Game::showGameOverScreen() {
-        exit(0);
+        this->gameTable.showGameOverScreen();
     }
 
     /**
@@ -214,7 +214,7 @@ namespace WordGL {
      */
     void Game::restart() {
         this->gameTable.restart();
-        this->scorePanel.setScore(0);
+        this->scorePanel.restart();
         this->letterShelf.clear();
     }
 

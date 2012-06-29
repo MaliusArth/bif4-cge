@@ -207,8 +207,46 @@ namespace WordGL {
      * Writes game over on the gametable
      */
     void GameTable::showGameOverScreen() {
-        
+        std::vector<GameTableLetterCube*> gameOver;
+        std::string gameOverMsg("gameover");
+        std::string pressMsg("press");
+        std::string enterMsg("enter");
+
+        // create game over msg
+        for(unsigned int i=0; i<gameOverMsg.size(); i++){
+            Point startPoint(i*this->cubeUnit+this->cubePadding+this->startX, this->height, 0.0f+this->cubePadding);
+            Dimension dimension(this->cubeUnit-2*this->cubePadding, 0.3f-2*this->cubePadding, this->cubeUnit-2*this->cubePadding);
+            GameTableLetterCube* letterCube =
+            new GameTableLetterCube(startPoint, dimension, gameOverMsg.at(i), this->cubeUnit);
+            gameOver.push_back(letterCube);
+        }
+
+        // create game over msg
+        for(unsigned int i=0; i<pressMsg.size(); i++){
+            Point startPoint(i*this->cubeUnit+this->cubePadding+this->startX, this->height, 0.0f+this->cubePadding);
+            Dimension dimension(this->cubeUnit-2*this->cubePadding, 0.3f-2*this->cubePadding, this->cubeUnit-2*this->cubePadding);
+            GameTableLetterCube* letterCube =
+            new GameTableLetterCube(startPoint, dimension, pressMsg.at(i), this->cubeUnit);
+            letterCube->incrementRow();
+            gameOver.push_back(letterCube);
+        }
+
+        // create game over msg
+        for(unsigned int i=0; i<enterMsg.size(); i++){
+            Point startPoint(i*this->cubeUnit+this->cubePadding+this->startX, this->height, 0.0f+this->cubePadding);
+            Dimension dimension(this->cubeUnit-2*this->cubePadding, 0.3f-2*this->cubePadding, this->cubeUnit-2*this->cubePadding);
+            GameTableLetterCube* letterCube =
+            new GameTableLetterCube(startPoint, dimension, enterMsg.at(i), this->cubeUnit);
+            letterCube->incrementRow();
+            letterCube->incrementRow();
+            gameOver.push_back(letterCube);
+        }
+
+        this->letterCubes.clear();
+        this->letterCubes = gameOver;
     }
+
+
 
     /**
      * Restarts the game
@@ -216,6 +254,7 @@ namespace WordGL {
     void GameTable::restart() {
         this->letterCubes.clear();
         this->longerThanMaximum = false;
+        this->addNewLine();
     }
 
 

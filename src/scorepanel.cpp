@@ -58,6 +58,7 @@ namespace WordGL {
 		}
 
 		this->setScore(0);
+        this->scoreLowerThanZero = false;
     }
 
 
@@ -69,6 +70,10 @@ namespace WordGL {
         if(score > MAX_SCORE){
 			score = MAX_SCORE;
 		}
+		if(score < 0){
+            score = 0;
+            this->scoreLowerThanZero = true;
+        }
 		this->score = score;
 
         //Update the letter represented by the score-cubes
@@ -108,6 +113,23 @@ namespace WordGL {
         return this->score;
     }
 
+    /**
+     * Restarts the score
+     */
+    void ScorePanel::restart() {
+        this->score = 0;
+        this->scoreLowerThanZero = false;
+    }
+
+
+    /**
+     * Returns true if score was ever lower than zero
+     */
+    bool ScorePanel::isGameOver() {
+        return this->scoreLowerThanZero;
+    }
+
+    
     /**
      * Draws the score and its letters
      */

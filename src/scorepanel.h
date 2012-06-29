@@ -37,11 +37,14 @@ namespace WordGL{
         void setScore(int score);
         void addScore(int score);
         int getScore();
+        bool isGameOver();
+        void restart();
         
     private:
         int score;
 		Dimension cubeDimension;
 		std::vector<LetterCube*> cubes;
+        bool scoreLowerThanZero;
     };
     
 }
