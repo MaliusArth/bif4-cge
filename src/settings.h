@@ -25,7 +25,7 @@
 #define WORD_MAX_LENGTH 8
 
 // rows and columns number on the game table
-#define GAMETABLE_ROWS_NUM 12
+#define GAMETABLE_ROWS_NUM 11
 #define GAMETABLE_COLUMNS_NUM 8
 
 
