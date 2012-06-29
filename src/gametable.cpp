@@ -207,7 +207,7 @@ namespace WordGL {
      * Writes game over on the gametable
      */
     void GameTable::showGameOverScreen() {
-
+        
     }
 
     /**
@@ -220,6 +220,6 @@ namespace WordGL {
 
 
     GameTable::~GameTable() {
-        
+        this->letterCubes.clear();
     }
 }
