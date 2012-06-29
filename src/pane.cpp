@@ -1,6 +1,6 @@
 /**
  *  WordGL
- *  Copyright (C) 2012  Bernhard Posselt <bernhard.posselt@gmx.at>
+ *  Copyright (C) 2012  Bernhard Posselt <bernhard.posselt@gmx.at>, <viktor.was@technikum-wien.at>
  *
  *  This program is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -44,7 +44,7 @@ namespace WordGL {
     void Pane::draw() {
         glPushMatrix();
         this->move(this->startX, this->startY, this->startZ);
-        this->drawTop(std::string("background"));
+        this->drawTop(std::string("grass"));
         glPopMatrix();
     }
 
@@ -59,9 +59,45 @@ namespace WordGL {
  		glBindTexture(GL_TEXTURE_2D, textureId);
  		//glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
  		//glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
+		//glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+		//glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
 	}
+	
+	void Pane::drawTop(std::string textureName){
+        this->texturize(textureName);
+//         glBegin(GL_QUADS);
+//         
+//         glNormal3f(0.0f, 1.0f, 0.0f);
+//         
+//         glTexCoord2f(0.0f, 1.0f); glVertex3f(0.0f, this->height, 0.0f);
+//         glTexCoord2f(0.0f, 0.0f); glVertex3f(0.0f, this->height, this->depth);
+//         glTexCoord2f(1.0f, 0.0f); glVertex3f(this->width, this->height, this->depth);
+//         glTexCoord2f(1.0f, 1.0f); glVertex3f(this->width, this->height, 0.0f);
+        
+        float _pos = 0.0f;      //The forward position relative to the floor
+        const float FLOOR_TEXTURE_SIZE = this->width - _pos; //The size of each "tile"
+        
+        glBegin(GL_QUADS);
+        
+        glNormal3f(0.0f, 1.0f, 0.0f);
+        
+        glTexCoord2f(2000 / FLOOR_TEXTURE_SIZE, _pos / FLOOR_TEXTURE_SIZE);
+        glVertex3f(0.0f, this->height, 0.0f);
+        
+        glTexCoord2f(2000 / FLOOR_TEXTURE_SIZE, (2000 + _pos) / FLOOR_TEXTURE_SIZE);
+        glVertex3f(0.0f, this->height, this->depth);
+        
+        glTexCoord2f(0.0f, (2000 + _pos) / FLOOR_TEXTURE_SIZE);
+        glVertex3f(this->width, this->height, this->depth);
+        
+        glTexCoord2f(0.0f, _pos / FLOOR_TEXTURE_SIZE);
+        glVertex3f(this->width, this->height, 0.0f);
+        
+        glEnd();
+        glDisable(GL_TEXTURE_2D);
+    }
 
 	Pane::~Pane() {
     }

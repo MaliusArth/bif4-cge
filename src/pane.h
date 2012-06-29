@@ -1,6 +1,6 @@
 /**
  *  WordGL
- *  Copyright (C) 2012  Bernhard Posselt <bernhard.posselt@gmx.at>
+ *  Copyright (C) 2012  Bernhard Posselt <bernhard.posselt@gmx.at>, <viktor.was@technikum-wien.at>
  *
  *  This program is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -30,6 +30,7 @@ namespace WordGL {
 			void draw();
 			virtual ~Pane();
 			virtual void texturize(std::string textureName);
+            virtual void drawTop(std::string textureName);
 		};
 	
 }
