@@ -1,6 +1,12 @@
 # Build Instructions
 
-To build it, you require CMake, Glut/FreeGlut and OpenGL. After installation, run
+To build it, you require
+
+* [[http://www.cmake.org/cmake/resources/software.html|CMake]]
+* [[http://freeglut.sourceforge.net/index.php#download|Glut/FreeGlut]]
+* OpenGL
+
+After installation, run
 
     ./build.sh
 
