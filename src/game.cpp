@@ -78,9 +78,7 @@ namespace WordGL {
         bool valid = true;
         if(!this->dict.containsWord(word)){
             valid = false;
-        }
-        
-        if(!this->gameTable.ifContainsCharactersRemove(characters)){
+        } else if(!this->gameTable.ifContainsCharactersRemove(characters)){
             valid = false;
             std::cout << "gametable does not contain " << word << std::endl;
         }
